@@ -38,4 +38,5 @@ jobs:
       - name: Deploy
         run: |
           hexo g
+          ls -la
           hexo deploy
