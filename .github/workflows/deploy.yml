@@ -34,9 +34,10 @@ jobs:
           git config --global user.name "Disappear9"
           npm install hexo-cli -g
           npm install
+          git submodule update --init --recursive
+          rm themes/yilia/_config.yml
 
       - name: Deploy
         run: |
           hexo g
-          ls -la
           hexo deploy
