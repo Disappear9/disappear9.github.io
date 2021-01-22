@@ -32,7 +32,6 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -105,6 +104,7 @@ jsonContent:
       categories: false
       tags: true
 
+##################### theme config overwrite #####################
 
 theme_config:
   # Header-菜单
@@ -167,7 +167,7 @@ theme_config:
   # Open link in a new tab | 是否在新窗口打开链接
   open_in_new:
     article: true  # 文章链接
-    menu: true   # 导航菜单
+    menu: false   # 导航菜单
     subNav: true  # 子菜单
   
   # 打赏
@@ -284,7 +284,7 @@ theme_config:
   copyright_text: 
   
   # 网站成立年份(默认为 2018，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
-  since: 2018
+  since: 2015
   
   # Progress Bar | 页面加载进度条
   # Demo: http://github.hubspot.com/pace/docs/welcome/
