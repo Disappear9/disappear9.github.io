@@ -26,9 +26,9 @@ jobs:
           ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_ED25519
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_ed25519
           chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/id_ED25519
+          chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "disappear9@outlook.com"
           git config --global user.name "Disappear9"
@@ -36,7 +36,6 @@ jobs:
           npm install
           git submodule update --init --recursive
           rm themes/yilia/_config.yml
-          ssh git@github.com -vvv
 
       - name: Deploy
         run: |
