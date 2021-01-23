@@ -49,7 +49,7 @@ Yandex Browser for Android > [Tampermonkey](https://addons.opera.com/zh-cn/exten
 ## 使用 ##
 
 1. 打开[g.e-hentai.org](g.e-hentai.org)或[exhentai.org](exhentai.org)，随意打开一个画廊，如果画廊详情的下面出现这样一个东西，说明脚本生效了
-![](/pictures/E-Hentai-Downloadok.jpg)
+![](/pictures/E-Hentai-Download/ok.jpg)
 
 	从左到右分别是：**下载，在图片的前面加上编号，设定下载范围，设置，反馈**  
 2. 点击**Settings**，按图设置

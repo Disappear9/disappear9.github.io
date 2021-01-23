@@ -159,7 +159,4 @@ iPad/iPhone部分(iOS)：
 **nPlayer**
 ![](/pictures/MyNAS/MyNASIMG_0018.PNG)
 ![](/pictures/MyNAS/MyNASIMG_0020.PNG)
-
-
-    
-    本文作者：Disappear9，转载请以链接形式注明出处。    
+  
