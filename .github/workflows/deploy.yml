@@ -36,8 +36,9 @@ jobs:
           npm install
           git submodule update --init --recursive
           rm themes/yilia/_config.yml
+          chmod +x deploy.sh
 
       - name: Deploy
         run: |
           hexo g
-          hexo deploy
+          ./deploy.sh
