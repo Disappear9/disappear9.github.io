@@ -9,6 +9,7 @@ Hi~，这里是Disappear9的个人博客，这里主要会发布一些安全相�
 博主的E-MAIL disappear9@outlook.com
 **以下是博主的PGP公匙：**
 
+```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mDMEYAufUBYJKwYBBAHaRw8BAQdAgh4uVYyF54kZOmbm3JcxLNudMAYrrprYVxyjo+whEuq0
@@ -22,3 +23,4 @@ WtzceJheSG/sTwqTNKVdkwD/dIHjd22qvy4lRC0URyx+GWiuQjKNhvr94acjDkXEiAo=
 =M68y
 
 -----END PGP PUBLIC KEY BLOCK-----
+```
