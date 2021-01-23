@@ -36,6 +36,7 @@ jobs:
           npm install
           git submodule update --init --recursive
           rm themes/yilia/_config.yml
+          ssh git@github.com -vvv
 
       - name: Deploy
         run: |
