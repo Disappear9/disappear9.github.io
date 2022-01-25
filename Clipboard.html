@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/Clipboard/5.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/Clipboard/6.png">
 <meta property="article:published_time" content="2018-01-27T07:43:35.000Z">
-<meta property="article:modified_time" content="2021-01-23T07:54:07.350Z">
+<meta property="article:modified_time" content="2022-01-25T11:31:13.253Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="网络安全">
 <meta property="article:tag" content="教程">
@@ -266,7 +266,7 @@ ga('send', 'pageview');
   <div class="article-entry" itemprop="articleBody">
     
     <p>最近因为种种原因，经常有网页强奸你的手机剪切板，今天我们就来探究一下，这些网页究竟是怎么强奸你的剪切板的。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>事情的起因其实很奇怪，我昨天晚上去查资料的时候，无意中发现我的剪切板被强奸的，所以就仔细研究了一下这个东西。</p>
 <p>本来我对JS也是一窍不通，这是我第二次写JS脚本，上一次是写那个跳转页面。如果本文有什么错误，欢迎大佬指正。</p>
@@ -280,7 +280,8 @@ ga('send', 'pageview');
 <p>看看我找到了什么，果然是通过JS实现的<br><img src="/pictures/Clipboard/3.png"><br>这个clipboard.min.js就是用于实现复制文本到剪切板的，而且兼容性非常好。</p>
 <p>好了，既然知道是怎么作案的，那就再往深了查一点，咱们看看index.html里都写了什么。</p>
 <p>先把网页复制出来，然后搜索<code>clipboard</code>，找到相关的线索。<br><img src="/pictures/Clipboard/4.png"><br>简单解释一下，他先通过<a target="_blank" rel="noopener" href="https://m.runoob.com/api/codexx.php">https://m.runoob.com/api/codexx.php</a> 这个接口获取数据，你们有兴趣的可以自己去看一下，这个时候我得到的是</p>
-<pre><code>&#123;&quot;flag&quot;:true,&quot;ins_data&quot;:&quot;\uffe5Sh7p0Osu3GO\uffe5&quot;&#125;</code></pre>
+<pre><code>&#123;&quot;flag&quot;:true,&quot;ins_data&quot;:&quot;\uffe5Sh7p0Osu3GO\uffe5&quot;&#125;
+</code></pre>
 <p>然后接着往下看，接下来就是改变body的id和data-clipboard-text，这两步都是给接下来强奸你的剪切板做准备，然后就是强奸你剪切板的方法咯，再后面就是验证有没有强奸成功。</p>
 <p>除此之外，还要判断你是不是移动设备，因为强奸你电脑的剪切板是完全没用的。</p>
 <h2 id="验证一下"><a href="#验证一下" class="headerlink" title="验证一下"></a>验证一下</h2><p>看到别人剧本写的挺好的，难免想要验证一下，所以自己改了一个剧本</p>
@@ -326,7 +327,8 @@ ga('send', 'pageview');
 
 &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <h2 id="写在后面的"><a href="#写在后面的" class="headerlink" title="写在后面的"></a>写在后面的</h2><p>关于网页中插入强奸剪切板代码这件事，我不反对，但是最起码要有个说明什么的，在显眼的位置说一下，我加了强奸剪切板的代码。</p>
 <h3 id="附本文所用代码"><a href="#附本文所用代码" class="headerlink" title="附本文所用代码"></a>附本文所用代码</h3><p>想用直接拿去用，我也不搞什么加密收费的，连我这个对JS一窍不通的都能捣鼓出来一个，原本很简单的一个东西，却要拿去收费，真TMZZ。</p>
 <pre><code>&lt;script src=&quot;https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js&quot;&gt;&lt;/script&gt;
@@ -350,7 +352,8 @@ ga('send', 'pageview');
             &#125;);
         &#125;
     &#125;
-&lt;/script&gt;</code></pre>
+&lt;/script&gt;
+</code></pre>
 <p>原文这里就是把上面的代码直接写到md文件里，然后（这篇文章没有，已经被我去掉了）。。。。。。</p>
 <blockquote>
 <p>转载自 <a target="_blank" rel="noopener" href="https://www.xxwhite.com/2018/Clipboard.html">https://www.xxwhite.com/2018/Clipboard.html</a></p>
@@ -571,7 +574,7 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015-2021 <a href="https://thinkalone.win/" target="_blank">Disappear9</a>
+    		&copy; 2015-2022 <a href="https://thinkalone.win/" target="_blank">Disappear9</a>
     	</div>
       	<div class="footer-right">
 			
