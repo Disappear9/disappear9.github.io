@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: ThinkAlone
-subtitle: In solitude where we are least alone. ----Lord Byron
-description:
+title: 'ThinkAlone'
+subtitle: 'In solitude where we are least alone. ----Lord Byron'
+description: ''
 author: Disappear9
 language: zh-Hans
 timezone: Asia/Shanghai
