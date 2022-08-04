@@ -107,8 +107,10 @@ jsonContent:
 ##################### theme config overwrite #####################
 
 theme_config:
+
+  # WTF?
+  subtitle: 'In solitude where we are least alone. ----Lord Byron'
   # Header-菜单
-  
   menu:
     主页: /
     归档: /archives
@@ -116,7 +118,7 @@ theme_config:
 
   # subNav-子导航
   subNav:
-    github: "https://github.com/Disappear9"
+    github: 'https://github.com/Disappear9'
     # - github: "#" # (支持设置多个)
     # - gitee: "#" # 码云
     # - jianshu: "#" #简书
@@ -132,10 +134,10 @@ theme_config:
     # - segmentfault: "#"
     # - bilibili: "#"
     # - acfun: "#"
-    mail: "mailto:disappear9@outlook.com"
+    mail: 'mailto:disappear9@outlook.com'
     # - facebook: "#"
     # - google: "#"
-    twitter: "Disappear9_"
+    twitter: 'Disappear9_'
     # - linkedin: "#"
 
   # 悬停预览图片效果
