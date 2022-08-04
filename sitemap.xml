@@ -2,6 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://thinkalone.win/SS.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/Travis-CI-Hexo.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/bdpan-via-aria.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/dns-leak.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/fk-n3150.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/hexo-on-action.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkalone.win/klipper-docker.html</loc>
     
     <lastmod>2022-08-04</lastmod>
@@ -21,6 +75,15 @@
   
   <url>
     <loc>https://thinkalone.win/waifu2x.html</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkalone.win/about/index.html</loc>
     
     <lastmod>2022-08-04</lastmod>
     
@@ -111,69 +174,6 @@
   
   <url>
     <loc>https://thinkalone.win/RouterCheck.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/SS.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/Travis-CI-Hexo.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/bdpan-via-aria.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/dns-leak.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/fk-n3150.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/hexo-on-action.html</loc>
-    
-    <lastmod>2022-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/about/index.html</loc>
     
     <lastmod>2022-08-04</lastmod>
     
