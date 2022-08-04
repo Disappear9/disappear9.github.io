@@ -241,9 +241,9 @@ theme_config:
   # 插件配置地址 https://beaudar.lipk.org/
   beaudar:
     enable: true
-    repo: ''       # 仓库名称 注意直接从GitHub上复制 / 左右可能有空格，注意删除
-    issue_term: 'pathname'      # beaudar 生成的博客文章 ↔️ Issue 映射关系
-    label: ''            # issue 标签，选择将分配给 Beaudar 创建的问题的标签
+    repo: 'Disappear9/disappear9.github.io'       # 仓库名称 注意直接从GitHub上复制 / 左右可能有空格，注意删除
+    issue_term: 'title'      # beaudar 生成的博客文章 ↔️ Issue 映射关系
+    label: 'comment'            # issue 标签，选择将分配给 Beaudar 创建的问题的标签
     theme: 'github-light'       # beaudar 主题
   
   # 访问量统计功能(不蒜子)
