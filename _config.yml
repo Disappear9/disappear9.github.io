@@ -108,8 +108,6 @@ jsonContent:
 
 theme_config:
 
-  # WTF?
-  subtitle: 'In solitude where we are least alone. ----Lord Byron'
   # Header-菜单
   menu:
     主页: /
@@ -137,7 +135,7 @@ theme_config:
     mail: 'mailto:disappear9@outlook.com'
     # - facebook: "#"
     # - google: "#"
-    twitter: 'Disappear9_'
+    #twitter: 'https://twitter.com/Disappear9_'
     # - linkedin: "#"
 
   # 悬停预览图片效果
