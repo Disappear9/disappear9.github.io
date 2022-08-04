@@ -116,7 +116,7 @@ theme_config:
 
   # subNav-子导航
   subNav:
-    - github: "https://github.com/Disappear9"
+    github: "https://github.com/Disappear9"
     # - github: "#" # (支持设置多个)
     # - gitee: "#" # 码云
     # - jianshu: "#" #简书
@@ -132,10 +132,10 @@ theme_config:
     # - segmentfault: "#"
     # - bilibili: "#"
     # - acfun: "#"
-    - mail: "mailto:disappear9@outlook.com"
+    mail: "mailto:disappear9@outlook.com"
     # - facebook: "#"
     # - google: "#"
-    - twitter: "Disappear9_"
+    twitter: "Disappear9_"
     # - linkedin: "#"
 
   # 悬停预览图片效果
@@ -426,5 +426,5 @@ theme_config:
       url: https://d9lab.eu.org/
   
   # 关于我
-  #aboutme: 很惭愧<br><br>只做了一点微小的工作<br>谢谢大家
+  aboutme: 很惭愧<br><br>只做了一点微小的工作<br>谢谢大家
   
