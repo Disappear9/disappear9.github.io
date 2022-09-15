@@ -369,6 +369,111 @@ ga('send', 'pageview');
             
 
   
+    <article id="post-zx_bot_Docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/zx_bot_Docker.html" target="_blank">使用 Docker 部署 zhenxun_bot（绪山真寻Bot）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/zx_bot_Docker.html" class="archive-article-date">
+        <time datetime="2022-09-15T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="指路"><a href="#指路" class="headerlink" title="指路"></a>指路</h1><p><a target="_blank" rel="noopener" href="https://github.com/D9Lab/zhenxun_bot_docker"><img src="https://shields.io/badge/GITHUB-D9Lab/zhenxun_bot_docker-4476AF?logo=github&style=for-the-badge" alt="Github"></a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/disappear9/zhenxun_bot"><img src="https://shields.io/badge/docker-disappear9/zhenxun_bot-4476AF?logo=docker&style=for-the-badge" alt="DOCKER"></a><br><a target="_blank" rel="noopener" href="https://github.com/HibiKier/zhenxun_bot"><img src="https://shields.io/badge/GITHUB-HibiKier/zhenxun_bot-4476AF?logo=github&style=for-the-badge" alt="Github"></a></p>
+<h1 id="使用Portainer建立Stacks"><a href="#使用Portainer建立Stacks" class="headerlink" title="使用Portainer建立Stacks"></a>使用Portainer建立Stacks</h1><p>打开Stacks，Add stack 粘贴以下代码  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  go-cqhttp:</span><br><span class="line">    image: silicer/go-cqhttp:latest</span><br><span class="line">    container_name: zxbot_go-cqhttp</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    volumes:</span><br><span class="line">      - go-cqhttp_data:/data</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - bot:bot  #配置为ws reverse，地址 ws://bot:8080/onebot/v11/ws</span><br><span class="line"></span><br><span class="line">  postgres:</span><br><span class="line">    image: postgres:14</span><br><span class="line">    container_name: zxbot_postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=zxbot</span><br><span class="line">      - POSTGRES_PASSWORD=zxbot</span><br><span class="line">      - POSTGRES_DB=zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - postgres_data:/var/lib/postgresql/data</span><br><span class="line"></span><br><span class="line">  bot:</span><br><span class="line">    image: disappear9/zhenxun_bot:latest</span><br><span class="line">    container_name: zxbot_zhenxun_bot</span><br><span class="line">    depends_on: </span><br><span class="line">      - postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - SU=114514 #管理员QQ</span><br><span class="line">      - DB=postgresql://zxbot:zxbot@postgres:5432/zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - postgres:postgres</span><br><span class="line"></span><br><span class="line">volumes: </span><br><span class="line">  bot_data:</span><br><span class="line">  go-cqhttp_data:</span><br><span class="line">  postgres_data:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>镜像有问题了开issue，看见了就回。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">折腾那些事</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/折腾那些事//" class="article-tag-list-link color1">折腾那些事</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/zx_bot_Docker.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-klipper-docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1520,110 +1625,6 @@ volumes:
     
     <p class="article-more-link">
       <a class="article-more-a" href="/E-Hentai-Download.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-bdpan-via-aria" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/bdpan-via-aria.html" target="_blank">使用Aria2满速下载百度网盘资源</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/bdpan-via-aria.html" class="archive-article-date">
-        <time datetime="2017-03-03T12:45:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>首先，感谢网盘插件的作者acgotaku</strong></p>
-<h2 id="安装Aria2"><a href="#安装Aria2" class="headerlink" title="安装Aria2"></a>安装Aria2</h2><p>官方的aria2<a target="_blank" rel="noopener" href="https://github.com/aria2/aria2/issues/580">限制了同服务器连接数</a>为最大16个。。。。表示不能理解（MDZZ）<br>所以我直接编译了一个去掉了限制的版本 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ctMdhO">百度盘</a>（密码：3qim）（我也不知道有什么副作用）</p>
-    
-    <a class="article-more-a" href="/bdpan-via-aria.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">折腾那些事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/折腾那些事//" class="article-tag-list-link color1">折腾那些事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/bdpan-via-aria.html">展开全文 >></a>
     </p>
     
 
