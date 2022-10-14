@@ -108,6 +108,10 @@ jsonContent:
 
 theme_config:
 
+  # Fix
+  author: Disappear9
+  subtitle: 'In solitude where we are least alone. ----Lord Byron'
+  
   # Header-菜单
   menu:
     主页: /
