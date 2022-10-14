@@ -109,7 +109,7 @@ jsonContent:
 theme_config:
 
   # Fix
-  author: Disappear9
+  author: 'Disappear9'
   subtitle: 'In solitude where we are least alone. ----Lord Byron'
   
   # Header-菜单
@@ -120,7 +120,7 @@ theme_config:
 
   # subNav-子导航
   subNav:
-    github: 'https://github.com/Disappear9'
+    - github: 'https://github.com/Disappear9'
     # - github: "#" # (支持设置多个)
     # - gitee: "#" # 码云
     # - jianshu: "#" #简书
@@ -136,7 +136,7 @@ theme_config:
     # - segmentfault: "#"
     # - bilibili: "#"
     # - acfun: "#"
-    mail: 'mailto:disappear9@outlook.com'
+    - mail: 'mailto:disappear9@outlook.com'
     # - facebook: "#"
     # - google: "#"
     #twitter: 'https://twitter.com/Disappear9_'
