@@ -10,18 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="指路 使用Portainer建立Stacks打开Stacks，Add stack 粘贴以下代码   12345678910111213141516171819202122232425262728293031323334353637383940414243version: &amp;#x27;3.4&amp;#x27;services:  go-cqhttp:    image: silicer&#x2F;go-cqhttp">
+  <meta name="description" content="指路  使用Portainer建立Stacks打开Stacks，Add stack 粘贴以下代码   123456789101112131415161718192021222324252627282930313233343536373839404142434445version: &amp;#x27;3.4&amp;#x27;services:  go-cqhttp:    image: silicer&#x2F;go-c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Docker 部署 zhenxun_bot（绪山真寻Bot）">
 <meta property="og:url" content="https://thinkalone.win/zx_bot_Docker.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="指路 使用Portainer建立Stacks打开Stacks，Add stack 粘贴以下代码   12345678910111213141516171819202122232425262728293031323334353637383940414243version: &amp;#x27;3.4&amp;#x27;services:  go-cqhttp:    image: silicer&#x2F;go-cqhttp">
+<meta property="og:description" content="指路  使用Portainer建立Stacks打开Stacks，Add stack 粘贴以下代码   123456789101112131415161718192021222324252627282930313233343536373839404142434445version: &amp;#x27;3.4&amp;#x27;services:  go-cqhttp:    image: silicer&#x2F;go-c">
 <meta property="og:locale">
 <meta property="og:image" content="https://shields.io/badge/GITHUB-D9Lab/zhenxun_bot_docker-4476AF?logo=github&style=for-the-badge">
-<meta property="og:image" content="https://shields.io/badge/docker-disappear9/zhenxun_bot-4476AF?logo=docker&style=for-the-badge">
 <meta property="og:image" content="https://shields.io/badge/GITHUB-HibiKier/zhenxun_bot-4476AF?logo=github&style=for-the-badge">
-<meta property="article:published_time" content="2022-09-15T04:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-14T05:33:14.919Z">
+<meta property="article:published_time" content="2023-01-10T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-04T09:00:03.867Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
@@ -212,7 +211,7 @@
   
   
 <a href="/zx_bot_Docker.html" class="archive-article-date">
-        <time datetime="2022-09-15T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
+        <time datetime="2023-01-10T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-10</time>
 </a>
 
   
@@ -225,7 +224,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">129字</span>
+      <span class="post-count">154字</span>
     </span>
   </span>
 
@@ -245,9 +244,10 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="指路"><a href="#指路" class="headerlink" title="指路"></a>指路</h1><p><a target="_blank" rel="noopener" href="https://github.com/D9Lab/zhenxun_bot_docker"><img src="https://shields.io/badge/GITHUB-D9Lab/zhenxun_bot_docker-4476AF?logo=github&style=for-the-badge" alt="Github"></a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/disappear9/zhenxun_bot"><img src="https://shields.io/badge/docker-disappear9/zhenxun_bot-4476AF?logo=docker&style=for-the-badge" alt="DOCKER"></a><br><a target="_blank" rel="noopener" href="https://github.com/HibiKier/zhenxun_bot"><img src="https://shields.io/badge/GITHUB-HibiKier/zhenxun_bot-4476AF?logo=github&style=for-the-badge" alt="Github"></a></p>
+    <h1 id="指路"><a href="#指路" class="headerlink" title="指路"></a>指路</h1><p><a target="_blank" rel="noopener" href="https://github.com/D9Lab/zhenxun_bot_docker"><img src="https://shields.io/badge/GITHUB-D9Lab/zhenxun_bot_docker-4476AF?logo=github&style=for-the-badge" alt="Github"></a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/HibiKier/zhenxun_bot"><img src="https://shields.io/badge/GITHUB-HibiKier/zhenxun_bot-4476AF?logo=github&style=for-the-badge" alt="Github"></a></p>
 <h1 id="使用Portainer建立Stacks"><a href="#使用Portainer建立Stacks" class="headerlink" title="使用Portainer建立Stacks"></a>使用Portainer建立Stacks</h1><p>打开Stacks，Add stack 粘贴以下代码  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  go-cqhttp:</span><br><span class="line">    image: silicer/go-cqhttp:latest</span><br><span class="line">    container_name: zxbot_go-cqhttp</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    volumes:</span><br><span class="line">      - go-cqhttp_data:/data</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - bot:bot  #配置为ws reverse，地址 ws://bot:8080/onebot/v11/ws</span><br><span class="line"></span><br><span class="line">  postgres:</span><br><span class="line">    image: postgres:14</span><br><span class="line">    container_name: zxbot_postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=zxbot</span><br><span class="line">      - POSTGRES_PASSWORD=zxbot</span><br><span class="line">      - POSTGRES_DB=zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - postgres_data:/var/lib/postgresql/data</span><br><span class="line"></span><br><span class="line">  bot:</span><br><span class="line">    image: disappear9/zhenxun_bot:latest</span><br><span class="line">    container_name: zxbot_zhenxun_bot</span><br><span class="line">    depends_on: </span><br><span class="line">      - postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - SU=114514 #管理员QQ</span><br><span class="line">      - DB=postgresql://zxbot:zxbot@postgres:5432/zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - postgres:postgres</span><br><span class="line"></span><br><span class="line">volumes: </span><br><span class="line">  bot_data:</span><br><span class="line">  go-cqhttp_data:</span><br><span class="line">  postgres_data:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">version: &#x27;3.4&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  go-cqhttp:</span><br><span class="line">    image: silicer/go-cqhttp:latest</span><br><span class="line">    container_name: zxbot_go-cqhttp</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    volumes:</span><br><span class="line">      - go-cqhttp_data:/data</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - bot:bot  #配置为ws reverse，地址 ws://bot:8080/onebot/v11/ws</span><br><span class="line"></span><br><span class="line">  postgres:</span><br><span class="line">    image: postgres:14</span><br><span class="line">    container_name: zxbot_postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=zxbot</span><br><span class="line">      - POSTGRES_PASSWORD=zxbot</span><br><span class="line">      - POSTGRES_DB=zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - postgres_data:/var/lib/postgresql/data</span><br><span class="line"></span><br><span class="line">  bot: #需要将 .env.dev 中的监听地址改为0.0.0.0</span><br><span class="line">    image: ghcr.io/d9lab/zhenxun_bot:latest #ghcr.io</span><br><span class="line">    #image: d9lab01/zhenxun_bot #DockerHub</span><br><span class="line">    container_name: zxbot_zhenxun_bot</span><br><span class="line">    depends_on: </span><br><span class="line">      - postgres</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    environment:</span><br><span class="line">      - SU=114514 #管理员QQ</span><br><span class="line">      - DB=postgres://zxbot:zxbot@postgres:5432/zxbot_database</span><br><span class="line">    volumes:</span><br><span class="line">      - bot_data:/bot</span><br><span class="line">    links:</span><br><span class="line">      - postgres:postgres</span><br><span class="line"></span><br><span class="line">volumes: </span><br><span class="line">  bot_data:</span><br><span class="line">  go-cqhttp_data:</span><br><span class="line">  postgres_data:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>镜像有问题了开issue，看见了就回。</p>
 
@@ -448,7 +448,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015-2022 <a href="https://thinkalone.win/" target="_blank">Disappear9</a>
+    		&copy; 2015-2023 <a href="https://thinkalone.win/" target="_blank">Disappear9</a>
     	</div>
       	<div class="footer-right">
 			

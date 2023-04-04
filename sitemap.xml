@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://thinkalone.win/beaudar.json</loc>
+    
+    <lastmod>2023-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkalone.win/AV-TEST-TT.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +22,7 @@
   <url>
     <loc>https://thinkalone.win/Clipboard.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +31,7 @@
   <url>
     <loc>https://thinkalone.win/CoffeeMiner.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,7 +40,7 @@
   <url>
     <loc>https://thinkalone.win/Docker-ARM.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +49,7 @@
   <url>
     <loc>https://thinkalone.win/E-Hentai-Download.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +58,7 @@
   <url>
     <loc>https://thinkalone.win/Flash-9211-8i.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +67,7 @@
   <url>
     <loc>https://thinkalone.win/Move-to-HEXO.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -67,7 +76,7 @@
   <url>
     <loc>https://thinkalone.win/MyNAS.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -76,7 +85,7 @@
   <url>
     <loc>https://thinkalone.win/Parrot-Security-OS.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,7 +94,7 @@
   <url>
     <loc>https://thinkalone.win/RouterCheck.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -94,7 +103,7 @@
   <url>
     <loc>https://thinkalone.win/SS.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,7 +112,7 @@
   <url>
     <loc>https://thinkalone.win/Travis-CI-Hexo.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -112,7 +121,7 @@
   <url>
     <loc>https://thinkalone.win/bdpan-via-aria.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -121,7 +130,7 @@
   <url>
     <loc>https://thinkalone.win/dns-leak.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -130,7 +139,7 @@
   <url>
     <loc>https://thinkalone.win/fk-n3150.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -139,7 +148,7 @@
   <url>
     <loc>https://thinkalone.win/hexo-on-action.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -148,7 +157,7 @@
   <url>
     <loc>https://thinkalone.win/klipper-docker.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -157,7 +166,7 @@
   <url>
     <loc>https://thinkalone.win/skip-steam-update.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,7 +175,7 @@
   <url>
     <loc>https://thinkalone.win/waifu2x.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -175,7 +184,7 @@
   <url>
     <loc>https://thinkalone.win/zx_bot_Docker.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -184,16 +193,7 @@
   <url>
     <loc>https://thinkalone.win/about/index.html</loc>
     
-    <lastmod>2022-10-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/beaudar.json</loc>
-    
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -202,7 +202,7 @@
 
   <url>
     <loc>https://thinkalone.win/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -210,42 +210,42 @@
   
   <url>
     <loc>https://thinkalone.win/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/tags/%E6%8A%98%E8%85%BE%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/tags/%E5%8E%8B%E5%88%B6/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/tags/%E7%95%AA%E5%89%A7/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -254,28 +254,28 @@
   
   <url>
     <loc>https://thinkalone.win/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/categories/%E6%8A%98%E8%85%BE%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://thinkalone.win/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-10-14</lastmod>
+    <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
