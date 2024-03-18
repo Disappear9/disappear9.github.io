@@ -26,11 +26,11 @@ tags:
 ### 试图复现：
 这里以我常用的文件管理器MiXplorer为例：  
 新建一个Zip压缩包，密码这里MiXplorer正常情况下只允许输入英文+数字，但我们可以直接把中文密码粘贴进去：
-![](/pictures/chinese-zip-password/3.png)
+![](/pictures/chinese-zip-password/3.jpg)
 
 然后在手机上测试解压：  
-![](/pictures/chinese-zip-password/4.png)  
-![](/pictures/chinese-zip-password/5.png)  
+![](/pictures/chinese-zip-password/4.jpg)  
+![](/pictures/chinese-zip-password/5.jpg)  
 显然，是可以正常解压的，然后我们把这个压缩包传到电脑上(Win10)再次进行尝试：
 ![](/pictures/chinese-zip-password/6.png)  
 ![](/pictures/chinese-zip-password/7.png)  
@@ -54,11 +54,16 @@ public class UnZip {
 		zipFile.extractAll("D:\\Work\\Temp\\chinese-zip-password\\d");
 	}
 }
-```  
+
+```
+
 运行，直接报错：  
+
 ```
 Exception in thread "main" net.lingala.zip4j.exception.ZipException: Wrong password!
-```  
+
+```
+
 搜索得知安卓默认中文编码是UTF-8，然后在翻阅zip4j的文档，可以发现这样一个方法：[setUseUtf8CharsetForPasswords](https://javadoc.io/static/net.lingala.zip4j/zip4j/2.11.5/net/lingala/zip4j/ZipFile.html#setUseUtf8CharsetForPasswords(boolean)) 我们修改代码如下：
 ```
 package main;
@@ -74,15 +79,19 @@ public class UnZip {
 		zipFile.extractAll("D:\\Work\\Temp\\chinese-zip-password\\d");
 	}
 }
-```  
+
+```
+
 这次能成功运行了。  
 运行是成了，但是为什么？通过方法名搜索我们找到了这样一个issue：[https://github.com/srikanth-lingala/zip4j/issues/328](https://github.com/srikanth-lingala/zip4j/issues/328)  
+
 ```
 Using non-ascii characters for passwords is in a grey zone as far as zip specification is concerned. Some tools convert passwords to utf8 and some don't. With the change that you linked, zip4j converts the password to utf8 by default, and I guess Windows doesn't, and that's why it works fine in your case when you revert the utf8 conversion.
 
 I added an option to ZipFile api to use utf8 or not for password encoding and decoding. If you are sure that your zip file will only be used on windows, you can now generated the zip files by not using utf8. You can set this flag via ZipFile.setUseUtf8CharsetForPasswords(boolean).
 
-```  
+```
+
 意思大概是zip4j在遇到中文密码的时候会先把密码转UTF-8，但是windows不会。这解决了我第一个疑问，下面我们来研究第二个问题：原来的密码究竟被编码成了什么？  
 
 ### 密码<del>便乘</del>变成什么样了？
@@ -92,9 +101,12 @@ src/main/java/net/lingala/zip4j/ZipFile.java
 public void setUseUtf8CharsetForPasswords(boolean useUtf8CharsetForPasswords) {
     this.useUtf8CharsetForPasswords = useUtf8CharsetForPasswords;
   }
-```  
+
+```
+
 继续跟：  
 src/main/java/net/lingala/zip4j/crypto/StandardDecrypter.java
+
 ```
 private void init(byte[] headerBytes, char[] password, long lastModifiedFileTime, long crc,
                     boolean useUtf8ForPassword) throws ZipException {
@@ -103,9 +115,11 @@ private void init(byte[] headerBytes, char[] password, long lastModifiedFileTime
     }
 
     zipCryptoEngine.initKeys(password, useUtf8ForPassword);
-```  
+```
+
 继续：  
 src/main/java/net/lingala/zip4j/crypto/engine/ZipCryptoEngine.java
+
 ```
   public void initKeys(char[] password, boolean useUtf8ForPassword) {
     keys[0] = 305419896;
@@ -116,9 +130,11 @@ src/main/java/net/lingala/zip4j/crypto/engine/ZipCryptoEngine.java
       updateKeys((byte) (b & 0xff));
     }
   }
-```  
+```
+
 来了：  
-src/main/java/net/lingala/zip4j/util/Zip4jUtil.java  
+src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
+
 ```
   public static byte[] convertCharArrayToByteArray(char[] charArray, boolean useUtf8Charset) {
     return useUtf8Charset
@@ -134,8 +150,10 @@ src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
     }
     return bytes;
   }
-```  
+```
+
 我们把这段代码复制下来，然后再找一段将输出转为HEX的代码，组合起来试着运行看看：  
+
 ```
 package main;
 
@@ -164,12 +182,15 @@ public class UnZip {
 	    return new String(hexChars);
 	}
 }
-```  
+```
+
 输出：  
+
 ```
 克拉拉
 4BC9C9
-```  
+```
+
 好，那么这个` 4B C9 C9 `是个什么东西？  
 我们打开winhex，直接打进去看看：  
 ![](/pictures/chinese-zip-password/8.png)  
