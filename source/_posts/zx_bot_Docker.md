@@ -2,10 +2,10 @@
 title: 使用 Docker 部署 zhenxun_bot（绪山真寻Bot）
 date: 2023-01-10 12:00:00
 categories:
-- 折腾那些事
-tags:
-- 折腾那些事
 - 教程
+tags:
+- 教程
+- 折腾那些事
 ---
 
 # 指路

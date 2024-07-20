@@ -2,7 +2,7 @@
 title: 使用 Travis CI 自动构建 Hexo 博客
 date: 2019-02-06 12:44:30
 categories:
-- 折腾那些事
+- 教程
 tags:
 - 折腾那些事
 - 教程

@@ -2,10 +2,10 @@
 title: 在Docker中运行Klipper
 date: 2022-01-25 12:00:00
 categories:
-- 折腾那些事
-tags:
-- 折腾那些事
 - 教程
+tags:
+- 教程
+- 折腾那些事
 ---
 
 # 安装Portainer

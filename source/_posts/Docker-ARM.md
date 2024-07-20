@@ -2,7 +2,7 @@
 title: 使DockerHub的Autobuild自动构建ARM/其他 架构的镜像
 date: 2018-12-12 13:37:46
 categories:
-- 折腾那些事
+- 教程
 tags:
 - 教程
 - 折腾那些事
