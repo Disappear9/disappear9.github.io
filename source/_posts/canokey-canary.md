@@ -18,7 +18,7 @@ tags:
 
 -------
 
-### 环境
+### 环境确认
 
 硬件信息：  
 &emsp;&emsp;CanoKey Canary（3.0.0-rc2-0 dirty build）  
@@ -42,7 +42,24 @@ PIV
 
 ![2.png](/pictures/canokey-canary/2.png)  
 
-然后就可以开始用了，这里不再赘述。  
+然后就可以开始用作网站登录的认证了，这里不再赘述。  
+
+#### SSH FIDO  
+参考[WebAuthn (Passkey)](https://docs.canokeys.org/zh-hans/userguide/ctap/)  
+所有命令均在PowerShell中运行  
+确保安装的 OpenSSH 为 8.2 及以上版本  
+```
+ssh -V
+sshd -V
+```
+本人测试过在当前环境下只有 Discoverable Credential（Resident Key）是可用的，non-discoverable credentials无论是使用 Windows 自带的 SSH 还是用 [SK SSH Agent](https://github.com/tetractic/SK-SSH-Agent) 转发均无法使用，原因未知，请不吝赐教。  
+除此以外还有一个魔改版putty：[putty-cac](https://github.com/NoMoreFood/putty-cac) 本人没有测试过。  
+由于本人并不常用Windows自带的SSH连接服务器，而且开SK SSH Agent还会占用Agent的端口，所以本人日常用的方案是下文中的 SSH with gpg agent，这里只是简单试试。  
+```
+ssh-keygen -t ed25519-sk -O resident
+```
+将生成的公钥文件（~/.ssh/id_ed25519_sk.pub）的内容添加到目标服务器的 ~/.ssh/authorized_keys 文件中。  
+然后直接使用 Windows 自带的 SSH 或者开 SK SSH Agent 加载`~/.ssh/id_ed25519_sk`转发后就可以使用了。  
 
 ### OTP
 **建议是别用**  
@@ -157,7 +174,7 @@ ssb   cv25519/C5B8214C3AD21C6C 2022-01-01 [E] [expires: 2024-01-01]
       Key fingerprint = E39E E067 3233 BD73 7ED1  15F1 C5B8 214C 3AD2 1C6C
 
 ```
-#### 3.备份备份备份
+#### 3.备份 备份 备份
 ```
 # 公钥
 $ gpg -ao public-key.pub --export 787E848E1A98D086
