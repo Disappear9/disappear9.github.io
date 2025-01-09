@@ -58,8 +58,8 @@ sshd -V
 ```
 ssh-keygen -t ed25519-sk -O resident
 ```
-将生成的公钥文件（~/.ssh/id_ed25519_sk.pub）的内容添加到目标服务器的 ~/.ssh/authorized_keys 文件中。  
-然后直接使用 Windows 自带的 SSH 或者开 SK SSH Agent 加载`~/.ssh/id_ed25519_sk`转发后就可以使用了。  
+将生成的公钥文件 `~/.ssh/id_ed25519_sk.pub` 中的内容添加到目标服务器的 `authorized_keys` 文件中。  
+然后直接使用 Windows 自带的 SSH 或者开 SK SSH Agent 加载 `~/.ssh/id_ed25519_sk` 后就可以使用了。  
 
 ### OTP
 **建议是别用**  
