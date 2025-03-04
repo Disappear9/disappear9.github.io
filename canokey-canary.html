@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/canokey-canary/11.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/canokey-canary/12.png">
 <meta property="article:published_time" content="2025-01-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.222Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.643Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
@@ -244,7 +244,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">14分</span>
+      <span class="post-count">15分</span>
     </span>
   </span>
 </div>
@@ -307,17 +307,17 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 确认是否能检测到Canokey</span><br><span class="line">$ yubico-piv-tool -r canokeys -a status</span><br><span class="line"></span><br><span class="line"># 修改 PIN、PUK</span><br><span class="line">$ yubico-piv-tool -r canokeys -a change-pin</span><br><span class="line">$ yubico-piv-tool -r canokeys -a change-puk</span><br><span class="line"></span><br><span class="line"># 导入密钥</span><br><span class="line">$ yubico-piv-tool -r canokeys -s 9a -i 9a.pfx -KPKCS12 -a import-key -a import-cert</span><br><span class="line"></span><br><span class="line"># 初始化 Card Holder Unique Identifier 和 CCC</span><br><span class="line">$ yubico-piv-tool -r canokeys -a set-chuid</span><br><span class="line">$ yubico-piv-tool -r canokeys -a set-ccc</span><br><span class="line"></span><br><span class="line"># 确认是否导入成功</span><br><span class="line">$ yubico-piv-tool -r canokeys -a status</span><br></pre></td></tr></table></figure>
 <p>至此，Canokey 就可以用于进行 Bitlocker 加密了。在使用 Bitlocker 时，选择“使用智能卡”即可。</p>
 <p><strong>清理与善后</strong><br>0.将导出的证书像对待上文中的GPG证书一样进行备份。<br>1.删除导出的包含私钥的证书文件<code>9a.pfx</code>。<br>2.在 Windows 的证书管理器中删掉生成的证书，证书同时存储在<code>个人</code> 和 <code>中间证书颁发机构</code>下，要同时删掉。<br>3.删除申请证书过程中的 ini 和 req 文件。  </p>
-<h4 id="S-MIME电子邮件加密"><a href="#S-MIME电子邮件加密" class="headerlink" title="S/MIME电子邮件加密"></a>S/MIME电子邮件加密</h4><p><strong>准备工作</strong><br>从 <a target="_blank" rel="noopener" href="https://www.actalis.com/request-s-mime-certificate">Actalis</a> 申请一个免费的S/MIME证书 参考<a target="_blank" rel="noopener" href="https://blog.goodboyboy.top/posts/851058316.html">免费申请S/MIME邮箱证书</a><br>安装 <a target="_blank" rel="noopener" href="https://www.thunderbird.net/zh-CN/thunderbird/all/">Thunderbird</a><br>安装 <a target="_blank" rel="noopener" href="https://github.com/OpenSC/OpenSC/releases">OpenSC</a><br>安装 <a target="_blank" rel="noopener" href="https://developers.yubico.com/yubico-piv-tool/Releases/">yubico-piv-tool</a>  </p>
+<h4 id="S-MIME电子邮件加密"><a href="#S-MIME电子邮件加密" class="headerlink" title="S&#x2F;MIME电子邮件加密"></a>S&#x2F;MIME电子邮件加密</h4><p><strong>准备工作</strong><br>从 <a target="_blank" rel="noopener" href="https://www.actalis.com/request-s-mime-certificate">Actalis</a> 申请一个免费的S&#x2F;MIME证书 参考<a target="_blank" rel="noopener" href="https://blog.goodboyboy.top/posts/851058316.html">免费申请S&#x2F;MIME邮箱证书</a><br>安装 <a target="_blank" rel="noopener" href="https://www.thunderbird.net/zh-CN/thunderbird/all/">Thunderbird</a><br>安装 <a target="_blank" rel="noopener" href="https://github.com/OpenSC/OpenSC/releases">OpenSC</a><br>安装 <a target="_blank" rel="noopener" href="https://developers.yubico.com/yubico-piv-tool/Releases/">yubico-piv-tool</a>  </p>
 <p>导入证书：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yubico-piv-tool -r canokeys -s 9c -i certificate.p12 -KPKCS12 -a import-key -a import-cert --pin-policy=once</span><br></pre></td></tr></table></figure>
 <p>如果你有不止一个邮箱的证书可以继续导入<code>9d</code>, <code>9e</code>槽位，我们可以在导入命令的后面附加<code>--pin-policy</code>或<code>--touch-policy</code>选项覆盖掉默认规则，防止默认规则下<code>9e</code>槽位可以不经验证被直接使用。详细使用方法参考： <a target="_blank" rel="noopener" href="https://developers.yubico.com/yubico-piv-tool/Manuals/yubico-piv-tool.1.html">https://developers.yubico.com/yubico-piv-tool/Manuals/yubico-piv-tool.1.html</a>  </p>
-<p><strong>冲突预防</strong><br>如果你依照上文配置了GPG，在不做修改的情况下GPG会和OpenSC起冲突。<br>参考： <a target="_blank" rel="noopener" href="https://blog.apdu.fr/posts/2024/12/gnupg-and-pcsc-conflicts-episode-3/">GnuPG and PC/SC conflicts, episode 3</a><br>在<code>%AppData%\gnupg\scdaemon.conf</code>中写入(没有就新建一个)：</p>
+<p><strong>冲突预防</strong><br>如果你依照上文配置了GPG，在不做修改的情况下GPG会和OpenSC起冲突。<br>参考： <a target="_blank" rel="noopener" href="https://blog.apdu.fr/posts/2024/12/gnupg-and-pcsc-conflicts-episode-3/">GnuPG and PC&#x2F;SC conflicts, episode 3</a><br>在<code>%AppData%\gnupg\scdaemon.conf</code>中写入(没有就新建一个)：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable-ccid</span><br><span class="line">pcsc-shared</span><br></pre></td></tr></table></figure>
 <p>然后开任务管理器，找到<code>gpg-agent.exe</code>（如有），右键结束进程树。</p>
 <p><strong>配置<code>Thunderbird</code></strong><br><img src="/pictures/canokey-canary/8.png" alt="8.png"><br><img src="/pictures/canokey-canary/9.png" alt="9.png"><br>选择 <code>C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll</code>  </p>
 <p>加载后就可以看到Canokey了（重用一下上面的图）<br><img src="/pictures/canokey-canary/5.png" alt="5.png">  </p>
 <p>选择与邮箱对应的证书<br><img src="/pictures/canokey-canary/10.png" alt="10.png">  </p>
-<p>然后在写信时就可以选择签名/加密了<br><img src="/pictures/canokey-canary/11.png" alt="11.png">  </p>
+<p>然后在写信时就可以选择签名&#x2F;加密了<br><img src="/pictures/canokey-canary/11.png" alt="11.png">  </p>
 <p>别人收到以后是这么一个效果：<br><img src="/pictures/canokey-canary/12.png" alt="12.png">  </p>
 
     

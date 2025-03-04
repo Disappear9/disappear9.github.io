@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/orangepi-zero-ntp/4.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/orangepi-zero-ntp/5.png">
 <meta property="article:published_time" content="2024-07-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.222Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.643Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
@@ -292,7 +292,7 @@
 <p>配置DS3231：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># E̅O̅S̅C̅</span><br><span class="line">i2cset -y 0 0x68 0x0e 0x1c</span><br><span class="line"></span><br><span class="line"># OSF</span><br><span class="line">i2cset -y 0 0x68 0x0f 0x08</span><br><span class="line"></span><br><span class="line"># 设置时间</span><br><span class="line">sudo hwclock -w -f /dev/rtc</span><br><span class="line"></span><br><span class="line"># 读取时间</span><br><span class="line">sudo hwclock -r -f /dev/rtc</span><br></pre></td></tr></table></figure>
 
-<h3 id="杂项与微调"><a href="#杂项与微调" class="headerlink" title="杂项与微调"></a>杂项与微调</h3><h4 id="配置上游NTP-server"><a href="#配置上游NTP-server" class="headerlink" title="配置上游NTP server"></a>配置上游NTP server</h4><p>使用就近的NTP server<br>将配置文件<code>/etc/chrony/chrony.conf</code>中原来的pool/server部分修改如下：  </p>
+<h3 id="杂项与微调"><a href="#杂项与微调" class="headerlink" title="杂项与微调"></a>杂项与微调</h3><h4 id="配置上游NTP-server"><a href="#配置上游NTP-server" class="headerlink" title="配置上游NTP server"></a>配置上游NTP server</h4><p>使用就近的NTP server<br>将配置文件<code>/etc/chrony/chrony.conf</code>中原来的pool&#x2F;server部分修改如下：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server 0.cn.pool.ntp.org iburst</span><br><span class="line">server 1.cn.pool.ntp.org iburst</span><br><span class="line">server 2.cn.pool.ntp.org iburst</span><br><span class="line">server 3.cn.pool.ntp.org iburst</span><br></pre></td></tr></table></figure>
 
 <h4 id="offset整定"><a href="#offset整定" class="headerlink" title="offset整定"></a>offset整定</h4><p>前文在配置文件<code>/etc/chrony/conf.d/gpsd.conf</code>中，暂时将<code>offset</code>设置为了<code>0.0</code>，在chrony服务正常运行半小时后，运行命令：  </p>

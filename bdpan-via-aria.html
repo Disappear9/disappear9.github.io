@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/bdpan-via-aria/2017-03-03_20-44-25.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/bdpan-via-aria/jZUn0Xb.png">
 <meta property="article:published_time" content="2017-03-03T12:45:15.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.221Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.643Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
@@ -227,7 +227,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">987字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -252,8 +252,7 @@
 <span id="more"></span>
 
 <h2 id="配置Aria2"><a href="#配置Aria2" class="headerlink" title="配置Aria2"></a>配置Aria2</h2><p>Aria2有两种下载模式,一种是命令行下载模式,一种是RPC Server模式.前者不建议使用,后者的使用方式很方便. RPC模式就是启动之后什么也不做,等着通过RPC接口接受下载请求.下载完也不会退出,一直等待. 使用命令行加参数的方式配置Aria2非常不推荐,建议使用配置文件的方式,下面贴出我的配置文件.</p>
-<p>将下面的内容保存为aria2.conf，和上面的aria2.exe放在同一目录下。<br><strong><em>将第一行的内容修改为你的密码。</em></strong><br>===========================================================================</p>
-<pre><code>rpc-secret=你的密码
+<h1 id="将下面的内容保存为aria2-conf，和上面的aria2-exe放在同一目录下。将第一行的内容修改为你的密码。"><a href="#将下面的内容保存为aria2-conf，和上面的aria2-exe放在同一目录下。将第一行的内容修改为你的密码。" class="headerlink" title="将下面的内容保存为aria2.conf，和上面的aria2.exe放在同一目录下。将第一行的内容修改为你的密码。"></a>将下面的内容保存为aria2.conf，和上面的aria2.exe放在同一目录下。<br><em><strong>将第一行的内容修改为你的密码。</strong></em></h1><pre><code>rpc-secret=你的密码
 #设置连接密码
 #允许所有来源, web界面跨域权限需要
 rpc-allow-origin-all=true
@@ -296,13 +295,13 @@ file-allocation=falloc
 <p><strong>下载后解压到一个你不会随便删掉的地方</strong></p>
 <p>你需要Chrome或Firefox</p>
 <p>Chrome : 设置 -&gt; 扩展程序 -&gt; 勾选 开发者模式-&gt; 加载已解压的扩展程序<br>Firefox : 在地址栏输入 <strong>about:debugging</strong> , 勾选 启用附加组件调试，点击临时加载附加组件，选择文件夹内的manifest.json</p>
-<p>然后，打开<a target="_blank" rel="noopener" href="http://pan.baidu.com/">pan.baidu.com</a>，你会看到这样一个东西<br><img src="/pictures/bdpan-via-aria/2017-03-03_20-18-05.png"><br>点击设置<br><img src="/pictures/bdpan-via-aria/2017-03-03_20-18-51.png"><br>RPC地址请参照上面的 <strong>管理Aria2的下载任务</strong><br>选中你想要下载的文件，导出下载 =&gt; aria2rpc</p>
+<p>然后，打开<a target="_blank" rel="noopener" href="http://pan.baidu.com/">pan.baidu.com</a>，你会看到这样一个东西<br><img src="/pictures/bdpan-via-aria/2017-03-03_20-18-05.png"><br>点击设置<br><img src="/pictures/bdpan-via-aria/2017-03-03_20-18-51.png"><br>RPC地址请参照上面的 <strong>管理Aria2的下载任务</strong><br>选中你想要下载的文件，导出下载 &#x3D;&gt; aria2rpc</p>
 <p>效果</p>
 <p><img src="/pictures/bdpan-via-aria/example.PNG"></p>
-<h2 id="解决每次开启Chrome都提示禁用"><a href="#解决每次开启Chrome都提示禁用" class="headerlink" title="解决每次开启Chrome都提示禁用"></a>解决每次开启Chrome都提示禁用</h2><p>打开 <strong>chrome://extensions</strong><br>记下扩展 网盘助手的 ID，像这样：</p>
+<h2 id="解决每次开启Chrome都提示禁用"><a href="#解决每次开启Chrome都提示禁用" class="headerlink" title="解决每次开启Chrome都提示禁用"></a>解决每次开启Chrome都提示禁用</h2><p>打开 <strong>chrome:&#x2F;&#x2F;extensions</strong><br>记下扩展 网盘助手的 ID，像这样：</p>
 <pre><code>ID： eppgadbgkjo63216967523eiabpgjfph
 </code></pre>
-<p>下载这个文件：<a target="_blank" rel="noopener" href="https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip">https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip</a>（可能需要挂代理）<br>解压里面的 Windows/adm/zh-CN/chrome.adm<br>按下WIN+R键，运行gpedit.msc<br>打开 计算机配置 =&gt; 管理模板 右键单击管理模板 =&gt; 添加/删除模板 =&gt; 选择chrome.adm<br>打开 经典管理模板 / Google / Google Chrome / 扩展程序</p>
+<p>下载这个文件：<a target="_blank" rel="noopener" href="https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip">https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip</a>（可能需要挂代理）<br>解压里面的 Windows&#x2F;adm&#x2F;zh-CN&#x2F;chrome.adm<br>按下WIN+R键，运行gpedit.msc<br>打开 计算机配置 &#x3D;&gt; 管理模板 右键单击管理模板 &#x3D;&gt; 添加&#x2F;删除模板 &#x3D;&gt; 选择chrome.adm<br>打开 经典管理模板 &#x2F; Google &#x2F; Google Chrome &#x2F; 扩展程序</p>
 <p><img src="/pictures/bdpan-via-aria/2017-03-03_20-44-25.png"></p>
 <p>双击打开 <strong>配置扩展程序安装白名单</strong> 选择 <strong>已启用</strong><br>点击下面的 显示 然后把ID复制进去</p>
 <p><img src="/pictures/bdpan-via-aria/jZUn0Xb.png"></p>
@@ -467,7 +466,7 @@ file-allocation=falloc
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Aria2"><span class="toc-number">1.</span> <span class="toc-text">安装Aria2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEAria2"><span class="toc-number">2.</span> <span class="toc-text">配置Aria2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86Aria2%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">管理Aria2的下载任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8F%92%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">安装百度网盘插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%BC%80%E5%90%AFChrome%E9%83%BD%E6%8F%90%E7%A4%BA%E7%A6%81%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">解决每次开启Chrome都提示禁用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Aria2"><span class="toc-number">1.</span> <span class="toc-text">安装Aria2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEAria2"><span class="toc-number">2.</span> <span class="toc-text">配置Aria2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%86%85%E5%AE%B9%E4%BF%9D%E5%AD%98%E4%B8%BAaria2-conf%EF%BC%8C%E5%92%8C%E4%B8%8A%E9%9D%A2%E7%9A%84aria2-exe%E6%94%BE%E5%9C%A8%E5%90%8C%E4%B8%80%E7%9B%AE%E5%BD%95%E4%B8%8B%E3%80%82%E5%B0%86%E7%AC%AC%E4%B8%80%E8%A1%8C%E7%9A%84%E5%86%85%E5%AE%B9%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%BD%A0%E7%9A%84%E5%AF%86%E7%A0%81%E3%80%82"><span class="toc-number"></span> <span class="toc-text">将下面的内容保存为aria2.conf，和上面的aria2.exe放在同一目录下。将第一行的内容修改为你的密码。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86Aria2%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">管理Aria2的下载任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8F%92%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">安装百度网盘插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%BC%80%E5%90%AFChrome%E9%83%BD%E6%8F%90%E7%A4%BA%E7%A6%81%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">解决每次开启Chrome都提示禁用</span></a></li></ol>
                     </div>
                 </span>
             </div>

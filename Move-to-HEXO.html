@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/Move-to-HEXO/1.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/Move-to-HEXO/2.png">
 <meta property="article:published_time" content="2017-12-21T13:11:12.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.221Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.643Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="折腾那些事">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
 <p>大意就是老的空间准备关了，请换到新的。<br>而时并没有在意，因为我知道从截至日期到完全关停还是有很长时间可以苟的，然而，我错了……<br>到截至日期一个星期后，我的Blog炸了……<br>而且一炸就是一个多月……..<br>不过还好，我有备份，但是找个新的空间就成了问题。<br>查了半天，国内的空间要各种认证，国外的即使加上CDN访问速度也很慢。<br>然后，我偶然间得知Github提供了一个叫Git pages的服务，可以拿来托管一些静态页面<br>好了我的Blog有救了！</p>
 <span id="more"></span>
 <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p><strong>安装Node</strong><br>作用：用来生成静态页面的 到Node.js官网（<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/</a> ）下载相应平台的最新版本，安装即可。<br><strong>安装Git&amp;申请Github帐号</strong><br>直接apt install就行</p>
-<h2 id="安装-amp-配置HEXO"><a href="#安装-amp-配置HEXO" class="headerlink" title="安装&amp;配置HEXO"></a>安装&amp;配置HEXO</h2><pre><code>sudo npm install -g hexo
+<h2 id="安装-配置HEXO"><a href="#安装-配置HEXO" class="headerlink" title="安装&amp;配置HEXO"></a>安装&amp;配置HEXO</h2><pre><code>sudo npm install -g hexo
 mkdir blog
 cd blog
 hexo init
@@ -279,11 +279,11 @@ hexo s
 <p>配置好Git以后，直接运行：</p>
 <pre><code>hexo d
 </code></pre>
-<p>这样就完成了初步部署，浏览器中打开https://用户名.github.io 就可以看到初步成型的博客了。</p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>在blog目录下的source文件夹中新建一个名为CNAME的文件，文件里写上你的域名<strong>（不带http:// ）</strong><br>然后在你的域名控制面板里建立一个到 用户名.github.io 的CNAME记录</p>
+<p>这样就完成了初步部署，浏览器中打开https:&#x2F;&#x2F;用户名.github.io 就可以看到初步成型的博客了。</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>在blog目录下的source文件夹中新建一个名为CNAME的文件，文件里写上你的域名**（不带http:&#x2F;&#x2F; ）**<br>然后在你的域名控制面板里建立一个到 用户名.github.io 的CNAME记录</p>
 <p><strong>如果你对目前的博客感到满意，那么看到这里就可以关掉这个页面了，然后去看看官方文档就可以开始正常写作了</strong></p>
 <h2 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h2><p>我使用的主题是yilia<br><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a></p>
-<p>在Blog/theme下运行git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a><br>然后把hexo-theme-yilia更名为yilia<br>编辑blog目录下的 <strong>_config.yml</strong></p>
+<p>在Blog&#x2F;theme下运行git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a><br>然后把hexo-theme-yilia更名为yilia<br>编辑blog目录下的 <strong>_config.yml</strong></p>
 <pre><code>theme: yilia
 </code></pre>
 <p>然后似乎也没什么需要我写的了，主题作者的说明写的很详细</p>
@@ -329,7 +329,7 @@ permalink: :title.html
 new_post_name: :title.md #&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;这里，只保留标题
 default_layout: post
 </code></pre>
-<p>或更改主题 <strong>/layout/_partial/post</strong> 目录下的 <strong>gitment.ejs</strong> 文件 如果你使用的也是yilia主题</p>
+<p>或更改主题 <strong>&#x2F;layout&#x2F;_partial&#x2F;post</strong> 目录下的 <strong>gitment.ejs</strong> 文件 如果你使用的也是yilia主题</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;gitment-ctn&quot;&gt;&lt;/div&gt; </span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;//imsun.github.io/gitment/style/default.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;//imsun.github.io/gitment/dist/gitment.browser.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: &quot;&lt;%= page.title %&gt;&quot;,</span><br><span class="line">  owner: &#x27;&lt;%=theme.gitment_owner%&gt;&#x27;,</span><br><span class="line">  repo: &#x27;&lt;%=theme.gitment_repo%&gt;&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;&lt;%=theme.gitment_oauth.client_id%&gt;&#x27;,</span><br><span class="line">    client_secret: &#x27;&lt;%=theme.gitment_oauth.client_secret%&gt;&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;gitment-ctn&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a><br><a target="_blank" rel="noopener" href="http://xichen.pub/2018/01/31/2018-01-31-gitment/">http://xichen.pub/2018/01/31/2018-01-31-gitment/</a></p>
@@ -489,7 +489,7 @@ default_layout: post
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-Openshift%E5%80%92%E9%97%AD%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text">美国 罗利 美国 罗利 Openshift倒闭了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-amp-%E9%85%8D%E7%BD%AEHEXO"><span class="toc-number">3.</span> <span class="toc-text">安装&amp;配置HEXO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGithub"><span class="toc-number">4.</span> <span class="toc-text">配置Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEBlog"><span class="toc-number">5.</span> <span class="toc-text">配置Blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">6.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E4%B8%AA%E4%B8%BB%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">换个主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E4%B8%AALive2d"><span class="toc-number">8.</span> <span class="toc-text">加个Live2d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA"><span class="toc-number">9.</span> <span class="toc-text">配置评论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-Openshift%E5%80%92%E9%97%AD%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text">美国 罗利 美国 罗利 Openshift倒闭了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-%E9%85%8D%E7%BD%AEHEXO"><span class="toc-number">3.</span> <span class="toc-text">安装&amp;配置HEXO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGithub"><span class="toc-number">4.</span> <span class="toc-text">配置Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEBlog"><span class="toc-number">5.</span> <span class="toc-text">配置Blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">6.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E4%B8%AA%E4%B8%BB%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">换个主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E4%B8%AALive2d"><span class="toc-number">8.</span> <span class="toc-text">加个Live2d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA"><span class="toc-number">9.</span> <span class="toc-text">配置评论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>

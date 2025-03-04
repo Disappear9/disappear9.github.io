@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="注：此教程取自作者的GitHub页面，仅为效果展示，实际压制时请使用VS滤镜“waifu2x-caffe或opt等”。 什么是waifu2x：作者的DEMO主页上对它的介绍是这样的  本程序使用卷积神经网络对动漫风格的图片进行放大操作。  这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [&#x3D;_&#x3D;]……演示： 作者的DEMO页面：http:&#x2F;&#x2F;waifu2x.udp.jp&#x2F;你">
+  <meta name="description" content="注：此教程取自作者的GitHub页面，仅为效果展示，实际压制时请使用VS滤镜“waifu2x-caffe或opt等”。 什么是waifu2x：作者的DEMO主页上对它的介绍是这样的  本程序使用卷积神经网络对动漫风格的图片进行放大操作。  这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [&#x3D;_&#x3D;]……演示： 作者的DEMO页面：http:&#x2F;&#x2F;waifu2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="waifu2x的实践[视频处理(UPSCALE)]">
 <meta property="og:url" content="https://thinkalone.win/waifu2x.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="注：此教程取自作者的GitHub页面，仅为效果展示，实际压制时请使用VS滤镜“waifu2x-caffe或opt等”。 什么是waifu2x：作者的DEMO主页上对它的介绍是这样的  本程序使用卷积神经网络对动漫风格的图片进行放大操作。  这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [&#x3D;_&#x3D;]……演示： 作者的DEMO页面：http:&#x2F;&#x2F;waifu2x.udp.jp&#x2F;你">
+<meta property="og:description" content="注：此教程取自作者的GitHub页面，仅为效果展示，实际压制时请使用VS滤镜“waifu2x-caffe或opt等”。 什么是waifu2x：作者的DEMO主页上对它的介绍是这样的  本程序使用卷积神经网络对动漫风格的图片进行放大操作。  这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [&#x3D;_&#x3D;]……演示： 作者的DEMO页面：http:&#x2F;&#x2F;waifu2">
 <meta property="og:locale">
 <meta property="og:image" content="https://thinkalone.win/pictures/waifu2x/slide.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/waifu2x/2.PNG">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://thinkalone.win/pictures/waifu2x/000015a.png">
 <meta property="og:image" content="https://thinkalone.win/pictures/waifu2x/e.PNG">
 <meta property="article:published_time" content="2016-06-09T09:31:27.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:08:40.222Z">
+<meta property="article:modified_time" content="2025-03-04T09:36:12.644Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
@@ -232,7 +232,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">561字</span>
+      <span class="post-count">569字</span>
     </span>
   </span>
 
@@ -257,7 +257,7 @@
 <blockquote>
 <p>本程序使用卷积神经网络对动漫风格的图片进行放大操作。</p>
 </blockquote>
-<p>这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [=_=]……<br>演示：<br><img src="/pictures/waifu2x/slide.png"></p>
+<p>这个名字来源于海外的动画粉丝们将喜欢的角色称作”waifu（我老婆）” [&#x3D;_&#x3D;]……<br>演示：<br><img src="/pictures/waifu2x/slide.png"></p>
 <p><em>作者的DEMO页面：<a target="_blank" rel="noopener" href="http://waifu2x.udp.jp/">http://waifu2x.udp.jp/</a>你可以上传一张图片，然后选择降噪或放大进行体验。</em></p>
 <span id="more"></span>
 <p><strong>准备</strong><br>由于在线版的一次只能处理一张图片，根本无法进行视频处理，所以我们需要使用本地编译版的。<br><strong>思路：我们使用ffmpeg把视频帧拆成png，声音分离出来，png用waifu2x处理后再封装回去。</strong><br>你需要准备这些软件：</p>
@@ -268,21 +268,21 @@
 <p><em>正常运行的ffmpeg</em><br>下载waifu2x-caffe后解压，双击waifu2x-caffe.exe<br><img src="/pictures/waifu2x/wc1.PNG"></p>
 <p><em>正常运行的waifu2x-caffe</em><br>回到命令行，执行以下命令：</p>
 <blockquote>
-<p>ffmpeg -i 输入视频文件名 -ss 开始时间 -t 持续时间 -r 输出帧数 -f image2 frames/%06d.png<br>ffmpeg -i 输入视频文件名 -ss 开始时间 -t 持续时间 输出.mp3</p>
+<p>ffmpeg -i 输入视频文件名 -ss 开始时间 -t 持续时间 -r 输出帧数 -f image2 frames&#x2F;%06d.png<br>ffmpeg -i 输入视频文件名 -ss 开始时间 -t 持续时间 输出.mp3</p>
 </blockquote>
 <p>ffmpeg用法：<a target="_blank" rel="noopener" href="http://blog.csdn.net/hemingwang0902/article/details/4382429">http://blog.csdn.net/hemingwang0902/article/details/4382429</a></p>
 <p><strong>命令需根据实际情况修改</strong></p>
 <blockquote>
-<p>ffmpeg -i test.mp4 -ss 01:50 -t 00:01 -r 24 -f image2 frames/%06d.png<br>ffmpeg -i test.mp4 -ss 01:50 -t 00:01 audio.mp3</p>
+<p>ffmpeg -i test.mp4 -ss 01:50 -t 00:01 -r 24 -f image2 frames&#x2F;%06d.png<br>ffmpeg -i test.mp4 -ss 01:50 -t 00:01 audio.mp3</p>
 </blockquote>
 <p>回到waifu2x-caffe，选择png所在文件夹，设置如图<br><img src="/pictures/waifu2x/3.PNG"><br><img src="/pictures/waifu2x/as.PNG"><br><em>设置</em><br>如果你使用的是N卡，将右上角改为CUDA会快很多。</p>
-<p>这一步需要很长时间，笔者的E-350 CPU笔记本处理一张png的时间是1:39，所以暂时只实验1S。 [=_=|||]</p>
+<p>这一步需要很长时间，笔者的E-350 CPU笔记本处理一张png的时间是1:39，所以暂时只实验1S。 [&#x3D;_&#x3D;|||]</p>
 <p>处理前：<br><img src="/pictures/waifu2x/000015.png"><br>处理后：<br><img src="/pictures/waifu2x/000015a.png"><br>（不要问我用的啥片源，手里实在没有别的了。。。。）<br><strong>再封装</strong><br>命令</p>
 <blockquote>
-<p>ffmpeg -f image2 -framerate 输入帧数 -i frames/%d.png -i audio.mp3 -r 帧数 -vcodec libx264 -crf 16 video.mp4</p>
+<p>ffmpeg -f image2 -framerate 输入帧数 -i frames&#x2F;%d.png -i audio.mp3 -r 帧数 -vcodec libx264 -crf 16 video.mp4</p>
 </blockquote>
 <blockquote>
-<p>ffmpeg -f image2 -framerate 24 -i frames/%d.png -i audio.mp3 -r 24 -vcodec libx264 -crf 16 video.mp4</p>
+<p>ffmpeg -f image2 -framerate 24 -i frames&#x2F;%d.png -i audio.mp3 -r 24 -vcodec libx264 -crf 16 video.mp4</p>
 </blockquote>
 <p>最终效果：<br><img src="/pictures/waifu2x/e.PNG"></p>
 
