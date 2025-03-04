@@ -12,8 +12,6 @@ tags:
 前几天在Canokey群看到一个软件：[step-ca](https://github.com/smallstep/certificates)  
 简单说就是用这个软件可以自建一个CA来玩，而且软件支持HSM设备
 
-那这不再折腾一下似乎就有点不合适了。  
-
 -------
 
 ### 环境确认
