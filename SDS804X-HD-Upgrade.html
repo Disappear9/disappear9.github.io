@@ -6,23 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://thinkalone.win">
-  <title>在Docker中运行Klipper | ThinkAlone</title>
+  <title>鼎阳 SDS804X HD 示波器带宽与选件升级 | ThinkAlone</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
+  <meta name="description" content="完成效果脚本来源： https:&#x2F;&#x2F;www.eevblog.com&#x2F;forum&#x2F;testgear&#x2F;siglent-sds-sdg-hack-script&#x2F;升级完成后型号会显示为SDS824X HD：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Docker中运行Klipper">
-<meta property="og:url" content="https://thinkalone.win/klipper-docker.html">
+<meta property="og:title" content="鼎阳 SDS804X HD 示波器带宽与选件升级">
+<meta property="og:url" content="https://thinkalone.win/SDS804X-HD-Upgrade.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
+<meta property="og:description" content="完成效果脚本来源： https:&#x2F;&#x2F;www.eevblog.com&#x2F;forum&#x2F;testgear&#x2F;siglent-sds-sdg-hack-script&#x2F;升级完成后型号会显示为SDS824X HD：">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-01-25T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:03:48.852Z">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/1.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/2.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/3.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/4.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/5.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/6.png">
+<meta property="article:published_time" content="2025-03-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-04T09:03:48.851Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://thinkalone.win/pictures/SDS804X-HD-Upgrade/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ThinkAlone" type="application/atom+xml">
   
@@ -193,22 +200,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-klipper-docker" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SDS804X-HD-Upgrade" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      在Docker中运行Klipper
+      鼎阳 SDS804X HD 示波器带宽与选件升级
     </h1>
   
 
 
   
   
-<a href="/klipper-docker.html" class="archive-article-date">
-        <time datetime="2022-01-25T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-25</time>
+<a href="/SDS804X-HD-Upgrade.html" class="archive-article-date">
+        <time datetime="2025-03-01T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-03-01</time>
 </a>
 
   
@@ -221,7 +228,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">246字</span>
+      <span class="post-count">464字</span>
     </span>
   </span>
 
@@ -230,7 +237,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -241,55 +248,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="安装Portainer"><a href="#安装Portainer" class="headerlink" title="安装Portainer"></a>安装Portainer</h1><p><a target="_blank" rel="noopener" href="https://docs.portainer.io/v/ce-2.11/start/install">https://docs.portainer.io/v/ce-2.11/start/install</a></p>
-<pre><code>docker volume create portainer_data
+    <h2 id="完成效果"><a href="#完成效果" class="headerlink" title="完成效果"></a>完成效果</h2><p>脚本来源： <a target="_blank" rel="noopener" href="https://www.eevblog.com/forum/testgear/siglent-sds-sdg-hack-script/">https://www.eevblog.com/forum/testgear/siglent-sds-sdg-hack-script/</a><br>升级完成后型号会显示为SDS824X HD：  </p>
+<p><img src="/pictures/SDS804X-HD-Upgrade/1.png" alt="1.png">  </p>
+<hr>
+<span id="more"></span> 
 
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
---restart=always \
--v /var/run/docker.sock:/var/run/docker.sock \
--v portainer_data:/data \
-portainer/portainer-ce
-</code></pre>
-<h1 id="建立Stacks（docker-compose）"><a href="#建立Stacks（docker-compose）" class="headerlink" title="建立Stacks（docker-compose）"></a>建立Stacks（docker-compose）</h1><p><a target="_blank" rel="noopener" href="https://github.com/dimalo/klipper-web-control-docker">https://github.com/dimalo/klipper-web-control-docker</a></p>
-<p>打开Stacks，Add stack 粘贴以下代码</p>
-<pre><code>version: &#39;3.4&#39;
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="1-示波器连好网线，配置网络："><a href="#1-示波器连好网线，配置网络：" class="headerlink" title="1.示波器连好网线，配置网络："></a>1.示波器连好网线，配置网络：</h3><p><img src="/pictures/SDS804X-HD-Upgrade/2.png" alt="2.png"><br><img src="/pictures/SDS804X-HD-Upgrade/3.png" alt="3.png"><br><img src="/pictures/SDS804X-HD-Upgrade/4.png" alt="4.png">  </p>
+<p>配网后的操作就可以不用在示波器的小屏幕上进行了。  </p>
+<h3 id="2-打开SCPI页面"><a href="#2-打开SCPI页面" class="headerlink" title="2.打开SCPI页面"></a>2.打开SCPI页面</h3><p><img src="/pictures/SDS804X-HD-Upgrade/5.png" alt="5.png">  </p>
+<h3 id="3-修改并运行脚本"><a href="#3-修改并运行脚本" class="headerlink" title="3.修改并运行脚本"></a>3.修改并运行脚本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line"># SCPI页面运行命令 MD5_SRLN? 获得SCOPEID</span><br><span class="line">SCOPEID = &#x27;0000000000000000&#x27;</span><br><span class="line"></span><br><span class="line"># 在 Home 页面找到SN进行替换</span><br><span class="line">SN = &#x27;SDS00000000000&#x27;</span><br><span class="line">Model = &#x27;SDS800X-HD&#x27;</span><br><span class="line"></span><br><span class="line">bwopt = (&#x27;70M&#x27;, &#x27;100M&#x27;, &#x27;200M&#x27;)</span><br><span class="line">otheropt = (&#x27;PWA&#x27;,)</span><br><span class="line"></span><br><span class="line">hashkey = &#x27;5zao9lyua01pp7hjzm3orcq90mds63z6zi5kv7vmv3ih981vlwn06txnjdtas3u2wa8msx61i12ueh14t7kqwsfskg032nhyuy1d9vv2wm925rd18kih9xhkyilobbgy&#x27;</span><br><span class="line"></span><br><span class="line">def gen(x):</span><br><span class="line">    h = hashlib.md5((</span><br><span class="line">        hashkey +</span><br><span class="line">        (Model+&#x27;\n&#x27;).ljust(32, &#x27;\x00&#x27;) +</span><br><span class="line">        opt.ljust(5, &#x27;\x00&#x27;) +</span><br><span class="line">        2*(((SCOPEID if opt in bwopt else SN) + &#x27;\n&#x27;).ljust(32, &#x27;\x00&#x27;)) + &#x27;\x00&#x27;*16).encode(&#x27;ascii&#x27;)</span><br><span class="line">    ).digest()</span><br><span class="line">    key = &#x27;&#x27;</span><br><span class="line">    for b in h:</span><br><span class="line">        if (b &lt;= 0x2F or b &gt; 0x39) and (b &lt;= 0x60 or b &gt; 0x7A):</span><br><span class="line">            m = b % 0x24</span><br><span class="line">            b = m + (0x57 if m &gt; 9 else 0x30)</span><br><span class="line">        if b == 0x30:</span><br><span class="line">            b = 0x32</span><br><span class="line">        if b == 0x31:</span><br><span class="line">            b = 0x33</span><br><span class="line">        if b == 0x6c:</span><br><span class="line">            b = 0x6d</span><br><span class="line">        if b == 0x6f:</span><br><span class="line">            b = 0x70</span><br><span class="line">        key += chr(b)</span><br><span class="line">    return key.upper()</span><br><span class="line"></span><br><span class="line">print(&#x27;--------------------------------&#x27;)</span><br><span class="line">print(&#x27;\n&#x27;)</span><br><span class="line">for opt in bwopt:</span><br><span class="line">    print(&#x27;&#123;:5&#125; &#123;&#125;&#x27;.format(opt, gen(SCOPEID)))</span><br><span class="line"></span><br><span class="line">print(&#x27;\n&#x27;)</span><br><span class="line">print(&#x27;--------------------------------&#x27;)</span><br><span class="line">print(&#x27;\n&#x27;)</span><br><span class="line">for opt in otheropt:</span><br><span class="line">    print(&#x27;&#123;:5&#125; &#123;&#125;&#x27;.format(opt, gen(SN)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-services:
-  klipper:
-    image: dimalo/klipper-moonraker
-    container_name: klipper
-    ports:
-      - 7125:7125
-    restart: unless-stopped
-    volumes:
-      - gcode_files:/home/klippy/gcode_files
-      - klipper_data:/home/klippy/.config
-      - moonraker_data:/home/klippy/.moonraker
-    devices:
-      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 #根据实际情况更改
-
-  fluidd:
-    image: dimalo/fluidd
-    restart: unless-stopped
-    container_name: fluidd
-    ports:
-      - 8010:80
-    depends_on: 
-      - klipper
-    links:
-      - klipper:klipper
-
-volumes: 
-  gcode_files:
-  moonraker_data:
-  klipper_data:
-</code></pre>
-<p>访问 <code>http://&#123;IP&#125;:8010</code> 即可看到fluidd</p>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><code>1.fluidd显示无法连接...</code></p>
-<p>该镜像自带了启动时检查更新，查看Container <code>klipper</code> 的日志可以看到启动卡在了git pull上，等一段时间或者自行解决。</p>
-<p><code>2.无法在网页重启klipper</code></p>
-<p>应直接重启对应Container</p>
-<p><code>3.上传文件名可以为中文，但是打印时必须换成英文</code></p>
+<h3 id="4-升级带宽"><a href="#4-升级带宽" class="headerlink" title="4.升级带宽"></a>4.升级带宽</h3><p>注：在向SCPI页面输入任何脚本生成的激活码前，先运行命令<code>MCBD?</code>查询当先带宽的激活码（一般为70M的），核对与脚本生成的70M的激活码是否一致，不一致就先检查脚本中的<code>SCOPEID</code>，<code>SN</code>输入是否正确。  </p>
+<p>SCPI页面运行命令 <code>MCBD 带宽激活码</code> 例如：<code>MCBD 6M5VE9723IR5RACG</code></p>
+<h3 id="5-解锁选件"><a href="#5-解锁选件" class="headerlink" title="5.解锁选件"></a>5.解锁选件</h3><p>注：示波器固件升级到 1.1.3.8 版本后，FG（USB波形发生器）和16LA（16通逻辑分析仪）这两个需要买额外硬件的选件成标配了，不需要手动激活。<br><img src="/pictures/SDS804X-HD-Upgrade/6.png" alt="6.png">  </p>
+<p>全部操作完成后重启。</p>
 
     
 
@@ -304,7 +276,7 @@ volumes:
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://thinkalone.win/klipper-docker.html" title="在Docker中运行Klipper" target="_blank">https://thinkalone.win/klipper-docker.html</a>
+          <a href="https://thinkalone.win/SDS804X-HD-Upgrade.html" title="鼎阳 SDS804X HD 示波器带宽与选件升级" target="_blank">https://thinkalone.win/SDS804X-HD-Upgrade.html</a>
         </li>
         
         <li>
@@ -397,7 +369,7 @@ volumes:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/klipper-docker.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/SDS804X-HD-Upgrade.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -412,18 +384,9 @@ volumes:
 
 <nav id="article-nav">
   
-    <a href="/zx_bot_Docker.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用 Docker 部署 zhenxun_bot（绪山真寻Bot）
-        
-      </div>
-    </a>
   
-  
-    <a href="/skip-steam-update.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何优雅的跳过/禁止Steam更新你的游戏</div>
+    <a href="/build-ca-with-picohsm.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -450,7 +413,7 @@ volumes:
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Portainer"><span class="toc-number">1.</span> <span class="toc-text">安装Portainer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8BStacks%EF%BC%88docker-compose%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">建立Stacks（docker-compose）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">常见问题</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%88%90%E6%95%88%E6%9E%9C"><span class="toc-number">1.</span> <span class="toc-text">完成效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A4%BA%E6%B3%A2%E5%99%A8%E8%BF%9E%E5%A5%BD%E7%BD%91%E7%BA%BF%EF%BC%8C%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">1.示波器连好网线，配置网络：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%93%E5%BC%80SCPI%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">2.打开SCPI页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E5%B9%B6%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">2.3.</span> <span class="toc-text">3.修改并运行脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8D%87%E7%BA%A7%E5%B8%A6%E5%AE%BD"><span class="toc-number">2.4.</span> <span class="toc-text">4.升级带宽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%A7%A3%E9%94%81%E9%80%89%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text">5.解锁选件</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -6,22 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://thinkalone.win">
-  <title>在Docker中运行Klipper | ThinkAlone</title>
+  <title>Archives: 2025/3 | ThinkAlone</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在Docker中运行Klipper">
-<meta property="og:url" content="https://thinkalone.win/klipper-docker.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ThinkAlone">
+<meta property="og:url" content="https://thinkalone.win/archives/2025/03/index.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-01-25T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:03:48.852Z">
 <meta property="article:author" content="Disappear9">
-<meta property="article:tag" content="教程">
-<meta property="article:tag" content="折腾那些事">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ThinkAlone" type="application/atom+xml">
@@ -193,134 +187,41 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-klipper-docker" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2025" class="archive-year">2025</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/SDS804X-HD-Upgrade.html" class="archive-article-date">
+        <time datetime="2025-03-01T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-03-01</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/SDS804X-HD-Upgrade.html" target="_blank">鼎阳 SDS804X HD 示波器带宽与选件升级</a>
   
-    <h1 class="article-title" itemprop="name">
-      在Docker中运行Klipper
     </h1>
   
 
 
-  
-  
-<a href="/klipper-docker.html" class="archive-article-date">
-        <time datetime="2022-01-25T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-25</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">246字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="安装Portainer"><a href="#安装Portainer" class="headerlink" title="安装Portainer"></a>安装Portainer</h1><p><a target="_blank" rel="noopener" href="https://docs.portainer.io/v/ce-2.11/start/install">https://docs.portainer.io/v/ce-2.11/start/install</a></p>
-<pre><code>docker volume create portainer_data
-
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
---restart=always \
--v /var/run/docker.sock:/var/run/docker.sock \
--v portainer_data:/data \
-portainer/portainer-ce
-</code></pre>
-<h1 id="建立Stacks（docker-compose）"><a href="#建立Stacks（docker-compose）" class="headerlink" title="建立Stacks（docker-compose）"></a>建立Stacks（docker-compose）</h1><p><a target="_blank" rel="noopener" href="https://github.com/dimalo/klipper-web-control-docker">https://github.com/dimalo/klipper-web-control-docker</a></p>
-<p>打开Stacks，Add stack 粘贴以下代码</p>
-<pre><code>version: &#39;3.4&#39;
-
-services:
-  klipper:
-    image: dimalo/klipper-moonraker
-    container_name: klipper
-    ports:
-      - 7125:7125
-    restart: unless-stopped
-    volumes:
-      - gcode_files:/home/klippy/gcode_files
-      - klipper_data:/home/klippy/.config
-      - moonraker_data:/home/klippy/.moonraker
-    devices:
-      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 #根据实际情况更改
-
-  fluidd:
-    image: dimalo/fluidd
-    restart: unless-stopped
-    container_name: fluidd
-    ports:
-      - 8010:80
-    depends_on: 
-      - klipper
-    links:
-      - klipper:klipper
-
-volumes: 
-  gcode_files:
-  moonraker_data:
-  klipper_data:
-</code></pre>
-<p>访问 <code>http://&#123;IP&#125;:8010</code> 即可看到fluidd</p>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><code>1.fluidd显示无法连接...</code></p>
-<p>该镜像自带了启动时检查更新，查看Container <code>klipper</code> 的日志可以看到启动卡在了git pull上，等一段时间或者自行解决。</p>
-<p><code>2.无法在网页重启klipper</code></p>
-<p>应直接重启对应Container</p>
-<p><code>3.上传文件名可以为中文，但是打印时必须换成英文</code></p>
-
-    
-
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Disappear9
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://thinkalone.win/klipper-docker.html" title="在Docker中运行Klipper" target="_blank">https://thinkalone.win/klipper-docker.html</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -336,7 +237,7 @@ volumes:
 		</ul>
 	</div>
 
-    
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -349,145 +250,17 @@ volumes:
 	</div>
 
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/klipper-docker.html" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/zx_bot_Docker.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用 Docker 部署 zhenxun_bot（绪山真寻Bot）
-        
-      </div>
-    </a>
   
   
-    <a href="/skip-steam-update.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何优雅的跳过/禁止Steam更新你的游戏</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Portainer"><span class="toc-number">1.</span> <span class="toc-text">安装Portainer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8BStacks%EF%BC%88docker-compose%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">建立Stacks（docker-compose）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">常见问题</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-<!-- giteement评论插件 -->
-
-
-<!-- gitment评论插件 -->
-
-
-<!-- beaudar评论插件 -->
-
-  
-	<div id="beaudar-comment">
-		<link rel="stylesheet" href="/lib/beaudar.css">
-		<script src="https://beaudar.lipk.org/client.js" 
-				repo="Disappear9/disappear9.github.io" 
-				issue-term="title"
-				label="comment"
-				theme="github-light"
-				crossorigin="anonymous" async>
-			</script>
-	</div>
-
+    </div></section>
   
 
+    
 
 
           </div>
@@ -516,8 +289,8 @@ volumes:
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

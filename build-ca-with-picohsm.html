@@ -6,23 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://thinkalone.win">
-  <title>在Docker中运行Klipper | ThinkAlone</title>
+  <title>灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA | ThinkAlone</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
+  <meta name="description" content="引言前几天在Canokey群看到一个软件：step-ca简单说就是用这个软件可以自建一个CA来玩，而且软件支持HSM设备 那这不再折腾一下似乎就有点不合适了。    环境确认硬件信息：&amp;emsp;&amp;emsp;CanoKey Canary（3.0.0-rc2-0 dirty build）操作系统：&amp;emsp;&amp;emsp;Windows 10 LTSB 21H2软件版本：&amp;emsp;&amp;emsp;gpg">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Docker中运行Klipper">
-<meta property="og:url" content="https://thinkalone.win/klipper-docker.html">
+<meta property="og:title" content="灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA">
+<meta property="og:url" content="https://thinkalone.win/build-ca-with-picohsm.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="安装Portainerhttps:&#x2F;&#x2F;docs.portainer.io&#x2F;v&#x2F;ce-2.11&#x2F;start&#x2F;install docker volume create portainer_data  docker run -d -p 8000:8000 -p 9443:9443 --name portainer \ --restart&#x3D;always \ -v &#x2F;var&#x2F;run&#x2F;docker.sock:">
+<meta property="og:description" content="引言前几天在Canokey群看到一个软件：step-ca简单说就是用这个软件可以自建一个CA来玩，而且软件支持HSM设备 那这不再折腾一下似乎就有点不合适了。    环境确认硬件信息：&amp;emsp;&amp;emsp;CanoKey Canary（3.0.0-rc2-0 dirty build）操作系统：&amp;emsp;&amp;emsp;Windows 10 LTSB 21H2软件版本：&amp;emsp;&amp;emsp;gpg">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-01-25T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:03:48.852Z">
+<meta property="og:image" content="https://thinkalone.win/pictures/canokey-canary/1.png">
+<meta property="article:published_time" content="2025-01-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-04T09:03:48.851Z">
 <meta property="article:author" content="Disappear9">
 <meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://thinkalone.win/pictures/canokey-canary/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ThinkAlone" type="application/atom+xml">
   
@@ -193,22 +195,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-klipper-docker" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-build-ca-with-picohsm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      在Docker中运行Klipper
+      灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA
     </h1>
   
 
 
   
   
-<a href="/klipper-docker.html" class="archive-article-date">
-        <time datetime="2022-01-25T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-25</time>
+<a href="/build-ca-with-picohsm.html" class="archive-article-date">
+        <time datetime="2025-01-20T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-01-20</time>
 </a>
 
   
@@ -221,7 +223,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">246字</span>
+      <span class="post-count">108字</span>
     </span>
   </span>
 
@@ -241,55 +243,16 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="安装Portainer"><a href="#安装Portainer" class="headerlink" title="安装Portainer"></a>安装Portainer</h1><p><a target="_blank" rel="noopener" href="https://docs.portainer.io/v/ce-2.11/start/install">https://docs.portainer.io/v/ce-2.11/start/install</a></p>
-<pre><code>docker volume create portainer_data
+    <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>前几天在Canokey群看到一个软件：<a target="_blank" rel="noopener" href="https://github.com/smallstep/certificates">step-ca</a><br>简单说就是用这个软件可以自建一个CA来玩，而且软件支持HSM设备</p>
+<p>那这不再折腾一下似乎就有点不合适了。  </p>
+<hr>
+<h3 id="环境确认"><a href="#环境确认" class="headerlink" title="环境确认"></a>环境确认</h3><p>硬件信息：<br>&emsp;&emsp;CanoKey Canary（3.0.0-rc2-0 dirty build）<br>操作系统：<br>&emsp;&emsp;Windows 10 LTSB 21H2<br>软件版本：<br>&emsp;&emsp;gpg4win 4.4 (gpg 2.4.7)<br>&emsp;&emsp;OpenSC 0.26.0  </p>
+<span id="more"></span> 
 
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
---restart=always \
--v /var/run/docker.sock:/var/run/docker.sock \
--v portainer_data:/data \
-portainer/portainer-ce
-</code></pre>
-<h1 id="建立Stacks（docker-compose）"><a href="#建立Stacks（docker-compose）" class="headerlink" title="建立Stacks（docker-compose）"></a>建立Stacks（docker-compose）</h1><p><a target="_blank" rel="noopener" href="https://github.com/dimalo/klipper-web-control-docker">https://github.com/dimalo/klipper-web-control-docker</a></p>
-<p>打开Stacks，Add stack 粘贴以下代码</p>
-<pre><code>version: &#39;3.4&#39;
 
-services:
-  klipper:
-    image: dimalo/klipper-moonraker
-    container_name: klipper
-    ports:
-      - 7125:7125
-    restart: unless-stopped
-    volumes:
-      - gcode_files:/home/klippy/gcode_files
-      - klipper_data:/home/klippy/.config
-      - moonraker_data:/home/klippy/.moonraker
-    devices:
-      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 #根据实际情况更改
 
-  fluidd:
-    image: dimalo/fluidd
-    restart: unless-stopped
-    container_name: fluidd
-    ports:
-      - 8010:80
-    depends_on: 
-      - klipper
-    links:
-      - klipper:klipper
 
-volumes: 
-  gcode_files:
-  moonraker_data:
-  klipper_data:
-</code></pre>
-<p>访问 <code>http://&#123;IP&#125;:8010</code> 即可看到fluidd</p>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><code>1.fluidd显示无法连接...</code></p>
-<p>该镜像自带了启动时检查更新，查看Container <code>klipper</code> 的日志可以看到启动卡在了git pull上，等一段时间或者自行解决。</p>
-<p><code>2.无法在网页重启klipper</code></p>
-<p>应直接重启对应Container</p>
-<p><code>3.上传文件名可以为中文，但是打印时必须换成英文</code></p>
+<p><img src="/pictures/canokey-canary/1.png" alt="1.png">   </p>
 
     
 
@@ -304,7 +267,7 @@ volumes:
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://thinkalone.win/klipper-docker.html" title="在Docker中运行Klipper" target="_blank">https://thinkalone.win/klipper-docker.html</a>
+          <a href="https://thinkalone.win/build-ca-with-picohsm.html" title="灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA" target="_blank">https://thinkalone.win/build-ca-with-picohsm.html</a>
         </li>
         
         <li>
@@ -397,7 +360,7 @@ volumes:
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/klipper-docker.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/build-ca-with-picohsm.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -412,18 +375,18 @@ volumes:
 
 <nav id="article-nav">
   
-    <a href="/zx_bot_Docker.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/SDS804X-HD-Upgrade.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          使用 Docker 部署 zhenxun_bot（绪山真寻Bot）
+          鼎阳 SDS804X HD 示波器带宽与选件升级
         
       </div>
     </a>
   
   
-    <a href="/skip-steam-update.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何优雅的跳过/禁止Steam更新你的游戏</div>
+    <a href="/canokey-canary.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Canokey Canary上手</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -450,7 +413,7 @@ volumes:
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Portainer"><span class="toc-number">1.</span> <span class="toc-text">安装Portainer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8BStacks%EF%BC%88docker-compose%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">建立Stacks（docker-compose）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">常见问题</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E7%A1%AE%E8%AE%A4"><span class="toc-number">2.</span> <span class="toc-text">环境确认</span></a></li></ol>
                     </div>
                 </span>
             </div>
