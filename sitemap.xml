@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://thinkalone.win/beaudar.json</loc>
+    
+    <lastmod>2025-03-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkalone.win/chinese-zip-password.html</loc>
     
     <lastmod>2025-03-04</lastmod>
@@ -92,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://thinkalone.win/beaudar.json</loc>
+    <loc>https://thinkalone.win/canokey-canary.html</loc>
     
     <lastmod>2025-03-04</lastmod>
     
@@ -227,25 +236,7 @@
   </url>
   
   <url>
-    <loc>https://thinkalone.win/build-ca-with-picohsm.html</loc>
-    
-    <lastmod>2025-03-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkalone.win/about/index.html</loc>
-    
-    <lastmod>2025-03-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/canokey-canary.html</loc>
     
     <lastmod>2025-03-04</lastmod>
     
