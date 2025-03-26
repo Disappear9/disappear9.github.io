@@ -173,3 +173,71 @@ ARMv8 Cortex-A53 testing on Debian 12 via the Phoronix Test Suite.
     Zero3 . 4745
 
 ```
+
+sysbench  
+```
+disappear9@Zero3:~$ sysbench cpu --cpu-max-prime=20000 --threads=4 run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1124.46
+
+General statistics:
+    total time:                          10.0030s
+    total number of events:              11254
+
+Latency (ms):
+         min:                                    3.35
+         avg:                                    3.55
+         max:                                   10.86
+         95th percentile:                        4.25
+         sum:                                40002.45
+
+Threads fairness:
+    events (avg/stddev):           2813.5000/0.50
+    execution time (avg/stddev):   10.0006/0.00
+
+disappear9@Zero3:~$ sysbench cpu --cpu-max-prime=20000 --threads=1 run
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   294.62
+
+General statistics:
+    total time:                          10.0007s
+    total number of events:              2948
+
+Latency (ms):
+         min:                                    3.35
+         avg:                                    3.39
+         max:                                   10.65
+         95th percentile:                        3.36
+         sum:                                 9998.34
+
+Threads fairness:
+    events (avg/stddev):           2948.0000/0.00
+    execution time (avg/stddev):   9.9983/0.00
+
+```
