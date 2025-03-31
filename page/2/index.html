@@ -194,6 +194,119 @@
             
 
   
+    <article id="post-Docker-ARM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Docker-ARM.html" target="_blank">使DockerHub的Autobuild自动构建ARM/其他 架构的镜像</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Docker-ARM.html" class="archive-article-date">
+        <time datetime="2018-12-12T05:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h2><p>最近在使用 <a target="_blank" rel="noopener" href="https://github.com/Vector000/bilive_client">bilive_client</a>挂B站的直播和主站日常任务，由于每次更新都需要重新编译+管理node环境太麻烦，所以开始使用Docker</p>
+<h2 id="遇到的坑："><a href="#遇到的坑：" class="headerlink" title="遇到的坑："></a>遇到的坑：</h2><p>首先，Google一下找到了这个<a target="_blank" rel="noopener" href="https://github.com/docker/hub-feedback/issues/1261">https://github.com/docker/hub-feedback/issues/1261</a> 和 <a target="_blank" rel="noopener" href="https://github.com/davidecavestro/mariadb-docker-armhf">https://github.com/davidecavestro/mariadb-docker-armhf</a> 这个示例，按照里面说的在Dockerfile同级目录下建立hooks文件夹，并放入<code>post_checkout</code>和<code>pre_build</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hooks</span><br><span class="line">|——pre_build</span><br><span class="line">|——post_checkout</span><br><span class="line"></span><br><span class="line">Dockerfile</span><br></pre></td></tr></table></figure>
+<p><strong>pre_build</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">docker run --rm --privileged multiarch/qemu-user-static:register --reset</span><br></pre></td></tr></table></figure>
+<p><strong>post_checkout</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz | tar zxvf - -C . &amp;&amp; mv qemu-3.0.0+resin-arm/qemu-arm-static .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后在Dockerfile里加入一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY qemu-arm-static /usr/bin</span><br></pre></td></tr></table></figure>
+
+<p><strong>然而并没有卵用</strong></p>
+    
+    <a class="article-more-a" href="/Docker-ARM.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">折腾那些事</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/教程//" class="article-tag-list-link color3">教程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Docker-ARM.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CoffeeMiner" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1308,112 +1421,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/RouterCheck.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dns-leak" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/dns-leak.html" target="_blank">当DNS泄漏让VPN不再安全，我们该怎么办？</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/dns-leak.html" class="archive-article-date">
-        <time datetime="2015-05-19T02:40:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>当你想要匿名上网时，用VPN是最简单的解决方案——你的IP地址，服务提供商和位置都会隐藏起来。但是，DNS泄漏完全可以让藏在VPN之后的你原形毕露。</strong></p>
-<p><img src="/pictures/dns-leak/14319212852185.jpg"></p>
-<p><strong>科普：什么是DNS泄漏</strong></p>
-<p>域名系统（DNS）是关联网址（如<a target="_blank" rel="noopener" href="http://www.makeuseof.com)和ip地址(54.221.192.241)的系统.当你使用浏览器访问一个网站,它会向dns服务器发送你输入的地址请求,然后dns服务器会指出其正确的ip地址.这是互联网如何工作的一个关键部分./">www.makeuseof.com）和IP地址（54.221.192.241）的系统。当你使用浏览器访问一个网站，它会向DNS服务器发送你输入的地址请求，然后DNS服务器会指出其正确的IP地址。这是互联网如何工作的一个关键部分。</a></p>
-<p>通常情况下，DNS服务器是由你的互联网服务提供商（ISP）所提供，这意味着他们可以监控、记录任何你发送到服务器的请求。当您使用虚拟专用网络（VPN）的时候，该DNS请求应该通过你的VPN被定向到一个匿名的DNS服务器防止ISP监视你的连接。</p>
-<p>不幸的是，有时你的浏览器会忽视你打开的VPN，并会直接发送DNS请求到您的ISP。这就是所谓的一个DNS泄漏。这会导致你认为你已经匿名了、网络监控不到你，但事实上你不并会得到保护。</p>
-<p><strong>分析</strong></p>
-<p>如果你的计算机使用默认设置，并没有通过VPN的DNS服务器发送DNS请求，那么这个泄漏很难看出。你需要使用一个泄漏测试。这有一个网页你可以测试一下<a target="_blank" rel="noopener" href="http://www.dnsleaktest.com/">http://www.dnsleaktest.com</a></p>
-    
-    <a class="article-more-a" href="/dns-leak.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络安全//" class="article-tag-list-link color5">网络安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/dns-leak.html">展开全文 >></a>
     </p>
     
 
