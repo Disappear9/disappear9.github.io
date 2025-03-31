@@ -9,9 +9,9 @@ tags:
 ---
 
 CPU:H618  
-RAM:4G  
+RAM:2G  
 
-disappear9@Zero3:~/phoronix-test-suite$ screenfetch  
+screenfetch  
 ```
          _,met$$$$$gg.           disappear9@Zero3
       ,g$$$$$$$$$$$$$$$P.        OS: Debian 12 bookworm
