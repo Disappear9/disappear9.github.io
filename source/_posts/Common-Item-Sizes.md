@@ -19,18 +19,18 @@ tags:
 
 <!--more-->
 
-##易拉罐：##
-###330mL###
+## 易拉罐：  
+### 330mL
 ![330ml-D.png](/pictures/Common-Item-Sizes/Cans/330ml-D.png)  
 ![330ml-D2.png](/pictures/Common-Item-Sizes/Cans/330ml-D2.png)  
 ![330ml-H.png](/pictures/Common-Item-Sizes/Cans/330ml-H.png)  
 
-###330mL High###
+### 330mL High
 ![330ml-tall-D.png](/pictures/Common-Item-Sizes/Cans/330ml-tall-D.png)  
 ![330ml-tall-D2.png](/pictures/Common-Item-Sizes/Cans/330ml-tall-D2.png)  
 ![330ml-tall-H.png](/pictures/Common-Item-Sizes/Cans/330ml-tall-H.png)  
 
-###473mL 16oz###
+### 473mL 16oz
 ![473ml-D.png](/pictures/Common-Item-Sizes/Cans/473ml-D.png)  
 ![473ml-D2.png](/pictures/Common-Item-Sizes/Cans/473ml-D2.png)  
 ![473ml-H.png](/pictures/Common-Item-Sizes/Cans/473ml-H.png)  
