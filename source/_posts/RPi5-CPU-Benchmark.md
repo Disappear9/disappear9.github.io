@@ -11,7 +11,7 @@ tags:
 CPU:BCM2835  
 RAM:4G  
 
-disappear9@Pi5:creenfetchetch  
+screenfetch  
 ```
                           ./+o+-       disappear9@Pi5
                   yyyyy- -yyyyyy+      OS: Ubuntu 24.04 noble
