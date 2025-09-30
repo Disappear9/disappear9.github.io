@@ -6,7 +6,7 @@ author: Disappear9
 language: zh-CN
 timezone: 'Asia/Shanghai'
 url: https://thinkalone.win/
-permalink: ':title/'
+permalink: ':title.html'
 permalink_defaults: null
 pretty_urls:
   trailing_index: true
