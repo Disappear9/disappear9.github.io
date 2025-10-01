@@ -3,7 +3,7 @@ version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
-logo: /logo.svg
+logo: /logo.png
 # Page metadata configurations
 head:
     # URL or path to the website's icon
@@ -105,7 +105,7 @@ head:
 navbar:
     # Navigation menu items
     menu:
-        Home: /
+        主页: /
         归档: /archives
         分类: /categories
         Tags: /tags
