@@ -1,6 +1,8 @@
 ---
 title: LSi 9211-8i刷IT模式/升级
 date: 2017/9/26 12:25:20
+updated: 2017/9/26 12:25:20
+toc: true
 categories:
 - 教程
 tags:
@@ -35,17 +37,20 @@ sas2flash_win_x64_rel\sas2flash.exe （如果你的系统是32位的就用sas2fl
 **1）先备份序列号**
 运行命令
 
-    sas2flash -list
+```
+sas2flash -list
+```
 
 显示：
 
->LSI Corporation SAS2 Flash Utility
+```
+LSI Corporation SAS2 Flash Utility
 Version 20.00.00.00 (2014.09.18)
 Copyright (c) 2008-2014 LSI Corporation. All rights reserved
 
->        Adapter Selected is a LSI SAS: SAS2008(B2)
+        Adapter Selected is a LSI SAS: SAS2008(B2)
 
->        Controller Number              : 0
+        Controller Number              : 0
         Controller                     : SAS2008(B2)
         PCI Address                    : 00:01:00:00
         SAS Address                    : SSSSSSSSSSSSSSSSSSSSSSSS<<<<<这里
@@ -64,28 +69,36 @@ Copyright (c) 2008-2014 LSI Corporation. All rights reserved
 
         Finished Processing Commands Successfully.
         Exiting SAS2Flash.
+```
 
 **把上面标记部分抄下来，或者截个屏也行。**
 
 **2）依次运行以下命令**
 
-    sas2flsh -o -e 6
-    sas2flsh -o -b mptsas2.rom
-    sas2flsh -o -f 2118it.bin
+```
+sas2flsh -o -e 6
+sas2flsh -o -b mptsas2.rom
+sas2flsh -o -f 2118it.bin
+```
 
 **3）把备份的各种序列号写回去**
 
-    sas2flash -o -sasadd SSSSSSSSSSSSSSSSSSSSSSSS
-    sas2flash -o -assem AAAAAAAAAAAAAAAAAAAAAAA
-    sas2flash -o -tracer TTTTTTTTTTTTTTTTTTTTTTT
+```
+sas2flash -o -sasadd SSSSSSSSSSSSSSSSSSSSSSSS
+sas2flash -o -assem AAAAAAAAAAAAAAAAAAAAAAA
+sas2flash -o -tracer TTTTTTTTTTTTTTTTTTTTTTT
+```
 
 **4）检查**
 运行命令
 
-    sas2flash -list
+```
+sas2flash -list
+```
 
 显示：
 
+```
 LSI Corporation SAS2 Flash Utility
 Version 20.00.00.00 (2014.09.18)
 Copyright (c) 2008-2014 LSI Corporation. All rights reserved
@@ -111,6 +124,7 @@ Copyright (c) 2008-2014 LSI Corporation. All rights reserved
 
         Finished Processing Commands Successfully.
         Exiting SAS2Flash.
+```
 
 OK，完美
 
@@ -135,17 +149,20 @@ OK，完美
 
 运行命令：
 
-    fsX: （X是一位数字，取决于上面那几个文件的位置，可以从0开始试，用ls命令列出当前目录下文件，找到sas2flash.efi）
-
-    sas2flash.efi -list
+```
+fsX: （X是一位数字，取决于上面那几个文件的位置，可以从0开始试，用ls命令列出当前目录下文件，找到sas2flash.efi）
+sas2flash.efi -list
+```
 
 **然后参照上面windows部分的教程把各种序列号抄下来**
 
 6）刷入固件
 
-    sas2flash.efi -o -e 6
-    sas2flash.efi -o -f 2118it.bin
-    sas2flash.efi -o -b mptsas2.rom
+```
+sas2flash.efi -o -e 6
+sas2flash.efi -o -f 2118it.bin
+sas2flash.efi -o -b mptsas2.rom
+```
 
 **6）参照上面windows部分的教程把各种序列号写回去**
 

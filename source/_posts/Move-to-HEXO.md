@@ -1,6 +1,8 @@
 ---
 title: 博客程序更换至HEXO
 date: 2017/12/21 21:11:12
+updated: 2017/12/21 21:11:12
+toc: true
 categories:
 - 折腾那些事
 tags:
@@ -34,22 +36,26 @@ Migrate by September 30th, 2017
 直接apt install就行
 
 ## 安装&配置HEXO
-    sudo npm install -g hexo
-    mkdir blog
-    cd blog
-    hexo init
-这会在当前目录建立HEXO的主目录blog
-安装一些组件，然后测试能不能正常运行：
+```
+sudo npm install -g hexo
+mkdir blog
+cd blog
+hexo init
+```
+这会在当前目录建立HEXO的主目录blog  
 
-    sudo npm install hexo-server
-    npm install hexo-server --save
-    npm install hexo-renderer-ejs --save
-    npm install hexo-renderer-stylus --save
-    npm install hexo-renderer-marked --save
-    npm install hexo-deployer-git --save
-    hexo g
-    hexo s
-这时打开浏览器访问http://localhost:4000 应该能看到示例页面
+安装一些组件，然后测试能不能正常运行：  
+```
+sudo npm install hexo-server
+npm install hexo-server --save
+npm install hexo-renderer-ejs --save
+npm install hexo-renderer-stylus --save
+npm install hexo-renderer-marked --save
+npm install hexo-deployer-git --save
+hexo g
+hexo s
+```
+这时打开浏览器访问http://localhost:4000 应该能看到示例页面  
 ## 配置Github
 **建立Repository**
 建立与你用户名对应的仓库，仓库名必须为 (你的用户名.github.io)
@@ -57,21 +63,21 @@ Migrate by September 30th, 2017
 然后暂时不需要管他了
 ## 配置Blog
 编辑 **_config.yml**
-
-    nano _config.yml
-
+```
+nano _config.yml
+```
 具体内容请看官方文档（修改网站标题，语言，时区之类的）： https://hexo.io/docs/configuration.html
 主要还需要更改这些：
-
-    deploy:
-      type: git
-      repository: https://github.com/用户名/用户名.github.io.git
-      branch: master
-      
+```
+deploy:
+  type: git
+  repository: https://github.com/用户名/用户名.github.io.git
+  branch: master
+```
 配置好Git以后，直接运行：
-
-    hexo d
-
+```
+hexo d
+```
 这样就完成了初步部署，浏览器中打开https://用户名.github.io 就可以看到初步成型的博客了。
 ## 绑定域名
 在blog目录下的source文件夹中新建一个名为CNAME的文件，文件里写上你的域名**（不带http:// ）**
@@ -85,9 +91,9 @@ https://github.com/litten/hexo-theme-yilia
 在Blog/theme下运行git clone https://github.com/litten/hexo-theme-yilia.git
 然后把hexo-theme-yilia更名为yilia
 编辑blog目录下的 **_config.yml**
-
-    theme: yilia
-
+```
+theme: yilia
+```
 然后似乎也没什么需要我写的了，主题作者的说明写的很详细
 
 ## 加个Live2d
@@ -97,35 +103,35 @@ https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md
 喜欢哪个模型就直接 **npm install 模型的包名**，然后把_config.yml 中use:字段改一下
 
 我的配置：
-
-    live2d:
-      enable: true
-      scriptFrom: local
-      model:
-        use: live2d-widget-model-koharu
-      display:
-        position: right
-        width: 75
-        height: 150
-        hOffset: 50
-        vOffset: -15
-      mobile:
-        show: true
-        scale: 0.5
-      react:
-        opacityDefault: 0.7
-        opacityOnHover: 0.2
-
+{% codeblock lang:yaml %}
+live2d:
+  enable: true
+  scriptFrom: local
+  model:
+    use: live2d-widget-model-koharu
+  display:
+    position: right
+    width: 75
+    height: 150
+    hOffset: 50
+    vOffset: -15
+  mobile:
+    show: true
+    scale: 0.5
+  react:
+    opacityDefault: 0.7
+    opacityOnHover: 0.2
+{% endcodeblock %}
 ## 配置评论
 多说，畅言，网易之类的不是被墙就是要求备案，所以我用了Gitment
 yilia主题自带Gitment，直接修改主题文件夹的_config.yml就好
-
-    gitment_owner: disappear9
-    gitment_repo: 'disappear9.github.io'
-    gitment_oauth:
-      client_id: 'id'
-      client_secret: 'secret key'
-      
+{% codeblock lang:yaml %}
+gitment_owner: disappear9
+gitment_repo: 'disappear9.github.io'
+gitment_oauth:
+  client_id: 'id'
+  client_secret: 'secret key'
+{% endcodeblock %}
 然后在https://github.com/settings/developers 中新建一个OAuth App
 
 ![](/pictures/Move-to-HEXO/1.png)
@@ -138,20 +144,21 @@ yilia主题自带Gitment，直接修改主题文件夹的_config.yml就好
 
 因为Github对label的字数限制，所以会出现 **Error：validation failed**
 你需要更改blog目录下的_config.yml：
-
-    #URL
-    ##If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-    url: https://thinkalone.ga/ #<<<<<<<<<<<<<这里，改成你的域名
-    root: /
-    permalink: :title.html
-    ......
-    # Writing
-    new_post_name: :title.md #<<<<<<<<<<<<<这里，只保留标题
-    default_layout: post
+{% codeblock lang:yaml %}
+#URL
+##If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://thinkalone.ga/ #<<<<<<<<<<<<<这里，改成你的域名
+root: /
+permalink: :title.html
+......
+# Writing
+new_post_name: :title.md #<<<<<<<<<<<<<这里，只保留标题
+default_layout: post
+{% endcodeblock %}
 
 或更改主题 **/layout/_partial/post** 目录下的 **gitment.ejs** 文件 如果你使用的也是yilia主题
 
-```
+{% codeblock lang:javascript %}
 <div id="gitment-ctn"></div> 
 <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
@@ -167,7 +174,7 @@ var gitment = new Gitment({
 })
 gitment.render('gitment-ctn')
 </script>
-```
+{% endcodeblock %}
 
 ## 参考
 http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/

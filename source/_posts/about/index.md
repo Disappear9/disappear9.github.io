@@ -1,6 +1,7 @@
 ---
 title: ABOUT	
-date: 2000/1/11 11:11:11
+date: 2015/01/01 00:00:00
+updated: 2015/01/01 00:00:00
 comments: false
 ---
 Hi~，这里是Disappear9的个人博客，这里主要会发布一些安全相关和ACGN相关的博文（也会有一些其他什么的）。  
@@ -34,3 +35,5 @@ DrbCe9X0mAJ4XLV8fIwA/iQTNN+/NS4lXF611bfCn3JehlJaJQUPnVZ728SpmFMO
 =mtj/
 -----END PGP PUBLIC KEY BLOCK-----
 ```
+
+很惭愧<br><br>只做了一点微小的工作<br>谢谢大家

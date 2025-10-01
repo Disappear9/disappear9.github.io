@@ -1,6 +1,8 @@
 ---
 title: 强奸你的剪切板
 date: 2018-01-27 15:43:35
+updated: 2018-01-27 15:43:35
+toc: true
 categories:
 - 网络安全
 tags:
@@ -45,9 +47,9 @@ tags:
 先把网页复制出来，然后搜索`clipboard`，找到相关的线索。  
 ![](/pictures/Clipboard/4.png)
 简单解释一下，他先通过[https://m.runoob.com/api/codexx.php](https://m.runoob.com/api/codexx.php) 这个接口获取数据，你们有兴趣的可以自己去看一下，这个时候我得到的是
-
+```
     {"flag":true,"ins_data":"\uffe5Sh7p0Osu3GO\uffe5"}
-
+```
 然后接着往下看，接下来就是改变body的id和data-clipboard-text，这两步都是给接下来强奸你的剪切板做准备，然后就是强奸你剪切板的方法咯，再后面就是验证有没有强奸成功。
 
 除此之外，还要判断你是不是移动设备，因为强奸你电脑的剪切板是完全没用的。
@@ -63,8 +65,7 @@ tags:
 
 好了我已经可以成功强奸剪切板了。
 
-### 附代码
-
+{% codeblock lang:html %}
     html
     <!doctype html>
     <html lang="">
@@ -105,7 +106,7 @@ tags:
     </script>
     </body>
     </html>
-
+{% endcodeblock %}
 
 ## 写在后面的
 
@@ -115,7 +116,7 @@ tags:
 
 想用直接拿去用，我也不搞什么加密收费的，连我这个对JS一窍不通的都能捣鼓出来一个，原本很简单的一个东西，却要拿去收费，真TMZZ。
 
-
+{% codeblock lang:javascript %}
     <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script>
@@ -138,7 +139,7 @@ tags:
             }
         }
     </script>
-
+{% endcodeblock %}
 
 原文这里就是把上面的代码直接写到md文件里，然后（这篇文章没有，已经被我去掉了）。。。。。。
 

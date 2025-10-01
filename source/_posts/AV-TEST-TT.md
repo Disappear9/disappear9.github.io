@@ -1,6 +1,8 @@
 ---
 title: “评测门”事件升级 AV-Test谴责腾讯在评测中严重作弊
 date: 2015/5/4 10:11:12
+updated: 2015/5/4 10:11:12
+toc: true
 categories:
 - 网络安全
 tags:

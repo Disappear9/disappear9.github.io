@@ -1,6 +1,8 @@
 ---
 title: 树莓派5 Raspberry Pi 5 CPU跑分测试 CPU Benchmark
 date: 2025/03/10 12:00:00
+updated: 2025/03/10 12:00:00
+toc: true
 categories:
 - 测试结果
 tags:
@@ -107,7 +109,7 @@ Phoronix Test Suite v10.8.4
     pts/compress-7zip-1.11.0:
         Test Installation 1 of 1
         1 File Needed [1.42 MB]
-        Downloading: 7z2405-src.tar.xz                                                                                                                                                                                                                                         [1.42MB]
+        Downloading: 7z2405-src.tar.xz
 
 System Information
 

@@ -1,6 +1,8 @@
 ---
 title: 难绷的Zip与中文密码
 date: 2024/3/1 12:00:00
+updated: 2024/3/1 12:00:00
+toc: true
 categories:
 - 折腾那些事
 tags:
@@ -41,7 +43,7 @@ tags:
 首先，我们Google搜索`java zip 中文密码`，通过查找可以得知一个包：[zip4j](https://github.com/srikanth-lingala/zip4j)
 然后我们写一小段代码来试着解压它：
 
-```
+{% codeblock lang:java %}
 package main;
 
 import net.lingala.zip4j.ZipFile;
@@ -55,7 +57,7 @@ public class UnZip {
 	}
 }
 
-```
+{% endcodeblock %}
 
 运行，直接报错：  
 
@@ -65,7 +67,7 @@ Exception in thread "main" net.lingala.zip4j.exception.ZipException: Wrong passw
 ```
 
 搜索得知安卓默认中文编码是UTF-8，然后在翻阅zip4j的文档，可以发现这样一个方法：[setUseUtf8CharsetForPasswords](https://javadoc.io/static/net.lingala.zip4j/zip4j/2.11.5/net/lingala/zip4j/ZipFile.html#setUseUtf8CharsetForPasswords(boolean)) 我们修改代码如下：
-```
+{% codeblock lang:java %}
 package main;
 
 import net.lingala.zip4j.ZipFile;
@@ -80,7 +82,7 @@ public class UnZip {
 	}
 }
 
-```
+{% endcodeblock %}
 
 这次能成功运行了。  
 运行是成了，但是为什么？通过方法名搜索我们找到了这样一个issue：[https://github.com/srikanth-lingala/zip4j/issues/328](https://github.com/srikanth-lingala/zip4j/issues/328)  
@@ -96,18 +98,15 @@ I added an option to ZipFile api to use utf8 or not for password encoding and de
 
 ### 密码<del>便乘</del>变成什么样了？
 我们直接翻阅zip4j的源代码：  
-src/main/java/net/lingala/zip4j/ZipFile.java
-```
+{% codeblock src/main/java/net/lingala/zip4j/ZipFile.java lang:java %}
 public void setUseUtf8CharsetForPasswords(boolean useUtf8CharsetForPasswords) {
     this.useUtf8CharsetForPasswords = useUtf8CharsetForPasswords;
   }
 
-```
+{% endcodeblock %}
 
 继续跟：  
-src/main/java/net/lingala/zip4j/crypto/StandardDecrypter.java
-
-```
+{% codeblock src/main/java/net/lingala/zip4j/crypto/StandardDecrypter.java lang:java %}
 private void init(byte[] headerBytes, char[] password, long lastModifiedFileTime, long crc,
                     boolean useUtf8ForPassword) throws ZipException {
     if (password == null || password.length <= 0) {
@@ -115,12 +114,10 @@ private void init(byte[] headerBytes, char[] password, long lastModifiedFileTime
     }
 
     zipCryptoEngine.initKeys(password, useUtf8ForPassword);
-```
+{% endcodeblock %}
 
 继续：  
-src/main/java/net/lingala/zip4j/crypto/engine/ZipCryptoEngine.java
-
-```
+{% codeblock src/main/java/net/lingala/zip4j/crypto/engine/ZipCryptoEngine.java lang:java %}
   public void initKeys(char[] password, boolean useUtf8ForPassword) {
     keys[0] = 305419896;
     keys[1] = 591751049;
@@ -130,12 +127,10 @@ src/main/java/net/lingala/zip4j/crypto/engine/ZipCryptoEngine.java
       updateKeys((byte) (b & 0xff));
     }
   }
-```
+{% endcodeblock %}
 
 来了：  
-src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
-
-```
+{% codeblock src/main/java/net/lingala/zip4j/util/Zip4jUtil.java lang:java %}
   public static byte[] convertCharArrayToByteArray(char[] charArray, boolean useUtf8Charset) {
     return useUtf8Charset
             ? convertCharArrayToByteArrayUsingUtf8(charArray)
@@ -150,11 +145,11 @@ src/main/java/net/lingala/zip4j/util/Zip4jUtil.java
     }
     return bytes;
   }
-```
+{% endcodeblock %}
 
 我们把这段代码复制下来，然后再找一段将输出转为HEX的代码，组合起来试着运行看看：  
 
-```
+{% codeblock lang:java %}
 package main;
 
 public class UnZip {
@@ -182,7 +177,7 @@ public class UnZip {
 	    return new String(hexChars);
 	}
 }
-```
+{% endcodeblock %}
 
 输出：  
 

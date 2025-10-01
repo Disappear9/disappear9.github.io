@@ -1,6 +1,8 @@
 ---
 title: 使用 Travis CI 自动构建 Hexo 博客
 date: 2019-02-06 12:44:30
+updated: 2019-02-06 12:44:30
+toc: true
 categories:
 - 教程
 tags:
@@ -82,8 +84,7 @@ openssl aes-256-cbc -K $encrypted_************_key -iv $encrypted_************_i
 你需要在运行`$ travis encrypt-file travis.key -add`时加上 --debug参数，这样工具就会打印出API日志，其中value长度为32位的是iv，更长的是key,然后手动把他们加入到Travis的环境变量（添加的时候不要把前面的$符号打进去，不然又是报错）（手贱这一下我调了半天没找到错误在那......）
 
 ## 编写 .travis.yml
-.travis.yml
-```
+{% codeblock .travis.yml lang:yaml %}
 language: node_js
 node_js: stable
 branches:
@@ -116,9 +117,10 @@ script:
 # 用deploy.sh来git commit + git push
 after_success:
 - travis/deploy.sh
-```
+{% endcodeblock %}
+
 deploy.sh（放进travis文件夹）
-```
+{% codeblock deploy.sh lang:bash %}
 #!/bin/bash
 set -ev
 export TZ='Asia/Shanghai'
@@ -133,7 +135,7 @@ cd ../public
 git add .
 git commit -m "Site updated: `date +"%Y-%m-%d %H:%M:%S"`"
 git push origin master:master --force
-```
+{% endcodeblock %}
 上面这些步骤做完后你的目录看起来应该是这样的
 ![](/pictures/Travis-CI-HEXO/finish.png)
 

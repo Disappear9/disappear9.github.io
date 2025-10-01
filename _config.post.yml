@@ -1,0 +1,26 @@
+widgets:
+  -
+    position: left
+    type: profile
+    author: Disappear9
+    author_title: Disappear9@D9Lab
+    location: China
+    avatar: /avatar.png
+    avatar_rounded: true
+    gravatar: 
+    social_links:
+      Github:
+        icon: fab fa-github
+        url: https://github.com/Disappear9
+      Twitter:
+        icon: fab fa-twitter
+        url: https://twitter.com/Disappear9_
+      RSS:
+        icon: fas fa-rss
+        url: /atom.xml
+  -
+    position: left
+    type: toc
+    index: true
+    collapsed: true
+    depth: 3

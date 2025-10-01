@@ -1,6 +1,8 @@
 ---
 title: Canokey Canary上手
 date: 2025/1/1 12:00:00
+updated: 2025/1/1 12:00:00
+toc: true
 categories:
 - 折腾那些事
 tags:
@@ -12,7 +14,7 @@ tags:
 第一次接触Canokey还是在2021年，当时跟风买了CanoKey Pigeon首发，到手以后把GPG密钥塞进去再加到几个网站做认证器以后就一直是半吃灰状态，毕竟网站的登录不会天天掉，而GPG更是一万年没人给我发加密的信息，连用来git签名的次数都少（我懒）。  
 
 前段Canokey群抽奖送Canary测试版，本人有幸中得一个：  
-![1.png](/pictures/canokey-canary/1.png)   
+![](/pictures/canokey-canary/1.png)   
 
 那这不再折腾一下似乎就有点不合适了。  
 
@@ -40,7 +42,7 @@ PIV
 
 ### WebAuthn (Passkey)
 
-![2.png](/pictures/canokey-canary/2.png)  
+![](/pictures/canokey-canary/2.png)  
 
 然后就可以开始用作网站登录的认证了，这里不再赘述。  
 
@@ -319,10 +321,10 @@ $ ssh-add -L
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAzFAR5puWAj0OflZJVzAJqejVEZCap2NhFJbzedYwX2 cardno:F1D0 xxxxxxxx
 ```
 Putty设置：  
-![3.png](/pictures/canokey-canary/3.png)  
+![](/pictures/canokey-canary/3.png)  
 
 MobaXterm设置：  
-![4.png](/pictures/canokey-canary/4.png)  
+![](/pictures/canokey-canary/4.png)  
 
 ### PIV
 CanoKey Canary 3.0.0版本的固件是有bug的，参见：[https://docs.canokeys.org/](https://docs.canokeys.org/zh-hans/userguide/piv/#11-支持算法) 但是问题不大，因为PIV一般根本用不到25519  
@@ -352,14 +354,14 @@ Slot 9d:
 PIN tries left: 3
 ```
 在`Thunderbird`中查看时：  
-![5.png](/pictures/canokey-canary/5.png)  
+![](/pictures/canokey-canary/5.png)  
 
 所以如果你和我一样容易突然犯强迫症，那么可以自己生成一个给Bitlocker用的证书放`9a`。  
 
 #### Bitlocker
 新建一个`certreqcfg.ini`文件  
 注意：其中的`Subject`，`NotBefore`，`NotAfter`，这几项是可以随意更改的，剩下的不要动，尤其是有些人（比如我）看到2048位RSA会感觉啊好不安全然后改成4096，证书能生成能导入Bitlocker也能正常读到加锁，然后解密的时候就会突发恶疾智能卡无效导致你只能用恢复密钥解密（至少我在win10 LTSC 21H2 和 win11 LTSC上实验过全是这样）。
-```
+{% codeblock certreqcfg.ini lang:ini %}
 [NewRequest]
 Subject = "C=CN,O=D9Lab,CN=Disappear9 's CanoKey"
 NotBefore = 2025/01/01 00:00 AM
@@ -381,12 +383,12 @@ OID=1.3.6.1.5.5.7.3.2
 OID=1.3.6.1.4.1.311.67.1.1
 OID=1.3.6.1.4.1.311.10.3.4
 OID=1.3.6.1.4.1.311.10.3.12
-```
+{% endcodeblock %}
 运行命令`certreq –new certreqcfg.ini certrequest.req`  
 如果没有错误，那么证书就已经成功生成并安装了。  
 
 运行命令`certmgr.msc`打开证书管理器  
-![6.png](/pictures/canokey-canary/6.png)  
+![](/pictures/canokey-canary/6.png)  
 
 右键`所有任务->导出`，选择`是，导出私钥`，导出pfx文件命名为`9a.pfx`。
 
@@ -397,7 +399,7 @@ reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE /v SelfSignedCertific
 ```
 
 下载安装 [yubico-piv-tool](https://developers.yubico.com/yubico-piv-tool/Releases/)  
-![7.png](/pictures/canokey-canary/7.png)  
+![](/pictures/canokey-canary/7.png)  
 
 ```
 # 确认是否能检测到Canokey
@@ -450,18 +452,18 @@ pcsc-shared
 然后开任务管理器，找到`gpg-agent.exe`（如有），右键结束进程树。
 
 **配置`Thunderbird`**  
-![8.png](/pictures/canokey-canary/8.png)  
-![9.png](/pictures/canokey-canary/9.png)  
+![](/pictures/canokey-canary/8.png)  
+![](/pictures/canokey-canary/9.png)  
 选择 `C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll`  
 
 加载后就可以看到Canokey了（重用一下上面的图）  
-![5.png](/pictures/canokey-canary/5.png)  
+![](/pictures/canokey-canary/5.png)  
 
 选择与邮箱对应的证书  
-![10.png](/pictures/canokey-canary/10.png)  
+![](/pictures/canokey-canary/10.png)  
 
 然后在写信时就可以选择签名/加密了  
-![11.png](/pictures/canokey-canary/11.png)  
+![](/pictures/canokey-canary/11.png)  
 
 别人收到以后是这么一个效果：  
-![12.png](/pictures/canokey-canary/12.png)  
+![](/pictures/canokey-canary/12.png)  

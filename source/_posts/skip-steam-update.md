@@ -1,6 +1,8 @@
 ---
 title: 如何优雅的跳过/禁止Steam更新你的游戏
 date: 2021/1/22 21:00:00
+updated: 2021/1/22 21:00:00
+toc: true
 categories:
 - 教程
 tags:

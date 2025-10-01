@@ -1,6 +1,8 @@
 ---
 title: 在Docker中运行Klipper
 date: 2022-01-25 12:00:00
+updated: 2022-01-25 12:00:00
+toc: true
 categories:
 - 教程
 tags:
@@ -10,52 +12,53 @@ tags:
 
 # 安装Portainer
 https://docs.portainer.io/v/ce-2.11/start/install
-
-    docker volume create portainer_data
-
-    docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
-    --restart=always \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data \
-    portainer/portainer-ce
-
+```
+docker volume create portainer_data
+docker run -d -p 9443:9443 --name portainer \
+--restart=always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v portainer_data:/data \
+portainer/portainer-ce:lts
+```
 # 建立Stacks（docker-compose）
 
 https://github.com/dimalo/klipper-web-control-docker
 
 打开Stacks，Add stack 粘贴以下代码
 
-    version: '3.4'
+{% codeblock lang:yaml %}
+version: '3.4'
 
-    services:
-      klipper:
-        image: dimalo/klipper-moonraker
-        container_name: klipper
-        ports:
-          - 7125:7125
-        restart: unless-stopped
-        volumes:
-          - gcode_files:/home/klippy/gcode_files
-          - klipper_data:/home/klippy/.config
-          - moonraker_data:/home/klippy/.moonraker
-        devices:
-          - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 #根据实际情况更改
+services:
+  klipper:
+    image: dimalo/klipper-moonraker
+    container_name: klipper
+    ports:
+      - 7125:7125
+    restart: unless-stopped
+    volumes:
+      - gcode_files:/home/klippy/gcode_files
+      - klipper_data:/home/klippy/.config
+      - moonraker_data:/home/klippy/.moonraker
+    devices:
+      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 #根据实际情况更改
 
-      fluidd:
-        image: dimalo/fluidd
-        restart: unless-stopped
-        container_name: fluidd
-        ports:
-          - 8010:80
-        depends_on: 
-          - klipper
-        links:
-          - klipper:klipper
+  fluidd:
+    image: dimalo/fluidd
+    restart: unless-stopped
+    container_name: fluidd
+    ports:
+      - 8010:80
+    depends_on: 
+      - klipper
+    links:
+      - klipper:klipper
 
-    volumes: 
-      gcode_files:
-      moonraker_data:
-      klipper_data:
+volumes: 
+  gcode_files:
+  moonraker_data:
+  klipper_data:
+{% endcodeblock %}
 
 访问 `http://{IP}:8010` 即可看到fluidd
 

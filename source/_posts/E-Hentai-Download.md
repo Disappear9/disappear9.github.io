@@ -1,6 +1,8 @@
 ---
 title: 使用脚本在E站下载本子（E-Hentai Downloader）
 date: 2017/7/29 23:27:22
+updated: 2017/7/29 23:27:22
+toc: true
 categories:
 - 教程
 tags:
@@ -84,12 +86,14 @@ E-Hentai、Lofi@E-Hentai 以及 ExHentai 使用同一套系统计算你的限额
 
 在 2016 年 3 月 3 日和 3 月 13 日的更新中，E-Hentai 分别支持了移动版图像（Lofi images，低分辨率图像）和高分辨率图像，所以限额消耗也会依据图片尺寸进行计算。
 
-**Auto (1280x)：1 点  
+```
+Auto (1280x)：1 点  
 980x：1 点  
 780x：1 点  
 1600x：3 点（或许是，在更新本文时作者发现自己似乎没有权限了，所以这是凭记忆的）  
 2400x：5 点  
 访问带有 nl 参数的图片浏览页消耗 6 点限额**  
+```
 
 **访问带有 nl 参数的图片浏览页**（即点击浏览页下方的“Click here if the image fails loading”后的地址，URL 类似于 g.e-hentai.org/s/[图片 ID]/[图册 ID]-[页码]?nl=[NL 参数]）将消耗 6 点限额。这个有点卧槽，只是切换个节点而已就**要 6 点** = = （实际上，带有 nl 参数的地址代表不要从 H@H 加载图片，而是从原始服务器加载）  
 下载压缩的图片将不会消耗限额  
@@ -108,7 +112,3 @@ E-Hentai、Lofi@E-Hentai 以及 ExHentai 使用同一套系统计算你的限额
 [Cross origin request warning from Tampermonkey](https://github.com/ccloli/E-Hentai-Downloader/wiki/Cross-origin-request-warning-from-Tampermonkey)（Tampermonkey经常出警告）  
 [Tagging gallery archives and saving then by types in respective folders (Chrome and Firefox)](https://github.com/ccloli/E-Hentai-Downloader/wiki/Tagging-gallery-archives-and-saving-then-by-types-in-respective-folders-(Chrome-and-Firefox))（已Tag对本子进行分类）
 
-
-
-（完） 
- 

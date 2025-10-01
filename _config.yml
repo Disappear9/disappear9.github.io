@@ -61,3 +61,8 @@ ignore: null
 theme: icarus
 deploy:
   type: ''
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20

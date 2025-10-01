@@ -1,6 +1,8 @@
 ---
 title: 常见物品尺寸记录
 date: 2025/06/01 12:00:00
+updated: 2025/06/01 12:00:00
+toc: true
 categories:
 - 杂项
 tags:

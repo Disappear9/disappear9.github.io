@@ -1,6 +1,8 @@
 ---
 title: 使用 Docker 部署 zhenxun_bot（绪山真寻Bot）
 date: 2023-01-10 12:00:00
+updated: 2023-01-10 12:00:00
+toc: true
 categories:
 - 教程
 tags:
@@ -15,7 +17,7 @@ tags:
 
 # 使用Portainer建立Stacks
 打开Stacks，Add stack 粘贴以下代码  
-```
+{% codeblock lang:yaml %}
 
 version: '3.4'
 
@@ -61,6 +63,6 @@ volumes:
   go-cqhttp_data:
   postgres_data:
 
-```
+{% endcodeblock %}
 
 镜像有问题了开issue，看见了就回。

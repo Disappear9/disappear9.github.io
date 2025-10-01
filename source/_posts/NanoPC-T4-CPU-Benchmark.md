@@ -1,6 +1,8 @@
 ---
 title: 友善 FriendlyELEC NanoPC-T4 CPU跑分测试 CPU Benchmark
 date: 2025/09/30 12:00:00
+updated: 2025/09/30 12:00:00
+toc: true
 categories:
 - 测试结果
 tags:

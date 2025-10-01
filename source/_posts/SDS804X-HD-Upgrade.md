@@ -1,6 +1,8 @@
 ---
 title: 鼎阳 SDS804X HD 示波器带宽与选件升级
 date: 2025/3/1 12:00:00
+updated: 2025/3/1 12:00:00
+toc: true
 categories:
 - 教程
 tags:
@@ -13,7 +15,7 @@ tags:
 脚本来源： https://www.eevblog.com/forum/testgear/siglent-sds-sdg-hack-script/  
 升级完成后型号会显示为SDS824X HD：  
 
-![1.png](/pictures/SDS804X-HD-Upgrade/1.png)  
+![](/pictures/SDS804X-HD-Upgrade/1.png)  
 
 -------
 
@@ -23,18 +25,18 @@ tags:
 
 ### 1.示波器连好网线，配置网络：  
 
-![2.png](/pictures/SDS804X-HD-Upgrade/2.png)  
-![3.png](/pictures/SDS804X-HD-Upgrade/3.png)  
-![4.png](/pictures/SDS804X-HD-Upgrade/4.png)  
+![](/pictures/SDS804X-HD-Upgrade/2.png)  
+![](/pictures/SDS804X-HD-Upgrade/3.png)  
+![](/pictures/SDS804X-HD-Upgrade/4.png)  
 
 配网后的操作就可以不用在示波器的小屏幕上进行了。  
 
 ### 2.打开SCPI页面
-![5.png](/pictures/SDS804X-HD-Upgrade/5.png)  
+![](/pictures/SDS804X-HD-Upgrade/5.png)  
 
 ### 3.修改并运行脚本
 
-```
+{% codeblock Python lang:python %}
 import hashlib
 
 # SCPI页面运行命令 MD5_SRLN? 获得SCOPEID
@@ -83,7 +85,7 @@ print('\n')
 for opt in otheropt:
     print('{:5} {}'.format(opt, gen(SN)))
 
-```
+{% endcodeblock %}
 
 ### 4.升级带宽
 注：在向SCPI页面输入任何脚本生成的激活码前，先运行命令`MCBD?`查询当先带宽的激活码（一般为70M的），核对与脚本生成的70M的激活码是否一致，不一致就先检查脚本中的`SCOPEID`，`SN`输入是否正确。  
@@ -92,6 +94,6 @@ SCPI页面运行命令 `MCBD 带宽激活码` 例如：`MCBD 6M5VE9723IR5RACG`
 
 ### 5.解锁选件
 注：示波器固件升级到 1.1.3.8 版本后，FG（USB波形发生器）和16LA（16通逻辑分析仪）这两个需要买额外硬件的选件成标配了，不需要手动激活。  
-![6.png](/pictures/SDS804X-HD-Upgrade/6.png)  
+![](/pictures/SDS804X-HD-Upgrade/6.png)  
 
 全部操作完成后重启。

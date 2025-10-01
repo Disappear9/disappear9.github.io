@@ -1,6 +1,8 @@
 ---
 title: 使DockerHub的Autobuild自动构建ARM/其他 架构的镜像
 date: 2018-12-12 13:37:46
+updated: 2018-12-12 13:37:46
+toc: true
 categories:
 - 教程
 tags:
@@ -16,20 +18,19 @@ tags:
 hooks
 |——pre_build
 |——post_checkout
-
 Dockerfile
 ```
-**pre_build**
-```
+
+{% codeblock pre_build lang:bash %}
 #!/bin/bash
 docker run --rm --privileged multiarch/qemu-user-static:register --reset
-```
-**post_checkout**
-```
+{% endcodeblock %}
+
+{% codeblock post_checkout lang:bash %}
 #!/bin/bash
 curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz | tar zxvf - -C . && mv qemu-3.0.0+resin-arm/qemu-arm-static .
+{% endcodeblock %}
 
-```
 然后在Dockerfile里加入一行
 ```
 COPY qemu-arm-static /usr/bin
@@ -44,8 +45,7 @@ COPY qemu-arm-static /usr/bin
 没办法了，直接上二段构建
 先把`qemu-***-static`放到项目里，如果是（ARMv8 64）使用`qemu-aarch64-static`
 
-Dockerfile
-```
+{% codeblock Dockerfile lang:dockerfile %}
 # 这里用什么镜像都可以，反正不会影响到最终输出的镜像，我使用的是alpine，如果用debian-stretch需要自己更改下面的内容
 FROM alpine AS builder
 
@@ -69,7 +69,7 @@ FROM arm32v6/node:alpine AS release
 COPY --from=builder /qemu/qemu-arm-static /usr/bin
 COPY --from=builder /app /app
 
-```
+{% endcodeblock %}
 
 最后，附上Github地址 https://github.com/Disappear9/bilive_client_docker 欢迎参考
 DockerHub地址 https://hub.docker.com/r/disappear9/bilive_client

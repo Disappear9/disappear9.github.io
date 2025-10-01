@@ -1,6 +1,8 @@
 ---
 title: 炫酷的渗透系统Parrot Security OS
 date: 2015/5/1 13:46:25
+updated: 2015/5/1 13:46:25
+toc: true
 categories:
 - 工具
 tags:
@@ -12,8 +14,8 @@ Parrot Security OS是一款基于Debian渗透测试系统，集成了诸多流�
 ![](/pictures/Parrot-Security-OS/14300153781409.jpeg)
 
 # 部分内置工具
-
->aircrack-ng
+```
+aircrack-ng
 airmode
 apache2
 apache-users
@@ -33,8 +35,10 @@ bully
 bulk-extractor
 burpsuite
 ......
-<!--more-->
+```
 [查看全部点我][2]
+<!--more-->
+
 
 **安装过程**
 
@@ -48,7 +52,7 @@ burpsuite
 
  然后有一个登陆界面，这里输入了root、密码toor进入。
 
-![](/Parrot-Security-OS/14300153479571.jpeg)
+![](/pictures/Parrot-Security-OS/14300153479571.jpeg)
  然后就是一个系统桌面了，这里就可以使用这个系统了，不过目前还没有安装在硬盘上，所以做配置更改应该是不能保存的。
  
 ![](/pictures/Parrot-Security-OS/14300153781409.jpeg)

@@ -1,6 +1,8 @@
 ---
 title: OrangePi Zero CPU跑分测试 CPU Benchmark
 date: 2023/12/01 12:00:00
+updated: 2025/03/01 12:00:00
+toc: true
 categories:
 - 测试结果
 tags:

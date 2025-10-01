@@ -1,6 +1,8 @@
 ---
 title: 用 Orange Pi Zero 搭建一台 Stratum 1 的 NTP 服务器
 date: 2024/7/11 12:00:00
+updated: 2024/7/11 12:00:00
+toc: true
 categories:
 - 教程
 tags:
@@ -25,9 +27,7 @@ tags:
 <!--more--> 
 
 ### 材料准备  
-
-```
-1. Orange Pi Zero LTS 一个
+>1. Orange Pi Zero LTS 一个
 	也就是初代的Orange Pi Zero
 2. ATGM336H GPS模块 一个
 	可替换，只要带PPS输出的就行，我选这个型号是因为他是ipex接口可以外接天线
@@ -38,11 +38,7 @@ tags:
 4. 2*13双排26P 2.54杜邦插头双排端子线 一个
 	用于优雅的连接到Orange Pi的26P GPIO接口
 
-......
-
 其他电子配件不再赘述  
-
-```
 
 ### 硬件配置  
 #### GPS模块  
