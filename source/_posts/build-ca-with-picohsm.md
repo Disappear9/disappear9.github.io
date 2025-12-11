@@ -1,7 +1,7 @@
 ---
 title: 灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA
-date: 2025/1/20 12:00:00
-updated: 2025/12/10 12:00:00
+date: 2025/12/10 12:00:00
+updated: 2025/12/11 12:00:00
 toc: true
 categories:
 - 教程
