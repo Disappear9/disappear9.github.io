@@ -48,15 +48,16 @@ tags:
 {% endcodeblock %}
 
 创建模板 `/etc/step-ca/templates/x509/leaf.tpl`  
+
 {% codeblock leaf.tpl lang:json %}
 {
-  "subject": {{ toJson .Subject }},
-  "sans": {{ toJson .SANs }},
-  {{- if typeIs "*rsa.PublicKey" .Insecure.CR.PublicKey }}
+  "subject": { { toJson .Subject } },
+  "sans": { { toJson .SANs } },
+  { {- if typeIs "*rsa.PublicKey" .Insecure.CR.PublicKey } }
   "keyUsage": ["keyEncipherment", "digitalSignature"],
-  {{- else }}
+  { {- else } }
   "keyUsage": ["digitalSignature"],
-  {{- end }}
+  { {- end } }
   "extKeyUsage": ["serverAuth", "clientAuth"],
   "crlDistributionPoints": ["http://ca.lab.d9lab.eu.org/1.0/crl"]
 }
