@@ -1,7 +1,7 @@
 ---
 title: 灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA
 date: 2025/12/10 12:00:00
-updated: 2025/12/11 12:00:00
+updated: 2026/01/08 12:00:00
 toc: true
 categories:
 - 教程
@@ -132,15 +132,12 @@ $ wget https://github.com/Gadgetoid/pico-universal-flash-nuke/releases/download/
 
 #### 初始化 pico-hsm
 
-更新：目前如果要使用SCS3 tool导入证书，只能使用PicoCommissioner初始化，否则会导致SCS3一直报认证错误。
+更新：目前如果要使用SCS3 tool导入证书，只能使用PicoCommissioner初始化，否则会导致SCS3一直报认证错误。  
+更新2：这B作者把Pico Commissioner的页面和pypicohsm等工具全删了，现有的网页存档也被作者下了，然后强制用户使用一个新的需要付费30欧元每个Key的应用来初始化。  
+更新3：有个印度老哥做了分叉[Libre Keys](https://github.com/librekeys)，大部分工具如pypicohsm等都可以在这里下载了。  
 
 {% tabs style:fullwidth toggle %}
-<!-- tab id:new-init-pico-hsm title:PicoCommissioner active -->
-https://www.picokeys.com/pico-commissioner/  
-![pico-commissioner](/pictures/pico-hsm/pico-commissioner.png)  
-
-<!-- endtab -->
-<!-- tab id:old-init-pico-hsm title:pico-hsm-tool.py -->
+<!-- tab id:init-pico-hsm-py title:pico-hsm-tool.py -->
 {% codeblock lang:bash %}
 $ sudo apt install python3-dev
 $ wget https://github.com/polhenarejos/pico-hsm/raw/refs/heads/master/tools/pico-hsm-tool.py
@@ -168,8 +165,13 @@ Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 初始化 pico-hsm  
 
 {% codeblock lang:bash %}
-$ python3 pico-hsm-tool.py --pin 114514 initialize --so-pin 57621880
+$ python3 pico-hsm-tool.py --pin 648219 initialize --so-pin 57621880
 {% endcodeblock %}
+
+<!-- endtab -->
+<!-- tab id:init-pico-hsm-commissioner title:PicoCommissioner（已失效） active -->
+https://www.picokeys.com/pico-commissioner/  
+![pico-commissioner](/pictures/pico-hsm/pico-commissioner.png)  
 
 <!-- endtab -->
 {% endtabs %}
@@ -246,99 +248,113 @@ keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
 生成RootCA证书  
 
-{% codeblock create_intermediate_csr.ini lang:ini %}
-[ req ]
-# Options for the `req` tool (`man req`).
-default_bits        = 4096
-distinguished_name  = req_distinguished_name
-string_mask         = utf8only
-prompt              = no
-
-# SHA-1 is deprecated, so use SHA-2 instead.
-[ v3_ca ]
-# Extensions for a typical CA (`man x509v3_config`).
-subjectKeyIdentifier = hash
-authorityKeyIdentifier = keyid:always,issuer
-basicConstraints = critical, CA:true
-keyUsage = critical, digitalSignature, cRLSign, keyCertSign
-default_md          = sha512
-
-[ req_distinguished_name ]
-C                   = CN
-O                   = D9Lab
-OU                  = D9Lab Zero Certificate Authority
-CN                  = D9Lab Zero Intermediate CA
-
-{% endcodeblock %}
-
 {% codeblock lang:bash %}
 $ openssl req -config create_root_cert.ini -new -key root-ca-key.pem -x509 -days 3650 -sha512 -extensions v3_ca -out root-ca.crt
+{% endcodeblock %}
+
+RootCA的密钥和证书如果有条件的话建议导入到不那么灵车的设备里，[如Canokey中。](https://thinkalone.win/canokey-canary.html#PIV)  
+
+生成中间CA私钥  
+{% tabs style:fullwidth toggle %}
+<!-- tab id:intermediate-ca-hsm title:使用HSM设备 -->
+首先暂时拔掉Pico HSM，插上Canokey/YubiKey之类的设备  
+将证书和私钥打包成`p12`格式  
+{% codeblock lang:bash %}
+# 注意必须要设定密码，不然导入的时候会报错！  
+$ openssl pkcs12 -export -out root-ca.p12 -inkey root-ca-key.pem -in root-ca.crt
+{% endcodeblock %}
+
+将`p12`格式的RootCA证书导入到HSM设备中 以Canokey为例  
+{% codeblock lang:bash %}
+$ yubico-piv-tool -r canokeys -s 9a -i root-ca.p12 -KPKCS12 -a import-key -a import-cert
+{% endcodeblock %}
+
+找到导入进Canokey的证书id  
+{% codeblock lang:bash %}
+$ pkcs11-tool --module /usr/lib/opensc-pkcs11.so -O
+{% endcodeblock %}
+
+正常的话应该会有类似这样的输出：  
+```
+...
+Certificate Object; type = X.509 cert
+  label:      Certificate for Key Management
+  subject:    DN: C=CN, O=D9Lab, OU=D9Lab Zero Certificate Authority, CN=D9Lab Zero Root CA
+  serial:     ************
+  ID:         03
+  uri:        pkcs11:model=PKCS%2315%20emulated;manufacturer=piv_II;serial=************;token=Disappear9%20%27s%20CanoKey;id=%03;object=Certificate%20for%20Key%20Management;type=cert
+...
+```
+记下这个`ID 03`，接下来会用到  
+
+创建中间CA模板  
+{% codeblock intermediate.tpl lang:json %}
+{
+        "subject": {{ toJson .Subject }},
+        "keyUsage": ["certSign", "crlSign"],
+        "basicConstraints": {
+                "isCA": true,
+                "maxPathLen": 0
+        },
+        "crlDistributionPoints": ["http://ca.lab.d9lab.eu.org/1.0/crl"]
+}
 {% endcodeblock %}
 
 生成中间CA私钥  
 
 {% codeblock lang:bash %}
-$ openssl ecparam -genkey -name secp384r1 -noout -out intermediate-ca-key.pem
+$ step certificate create \
+  "D9Lab Zero Intermediate CA" \
+  intermediate-ca.crt \
+  intermediate_ca_key_enc \
+  --template intermediate.tpl \
+  --ca root-ca.crt \
+  --ca-kms 'pkcs11:module-path=/usr/lib/opensc-pkcs11.so;serial=************?pin-value=648219' \
+  --ca-key 'pkcs11:id=03' \
+  --not-before '2025-01-10T00:00:00+08:00' \
+  --not-after '2030-01-10T00:00:00+08:00' \
+  --kty=EC --curve=P-384
 {% endcodeblock %}
 
-使用RootCA证书签名中间CA证书  
+拔下Canokey/YubiKey，换回Pico HSM  
 
-{% codeblock sign_intermediate_csr.ini lang:ini %}
-[ ca ]
-# `man ca`
-default_ca = CA_default
-
-[ CA_default ]
-# Directory and file locations.
-dir               = certificate-authority
-certs             = $dir/certs
-crl_dir           = $dir/crl
-new_certs_dir     = $dir/newcerts
-database          = $dir/index.txt
-serial            = $dir/serial
-
-# The root key and root certificate.
-private_key       = root-ca-key.pem
-certificate       = root-ca.crt
-
-# SHA-1 is deprecated, so use SHA-2 instead.
-default_md        = sha512
-
-name_opt          = ca_default
-cert_opt          = ca_default
-default_days      = 375
-preserve          = no
-policy            = policy_loose
-
-[ policy_loose ]
-# Allow the intermediate CA to sign a more diverse range of certificates.
-# See the POLICY FORMAT section of the `ca` man page.
-countryName             = optional
-stateOrProvinceName     = optional
-localityName            = optional
-organizationName        = optional
-organizationalUnitName  = optional
-commonName              = supplied
-emailAddress            = optional
-
-[ v3_intermediate_ca ]
-# Extensions for a typical intermediate CA (`man x509v3_config`).
-subjectKeyIdentifier = hash
-authorityKeyIdentifier = keyid:always,issuer
-basicConstraints = critical, CA:true, pathlen:0
-keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+<!-- endtab -->
+<!-- tab id:intermediate-ca-file title:不使用HSM设备 active -->
+创建中间CA模板  
+{% codeblock intermediate.tpl lang:json %}
+{
+        "subject": {{ toJson .Subject }},
+        "keyUsage": ["certSign", "crlSign"],
+        "basicConstraints": {
+                "isCA": true,
+                "maxPathLen": 0
+        },
+        "crlDistributionPoints": ["http://ca.lab.d9lab.eu.org/1.0/crl"]
+}
 {% endcodeblock %}
+
+生成中间CA私钥  
 
 {% codeblock lang:bash %}
-$ openssl req -config create_intermediate_csr.ini -key intermediate-ca-key.pem -new -sha512 -out intermediate.csr
-$ openssl ca -config sign_intermediate_csr.ini -extensions v3_intermediate_ca -days 1825 -notext -md sha512 -create_serial -in intermediate.csr -out intermediate-ca.crt
-$ openssl x509 -noout -text -in intermediate-ca.crt
+$ step certificate create \
+  "D9Lab Zero Intermediate CA" \
+  intermediate-ca.crt \
+  intermediate_ca_key_enc \
+  --template intermediate.tpl \
+  --ca root-ca.crt \
+  --ca-key root-ca-key.pem \
+  --not-before '2025-01-10T00:00:00+08:00' \
+  --not-after '2030-01-10T00:00:00+08:00' \
+  --kty=EC --curve=P-384
 {% endcodeblock %}
+
+<!-- endtab -->
+{% endtabs %}
 
 将证书和私钥打包成`p12`格式  
 {% codeblock lang:bash %}
+$ openssl ec -in intermediate_ca_key_enc -out intermediate-ca-key.pem
 # 注意必须要设定密码，不然导入的时候会报错！  
-$ openssl pkcs12 -export -out root-ca.p12 -inkey root-ca-key.pem -in root-ca.crt
 $ openssl pkcs12 -export -out intermediate-ca.p12 -inkey intermediate-ca-key.pem -in intermediate-ca.crt -certfile root-ca.crt
 {% endcodeblock %}
 
@@ -377,9 +393,9 @@ Select Name to be used (intermediate-ca)
 Import more keys, if needed
 ```
 
-导入完成后运行`pkcs11-tool.exe -O`应该就可以看到导入的证书了
+导入完成后运行`pkcs11-tool -O`应该就可以看到导入的证书了
 {% codeblock lang:bash %}
-$ pkcs11-tool.exe -O
+$ pkcs11-tool -O
   Using slot 0 with a present token (0x0)
   Certificate Object; type = X.509 cert
     label:      intermediate-ca
@@ -388,7 +404,7 @@ $ pkcs11-tool.exe -O
 ...
 {% endcodeblock %}
 
-记下`ID`和`label`，后面要用到，这里的`label: intermediate-ca`是可以自己随意设置的。  
+记下`ID`和`label`，后面要用到。  
 
 把这些文件拿7z打个加密压缩包，密码用KeePass生成一个够长的保存，然后找个你喜欢的网盘存好或者刻张光盘放衣柜里。  
 
@@ -403,8 +419,6 @@ root-ca.p12
 ```
 
 之后只保留`intermediate-ca.crt`和`root-ca.crt`，其余文件全部删除  
-RootCA的密钥和证书如果有条件的话建议导入到不那么灵车的设备里，[如Canokey中。](https://thinkalone.win/canokey-canary.html#PIV)  
-关于怎样使用Canokey中的证书签中间CA，可以参考[docs.nitrokey.com](https://docs.nitrokey.com/zh_CN/nitrokeys/features/openpgp-card/certificate-authority#creating-the-intermediate-certificate-authority)  
 
 ### 配置step-ca
 
