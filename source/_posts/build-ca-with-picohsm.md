@@ -137,7 +137,7 @@ $ wget https://github.com/Gadgetoid/pico-universal-flash-nuke/releases/download/
 更新3：有个印度老哥做了分叉[Libre Keys](https://github.com/librekeys)，大部分工具如pypicohsm等都可以在这里下载了。  
 
 {% tabs style:fullwidth toggle %}
-<!-- tab id:init-pico-hsm-py title:pico-hsm-tool.py -->
+<!-- tab id:init-pico-hsm-py title:pico-hsm-tool.py active -->
 {% codeblock lang:bash %}
 $ sudo apt install python3-dev
 $ wget https://github.com/polhenarejos/pico-hsm/raw/refs/heads/master/tools/pico-hsm-tool.py
@@ -169,7 +169,7 @@ $ python3 pico-hsm-tool.py --pin 648219 initialize --so-pin 57621880
 {% endcodeblock %}
 
 <!-- endtab -->
-<!-- tab id:init-pico-hsm-commissioner title:PicoCommissioner（已失效） active -->
+<!-- tab id:init-pico-hsm-commissioner title:PicoCommissioner（已失效） -->
 https://www.picokeys.com/pico-commissioner/  
 ![pico-commissioner](/pictures/pico-hsm/pico-commissioner.png)  
 
