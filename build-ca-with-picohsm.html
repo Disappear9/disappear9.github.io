@@ -102,12 +102,12 @@
 <p>生成中间CA私钥  </p>
 <div class="tabs my-3 is-fullwidth">
         <ul class="mx-0 my-0">
-            <li>
+            <li class="is-active">
           <a href="#intermediate-ca-hsm">
               <p>使用HSM设备</p>
 
           </a>
-      </li><li class="is-active">
+      </li><li>
           <a href="#intermediate-ca-file">
               <p>不使用HSM设备</p>
 
@@ -115,7 +115,7 @@
       </li>
         </ul>
     </div>
-    <div id="intermediate-ca-hsm" class="tab-content is-hidden">
+    <div id="intermediate-ca-hsm" class="tab-content">
           <p>首先暂时拔掉Pico HSM，插上Canokey&#x2F;YubiKey之类的设备<br>将证书和私钥打包成<code>p12</code>格式  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意必须要设定密码，不然导入的时候会报错！  </span></span><br><span class="line">$ openssl pkcs12 -<span class="built_in">export</span> -out root-ca.p12 -inkey root-ca-key.pem -<span class="keyword">in</span> root-ca.crt</span><br></pre></td></tr></table></figure>
 
@@ -136,7 +136,7 @@
 
 <p>拔下Canokey&#x2F;YubiKey，换回Pico HSM  </p>
 
-      </div><div id="intermediate-ca-file" class="tab-content">
+      </div><div id="intermediate-ca-file" class="tab-content is-hidden">
           <p>创建中间CA模板  </p>
 <figure class="highlight json"><figcaption><span>intermediate.tpl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;subject&quot;</span><span class="punctuation">:</span> <span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;keyUsage&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;certSign&quot;</span><span class="punctuation">,</span> <span class="string">&quot;crlSign&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;basicConstraints&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;isCA&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;maxPathLen&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;crlDistributionPoints&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;http://ca.lab.d9lab.eu.org/1.0/crl&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
