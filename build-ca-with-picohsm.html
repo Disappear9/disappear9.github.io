@@ -61,12 +61,12 @@
 <h4 id="初始化-pico-hsm"><a href="#初始化-pico-hsm" class="headerlink" title="初始化 pico-hsm"></a>初始化 pico-hsm</h4><p>更新：目前如果要使用SCS3 tool导入证书，只能使用PicoCommissioner初始化，否则会导致SCS3一直报认证错误。<br>更新2：这B作者把Pico Commissioner的页面和pypicohsm等工具全删了，现有的网页存档也被作者下了，然后强制用户使用一个新的需要付费30欧元每个Key的应用来初始化。<br>更新3：有个印度老哥做了分叉<a target="_blank" rel="noopener" href="https://github.com/librekeys">Libre Keys</a>，大部分工具如pypicohsm等都可以在这里下载了。  </p>
 <div class="tabs my-3 is-fullwidth">
         <ul class="mx-0 my-0">
-            <li>
+            <li class="is-active">
           <a href="#init-pico-hsm-py">
               <p>pico-hsm-tool.py</p>
 
           </a>
-      </li><li class="is-active">
+      </li><li>
           <a href="#init-pico-hsm-commissioner">
               <p>PicoCommissioner（已失效）</p>
 
@@ -74,7 +74,7 @@
       </li>
         </ul>
     </div>
-    <div id="init-pico-hsm-py" class="tab-content is-hidden">
+    <div id="init-pico-hsm-py" class="tab-content">
           <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> apt install python3-dev</span><br><span class="line">$ wget https://github.com/polhenarejos/pico-hsm/raw/refs/heads/master/tools/pico-hsm-tool.py</span><br><span class="line">$ python3 -m venv venv</span><br><span class="line">$ <span class="built_in">source</span> venv/bin/activate</span><br><span class="line">$ pip install pycvc cryptography pypicohsm</span><br><span class="line">$ python3 pico-hsm-tool.py</span><br><span class="line">$ deactivate</span><br></pre></td></tr></table></figure>
 
 <p>更改pico-hsm的vid和pid  </p>
@@ -84,7 +84,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 pico-hsm-tool.py --pin 648219 initialize --so-pin 57621880</span><br></pre></td></tr></table></figure>
 
 
-      </div><div id="init-pico-hsm-commissioner" class="tab-content">
+      </div><div id="init-pico-hsm-commissioner" class="tab-content is-hidden">
           <p><a target="_blank" rel="noopener" href="https://www.picokeys.com/pico-commissioner/">https://www.picokeys.com/pico-commissioner/</a><br><img src="/pictures/pico-hsm/pico-commissioner.png" alt="pico-commissioner">  </p>
 
       </div>
