@@ -256,7 +256,7 @@ RootCA的密钥和证书如果有条件的话建议导入到不那么灵车的�
 
 生成中间CA私钥  
 {% tabs style:fullwidth toggle %}
-<!-- tab id:intermediate-ca-hsm title:使用HSM设备 -->
+<!-- tab id:intermediate-ca-hsm title:使用HSM设备 active -->
 首先暂时拔掉Pico HSM，插上Canokey/YubiKey之类的设备  
 将证书和私钥打包成`p12`格式  
 {% codeblock lang:bash %}
@@ -319,7 +319,7 @@ $ step certificate create \
 拔下Canokey/YubiKey，换回Pico HSM  
 
 <!-- endtab -->
-<!-- tab id:intermediate-ca-file title:不使用HSM设备 active -->
+<!-- tab id:intermediate-ca-file title:不使用HSM设备 -->
 创建中间CA模板  
 {% codeblock intermediate.tpl lang:json %}
 {
