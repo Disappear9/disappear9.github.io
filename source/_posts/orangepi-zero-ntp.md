@@ -1,7 +1,7 @@
 ---
 title: 用 Orange Pi Zero 搭建一台 Stratum 1 的 NTP 服务器
 date: 2024/7/11 12:00:00
-updated: 2024/7/11 12:00:00
+updated: 2025/9/10 12:00:00
 toc: true
 categories:
 - 教程
@@ -28,7 +28,7 @@ tags:
 
 ### 材料准备  
 >1. Orange Pi Zero LTS 一个
-	也就是初代的Orange Pi Zero
+	也就是初代的Orange Pi Zero，理论上Zero2、3也可以，但是需要根据实际接线情况修改配置
 2. ATGM336H GPS模块 一个
 	可替换，只要带PPS输出的就行，我选这个型号是因为他是ipex接口可以外接天线
 	2.1 GPS天线(3.3v供电) 一个
@@ -43,7 +43,7 @@ tags:
 ### 硬件配置  
 #### GPS模块  
 使用USB-TTL板将模块连接到电脑，使用对应的工具将GPS模块的串口波特率调整到115200（模块一般默认为9600，过低，时间报文传输时间太长，会导致延迟过高）  
-我使用的ATGM336H模块可以用GnssToolKit3进行配置 https://www.icofchina.com/xiazai/  
+我使用的ATGM336H模块可以用[GnssToolKit3](https://github.com/zxcwhale/GnssToolKit3-binaries/releases)进行配置  
 其他模块可以参考手册进行配置  
 #### DS3231模块  
 如果你使用的是同款模块（大概率），使用烙铁拆焊掉这里的电阻以防止VCC倒灌进入电池  
@@ -62,6 +62,41 @@ sudo sh -c "echo 'param_pps_pin=PA3' >> /boot/armbianEnv.txt"
 ```
 
 指定PA3为PPS输入  
+
+更新：使用Orange Pi Zero3时，armbian可能没有带pps的dts，可以手动创建一个，和ds3231的dts一样安装：  
+```
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "allwinner,sun50i-h616";
+
+        fragment@0 {
+                target = <&pio>;
+                __overlay__ {
+                                pps_pins: pps_pins {
+                                        pins = "PC11";
+                                        function = "pps";
+                                };
+                };
+        };
+
+        fragment@1 {
+                target-path = "/";
+                __overlay__ {
+                        pps@0 {
+                                compatible = "pps-gpio";
+                                pinctrl-names = "default";
+                                pinctrl-0 = <&pps_pins>;
+                                gpios = <&pio 2 11 0>;  /* PC11 */
+                                status = "okay";
+                        };
+                };
+        };
+};
+
+```
+
 新建文件`ds3231.dts`:  
 
 ```
