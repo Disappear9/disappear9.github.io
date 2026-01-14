@@ -1,7 +1,7 @@
 ---
 title: 灵上加灵：使用 Pico HSM 和 step-ca 自建一个CA
 date: 2025/12/10 12:00:00
-updated: 2026/01/08 12:00:00
+updated: 2026/01/15 12:00:00
 toc: true
 categories:
 - 教程
@@ -132,15 +132,16 @@ $ wget https://github.com/Gadgetoid/pico-universal-flash-nuke/releases/download/
 
 #### 初始化 pico-hsm
 
-更新：目前如果要使用SCS3 tool导入证书，只能使用PicoCommissioner初始化，否则会导致SCS3一直报认证错误。  
+~~更新：目前如果要使用SCS3 tool导入证书，只能使用Pico Commissioner初始化，否则会导致SCS3一直报认证错误。~~  
 更新2：这B作者把Pico Commissioner的页面和pypicohsm等工具全删了，现有的网页存档也被作者下了，然后强制用户使用一个新的需要付费30欧元每个Key的应用来初始化。  
 更新3：有个印度老哥做了分叉[Libre Keys](https://github.com/librekeys)，大部分工具如pypicohsm等都可以在这里下载了。  
+更新4：写了一个[自己生成cvc证书的教程](https://github.com/Disappear9/pico-hsm-cvcgen/blob/main/research/README_ZH.MD)，按教程操作后就可以用SCS3管理pico-hsm了，直接使用原`2.0.2`版本的`pypicohsm`会从原作者的服务器上请求cvc证书，也能用，但是鉴于这B目前的吃相这个API还能活多久我不好说。  
 
 {% tabs style:fullwidth toggle %}
 <!-- tab id:init-pico-hsm-py title:pico-hsm-tool.py active -->
 {% codeblock lang:bash %}
 $ sudo apt install python3-dev
-$ wget https://github.com/polhenarejos/pico-hsm/raw/refs/heads/master/tools/pico-hsm-tool.py
+$ wget https://github.com/librekeys/pico-hsm/raw/refs/heads/master/tools/pico-hsm-tool.py
 $ python3 -m venv venv
 $ source venv/bin/activate
 $ pip install pycvc cryptography pypicohsm
