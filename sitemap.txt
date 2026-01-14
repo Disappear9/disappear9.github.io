@@ -1,6 +1,7 @@
 https://thinkalone.win/build-ca-with-picohsm.html
 https://thinkalone.win/Using-step-ca.html
 https://thinkalone.win/NanoPC-T4-CPU-Benchmark.html
+https://thinkalone.win/orangepi-zero-ntp.html
 https://thinkalone.win/Common-Item-Sizes.html
 https://thinkalone.win/RPi5-CPU-Benchmark.html
 https://thinkalone.win/OrangePiZero-CPU-Benchmark.html
@@ -8,7 +9,6 @@ https://thinkalone.win/SDS804X-HD-Upgrade.html
 https://thinkalone.win/OrangePiZero3-CPU-Benchmark.html
 https://thinkalone.win/canokey-canary.html
 https://thinkalone.win/ipv6-in-2024.html
-https://thinkalone.win/orangepi-zero-ntp.html
 https://thinkalone.win/chinese-zip-password.html
 https://thinkalone.win/zx_bot_Docker.html
 https://thinkalone.win/klipper-docker.html

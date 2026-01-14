@@ -29,6 +29,15 @@
   </url>
   
   <url>
+    <loc>https://thinkalone.win/orangepi-zero-ntp.html</loc>
+    
+    <lastmod>2025-09-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkalone.win/Common-Item-Sizes.html</loc>
     
     <lastmod>2025-06-01</lastmod>
@@ -86,15 +95,6 @@
     <loc>https://thinkalone.win/ipv6-in-2024.html</loc>
     
     <lastmod>2024-09-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkalone.win/orangepi-zero-ntp.html</loc>
-    
-    <lastmod>2024-07-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
