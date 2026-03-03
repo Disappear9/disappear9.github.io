@@ -61,6 +61,15 @@ java -jar gp.jar --install AlgTest_v1.8.2_jc305.cap  `
 如果jc305的Applet装不进去，依次尝试jc304 -> jc222  
 如果jc304也装不上，那剩下的教程就不用看了，这说明你买到的卡芯片不是J3R180/不支持JavaCard 3.0.4  
 
+运行`AlgTestJClient`
+{% codeblock lang:powershell %}
+java -jar AlgTestJClient.jar
+{% endcodeblock %}
+选择 `1 -> SUPPORTED ALGORITHMS` 测试支持的算法  
+测试需要跑5分钟左右，最后会生成一个csv文件  
+打开csv文件，记下 `CPLC.ICSerialNumber` 最好写在卡上方便区分  
+搜索 `TYPE_RSA_PRIVATE LENGTH_RSA_3072` 如果后面显示的是no，则在安装OpenPGP Applet时只能使用文件名含2048的。  
+
 ### FIDO2
 从[FIDO2Applet](https://github.com/BryanJacobs/FIDO2Applet)下载工程ZIP包，在从Releases下载Applet(FIDO2.cap)  
 解压工程ZIP包备用，后面要用到工程里的脚本  
