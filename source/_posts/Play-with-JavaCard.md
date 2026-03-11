@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
 安装Applet，将`--create`后的内容替换为上面脚本生成的   
 {% codeblock lang:powershell %}
-java -jar gp.jar --install FIDO2.cap  `
+java -jar gp.jar --install SmartPGPApplet-rsa_up_to_3072.cap  `
     --create **************************  `
     --key-enc new-key  `
     --key-mac new-key  `
@@ -129,3 +129,18 @@ java -jar gp.jar --install FIDO2.cap  `
 {% endcodeblock %}
 
 OpenPGP的使用可以参照：[Canokey Canary上手#OpenPGP](https://thinkalone.win/canokey-canary.html#OpenPGP)
+
+### NDEF
+从[openjavacard-ndef](https://github.com/OpenJavaCard/openjavacard-ndef/tree/master/prebuilt)下载预编译的Applet  
+
+安装Applet   
+{% codeblock lang:powershell %}
+java -jar gp.jar --install openjavacard-ndef-full.cap  `
+    --params 8102000082020800  `
+    --create D2760000850101  `
+    --key-enc new-key  `
+    --key-mac new-key  `
+    --key-dek new-key  `
+{% endcodeblock %}
+
+这会创建一个有2K存储空间可重复擦写的tag，详细的参数设置[参考这里](https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md)。
