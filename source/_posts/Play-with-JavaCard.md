@@ -1,7 +1,7 @@
 ---
 title: JavaCard 上手
 date: 2026/3/1 12:00:00
-updated: 2026/3/1 12:00:00
+updated: 2026/3/15 12:00:00
 toc: true
 categories:
 - 折腾那些事
@@ -144,3 +144,77 @@ java -jar gp.jar --install openjavacard-ndef-full.cap  `
 {% endcodeblock %}
 
 这会创建一个有2K存储空间可重复擦写的tag，详细的参数设置[参考这里](https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md)。
+
+### PKCS
+这个Applet需要自己编译[IsoApplet](https://github.com/philipWendland/IsoApplet)  
+{% codeblock lang:bash %}
+# 为了方便配置环境，换到Debian下操作
+git clone https://github.com/philipWendland/IsoApplet
+cd IsoApplet
+git submodule init
+git submodule update
+{% endcodeblock %}
+
+修改 `IsoApplet.java` 允许导入私钥  
+{% codeblock IsoApplet.java lang:java %}
+public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = false;
+{% endcodeblock %}
+
+我们启一个Docker防止配置的环境与主机的冲突：  
+{% codeblock lang:bash %}
+sudo docker run -it -v ./IsoApplet:/workdir --name jc_build ubuntu:22.04
+sudo apt update
+sudo apt install openjdk-8-jdk ant
+sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+cd /workdir
+ant
+{% endcodeblock %}
+
+编译后得到 `IsoApplet.cap`  
+
+安装Applet   
+{% codeblock lang:powershell %}
+java -jar gp.jar --install IsoApplet.cap  `
+    --key-enc new-key  `
+    --key-mac new-key  `
+    --key-dek new-key  `
+{% endcodeblock %}
+
+初始化  
+{% codeblock lang:powershell %}
+# 生成一个32位的随机序列号
+openssl rand -hex 16
+pkcs15-init --create-pkcs15 --serial 48c32f6a878b839a
+{% endcodeblock %}
+
+使用案例参考：[Using-the-IsoApplet-with-OpenSSH](https://github.com/philipWendland/IsoApplet/wiki/Using-the-IsoApplet-with-OpenSSH)  
+
+### VeraCrypt
+VeraCrypt可以直接使用存储在符合PKCS #11（2.0或更高版本）标准且允许用户在令牌/卡上存储文件（数据对象）的安全令牌或智能卡上的密钥文件。[操作步骤见VeraCrypt文档](https://veracrypt.jp/zh-cn/Keyfiles%20in%20VeraCrypt.html)
+
+有两种方式：
+1.存到 OpenPGP Applet 的 PrivDO3(Private Data Object 3) 中
+2.存到 IsoApplet 的 PKCS #15 中
+
+#### PrivDO3
+默认情况下直接按VeraCrypt的文档操作，密钥文件会被存入PrivDO1，直接运行 `gpg --card-edit` 不需要验证PIN就可以直接读取到：  
+
+{% codeblock lang:powershell %}
+PS C:\Temp> gpg --card-edit
+
+Manufacturer .....: unmanaged S/N range
+......
+Private DO 1 .....: DO1XXXXXXXXXXXXXXXXX    <<<<<<<<<<<<<<
+Signature PIN ....: forced
+{% endcodeblock %}
+
+所以更推荐使用这个库：[openpgp-privdo3-pkcs11](https://github.com/czietz/openpgp-privdo3-pkcs11)，把密钥文件存进 DO 3。  
+从Releases下载对应的 dll/so 文件后按工程 README 操作。  
+
+#### PKCS
+1.点击 VeraCrypt 菜单栏的 工具 > 密钥文件生成器  
+2.密钥文件大小设置在 64-256 字节之间，生成后保存  
+3.点击 VeraCrypt 菜单栏的 工具 > 管理安全口令牌密钥文件  
+4.输入设置的PIN码验证  
+5.点击 “导入密钥文件到令牌”，然后选择刚刚生成的文件  
+
