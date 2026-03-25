@@ -1,7 +1,7 @@
 ---
 title: Canokey Canary上手
 date: 2025/1/1 12:00:00
-updated: 2025/1/1 12:00:00
+updated: 2026/2/1 12:00:00
 toc: true
 categories:
 - 折腾那些事
@@ -395,7 +395,7 @@ OID=1.3.6.1.4.1.311.10.3.12
 由于是自签名证书，需要添加注册表允许自签名  
 以管理员权限运行命令
 ```
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE /v SelfSignedCertificates2 /t REG_DWORD /d "1"
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE /v SelfSignedCertificates /t REG_DWORD /d "1"
 ```
 
 下载安装 [yubico-piv-tool](https://developers.yubico.com/yubico-piv-tool/Releases/)  
@@ -429,7 +429,8 @@ $ yubico-piv-tool -r canokeys -a status
 
 #### S/MIME电子邮件加密  
 **准备工作**  
-从 [Actalis](https://www.actalis.com/request-s-mime-certificate) 申请一个免费的S/MIME证书 参考[免费申请S/MIME邮箱证书](https://blog.goodboyboy.top/posts/851058316.html)  
+~~从 [Actalis](https://www.actalis.com/request-s-mime-certificate) 申请一个免费的S/MIME证书 参考[免费申请S/MIME邮箱证书](https://blog.goodboyboy.top/posts/851058316.html)~~  
+Actalis的免费证书没了，用[Certum](https://shop.certum.eu/s-mime.html)的吧，15欧元两年，教程参考：[使用 S/MIME 证书签名并加密电子邮件](https://www.liups.net/2025/10/s-mime-%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E5%8A%A0%E5%AF%86%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6/#%E4%BB%98%E8%B4%B9%E7%9A%84%EF%BC%88%EF%BC%89)  
 安装 [Thunderbird](https://www.thunderbird.net/zh-CN/thunderbird/all/)  
 安装 [OpenSC](https://github.com/OpenSC/OpenSC/releases)  
 安装 [yubico-piv-tool](https://developers.yubico.com/yubico-piv-tool/Releases/)  
