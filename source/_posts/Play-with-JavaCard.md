@@ -145,7 +145,7 @@ java -jar gp.jar --install openjavacard-ndef-full.cap  `
 
 这会创建一个有2K存储空间可重复擦写的tag，详细的参数设置[参考这里](https://github.com/OpenJavaCard/openjavacard-ndef/blob/master/doc/install.md)。
 
-### PKCS
+### PKCS11/15
 这个Applet需要自己编译[IsoApplet](https://github.com/philipWendland/IsoApplet)  
 {% codeblock lang:bash %}
 # 为了方便配置环境，换到Debian下操作
@@ -157,7 +157,12 @@ git submodule update
 
 修改 `IsoApplet.java` 允许导入私钥  
 {% codeblock IsoApplet.java lang:java %}
-public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = false;
+public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = true;
+{% endcodeblock %}
+
+修改 `IsoApplet.java` 适配新版OpenSC  
+{% codeblock IsoApplet.java lang:java %}
+ecdsaSignature = Signature.getInstance(MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL, false); 
 {% endcodeblock %}
 
 我们启一个Docker防止配置的环境与主机的冲突：  
