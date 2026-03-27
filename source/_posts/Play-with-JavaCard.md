@@ -68,7 +68,7 @@ java -jar AlgTestJClient.jar
 选择 `1 -> SUPPORTED ALGORITHMS` 测试支持的算法  
 测试需要跑5分钟左右，最后会生成一个csv文件  
 打开csv文件，记下 `CPLC.ICSerialNumber` 最好写在卡上方便区分  
-搜索 `TYPE_RSA_PRIVATE LENGTH_RSA_3072` 如果后面显示的是no，则在安装OpenPGP Applet时只能使用文件名含2048的。  
+搜索 `TYPE_RSA_PRIVATE LENGTH_RSA_3072` 如果后面显示的是no，则在安装OpenPGP Applet或IsoApplet时只能使用文件名含2048的。  
 
 ### FIDO2
 从[FIDO2Applet](https://github.com/BryanJacobs/FIDO2Applet)下载工程ZIP包，在从Releases下载Applet(FIDO2.cap)  
@@ -165,6 +165,24 @@ public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = true;
 ecdsaSignature = Signature.getInstance(MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL, false); 
 {% endcodeblock %}
 
+如果你的卡不支持RSA4096，则需要注释掉 `IsoApplet.java` 中测试RSA4096的部分  
+{% codeblock IsoApplet.java lang:java %}
+        // API features: probe card support for 4096 bit RSA keys
+		api_features &= ~API_FEATURE_RSA_4096;
+		/*
+        try {
+            RSAPrivateCrtKey testKey = (RSAPrivateCrtKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_CRT_PRIVATE, KeyBuilder.LENGTH_RSA_4096, false);
+            api_features |= API_FEATURE_RSA_4096;
+        } catch (CryptoException e) {
+            if(e.getReason() == CryptoException.NO_SUCH_ALGORITHM) {
+                api_features &= ~API_FEATURE_RSA_4096;
+            } else {
+                throw e;
+            }
+        }
+		*/
+{% endcodeblock %}
+
 我们启一个Docker防止配置的环境与主机的冲突：  
 {% codeblock lang:bash %}
 sudo docker run -it -v ./IsoApplet:/workdir --name jc_build ubuntu:22.04
@@ -176,6 +194,7 @@ ant
 {% endcodeblock %}
 
 编译后得到 `IsoApplet.cap`  
+当然，你也可以[直接使用我编译好的cap](/attachments/Play-with-JavaCard/IsoApplet.7z)  
 
 安装Applet   
 {% codeblock lang:powershell %}
