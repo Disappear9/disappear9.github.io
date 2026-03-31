@@ -160,11 +160,6 @@ git submodule update
 public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = true;
 {% endcodeblock %}
 
-修改 `IsoApplet.java` 适配新版OpenSC  
-{% codeblock IsoApplet.java lang:java %}
-ecdsaSignature = Signature.getInstance(MessageDigest.ALG_SHA_256, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL, false); 
-{% endcodeblock %}
-
 如果你的卡不支持RSA4096，则需要注释掉 `IsoApplet.java` 中测试RSA4096的部分  
 {% codeblock IsoApplet.java lang:java %}
         // API features: probe card support for 4096 bit RSA keys
