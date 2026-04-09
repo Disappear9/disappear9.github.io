@@ -1,7 +1,7 @@
 ---
 title: 灵车！开创！ Step-CA 日常使用教程
 date: 2026/01/09 12:00:00
-updated: 2026/01/09 12:00:00
+updated: 2026/04/01 12:00:00
 toc: true
 categories:
 - 教程
@@ -127,5 +127,93 @@ $ ~/.acme.sh/acme.sh --issue -d router2.d9lab.eu.org \
         option key '/root/.acme.sh/router2.d9lab.eu.org_ecc/router2.d9lab.eu.org.key'
 ...
 {% endcodeblock %}
+
+### SSH
+
+参考：  
+[SSH Certificates with step-ca](https://www.whatsdoom.com/posts/2020/02/29/ssh-certificates-with-step-ca/)  
+[step-ca で ssh証明書を扱う](https://zenn.dev/mnod/articles/15d4e93a9d44fc)  
+
+#### Server
+
+重启 `step-ca` ，查看日志找到 `SSH Host CA Key` 和 `SSH User CA Key`  
+
+{% codeblock lang:bash %}
+$ sudo service step-ca stop
+$ sudo service step-ca start
+$ sudo service step-ca status
+● step-ca.service - step-ca
+     Loaded: loaded (/etc/systemd/system/step-ca.service; enabled; preset: enabled)
+     Active: active (running) since 
+   Main PID: 156738 (sh)
+      Tasks: 11 (limit: 4529)
+     Memory: 14.4M
+        CPU: 305ms
+     CGroup: /system.slice/step-ca.service
+             ├─156738 /bin/sh -c "/usr/local/bin/step-ca /etc/step-ca/config/ca.json"
+             └─156739 /usr/local/bin/step-ca /etc/step-ca/config/ca.json
+
+......
+SSH Host CA Key: ecdsa-sha2-nistp256 AAA=
+SSH User CA Key: ecdsa-sha2-nistp256 AAB=
+......
+{% endcodeblock %}
+
+将 `SSH User CA Key` 写入到 `/etc/ssh/ssh_user_ca_key.pub`  
+
+{% codeblock lang:bash %}
+$ sudo echo "ecdsa-sha2-nistp256 AAB=" > /etc/ssh/ssh_user_ca_key.pub
+$ sudo chown root:root /etc/ssh/ssh_user_ca_key.pub
+$ sudo chmod 644 /etc/ssh/ssh_user_ca_key.pub
+{% endcodeblock %}
+
+签名主机公钥  
+{% codeblock lang:bash %}
+$ sudo cp /etc/ssh/ssh_host_ecdsa_key.pub ssh_host_ecdsa_key.pub
+$ sudo step ssh certificate $HOSTNAME ssh_host_ecdsa_key.pub --host --sign
+$ sudo cp ssh_host_ecdsa_key-cert.pub /etc/ssh/ssh_host_ecdsa_key-cert.pub
+{% endcodeblock %}
+
+创建 `/etc/ssh/sshd_config.d/ca.conf` 
+
+{% codeblock ca.conf lang:conf %}
+TrustedUserCAKeys /etc/ssh/ssh_user_ca_key.pub
+HostCertificate /etc/ssh/ssh_host_ecdsa_key-cert.pub
+{% endcodeblock %}
+
+测试 `sshd` 配置并重启 `sshd`  
+
+{% codeblock lang:bash %}
+$ sudo sshd -t
+$ sudo service ssh restart
+{% endcodeblock %}
+
+
+将  `SSH Host CA Key` 写入到 `~/.ssh/authorized_keys`  
+
+{% codeblock authorized_keys lang:conf %}
+ecdsa-sha2-nistp256 AAA=
+{% endcodeblock %}
+
+#### Client
+
+生成用于连接的证书  
+
+{% codeblock lang:bash %}
+$ step ssh certificate disappear9@192.168.1.100 id_ecdsa
+......
+Please enter the password to encrypt the private key:
+   Private Key: id_ecdsa
+   Public Key: id_ecdsa.pub
+   Certificate: id_ecdsa-cert.pub
+{% endcodeblock %}
+
+将 `SSH Host CA Key` 写入到 `~/.ssh/known_hosts`  
+
+{% codeblock authorized_keys lang:conf %}
+echo "@cert-authority 192.168.1.100 ecdsa-sha2-nistp256 AAA=" >> ~/.ssh/authorized_keys
+{% endcodeblock %}
+
+然后就可以直接 `ssh disappear9@192.168.1.100` 连接了  
 
 （完）
