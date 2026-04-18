@@ -1,7 +1,7 @@
 ---
 title: JavaCard 上手
 date: 2026/3/1 12:00:00
-updated: 2026/3/15 12:00:00
+updated: 2026/4/1 12:00:00
 toc: true
 categories:
 - 折腾那些事
@@ -59,7 +59,7 @@ java -jar gp.jar --install AlgTest_v1.8.2_jc305.cap  `
     --key-dek new-key  `
 {% endcodeblock %}
 如果jc305的Applet装不进去，依次尝试jc304 -> jc222  
-如果jc304也装不上，那剩下的教程就不用看了，这说明你买到的卡芯片不是J3R180/不支持JavaCard 3.0.4  
+如果jc304也装不上，那剩下的教程就不用看了，这说明你买到的卡芯片大概率不是J3R180，且 JavaCard support version 低于 3.0.4  
 
 运行`AlgTestJClient`
 {% codeblock lang:powershell %}
@@ -96,7 +96,7 @@ python FIDO2Applet-main/install_attestation_cert.py
 
 ### OpenPGP
 从[SmartPGP](https://github.com/github-af/SmartPGP)下载Applet  
-建议使用RSA 2048的Applet就够了，最多3072，更推荐用NIST P-384，因为卡上跑RSA的速度实在太慢了  
+建议使用RSA 2048或3072的Applet，更推荐用NIST P-384，因为卡上跑RSA的速度还是太慢了  
 
 使用以下脚本生成序列号：
 
@@ -178,6 +178,12 @@ public static final boolean DEF_PRIVATE_KEY_IMPORT_ALLOWED = true;
 		*/
 {% endcodeblock %}
 
+注意：当前（2026/4/1），IsoApplet导入RSA4096密钥会出错，我分别向OpenSC和IsoApplet提交了pr，但是IsoApplet的作者似乎有重构的打算所以并没有直接采用，目前还在等待修复  
+[Fix RSA4096 import](https://github.com/philipWendland/IsoApplet/pull/46)  
+[Fix IsoApplet hard coded algorithm_ref](https://github.com/OpenSC/OpenSC/pull/3632)  
+如果需要使用RSA4096密钥，要么卡上生成，要么按照pr手动修改代码。  
+
+
 我们启一个Docker防止配置的环境与主机的冲突：  
 {% codeblock lang:bash %}
 sudo docker run -it -v ./IsoApplet:/workdir --name jc_build ubuntu:22.04
@@ -237,3 +243,27 @@ Signature PIN ....: forced
 4.输入设置的PIN码验证  
 5.点击 “导入密钥文件到令牌”，然后选择刚刚生成的文件  
 
+### GIDS
+注意：GidsApplet和IsoApplet只能二选一  
+
+从[GidsApplet](https://github.com/vletoux/GidsApplet/releases)下载预编译的Applet  
+
+安装Applet   
+{% codeblock lang:powershell %}
+java -jar gp.jar --install GidsApplet.cap  `
+    --key-enc new-key  `
+    --key-mac new-key  `
+    --key-dek new-key  `
+{% endcodeblock %}
+
+初始化   
+{% codeblock lang:powershell %}
+# 生成一个48位的随机序列号
+openssl rand -hex 24
+# 初始化
+gids-tool -X
+# 导入证书（RSA2048）
+certutil -csp "Microsoft Base Smart Card Crypto Provider" -importpfx -p <passphrase> <file.p12>
+或
+pkcs15-init --auth-id 80 --pin <pin> --verify-pin -f PKCS12 --passphrase "<passphrase>" -S <file.p12>
+{% endcodeblock %}
