@@ -324,7 +324,7 @@ $ step certificate create \
 创建中间CA模板  
 {% codeblock intermediate.tpl lang:json %}
 {
-        "subject": {{ toJson .Subject }},
+        "subject": { { toJson .Subject } },
         "keyUsage": ["certSign", "crlSign"],
         "basicConstraints": {
                 "isCA": true,
