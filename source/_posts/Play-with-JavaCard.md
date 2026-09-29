@@ -1,7 +1,7 @@
 ---
 title: JavaCard 上手
 date: 2026/3/1 12:00:00
-updated: 2026/4/1 12:00:00
+updated: 2026/5/1 12:00:00
 toc: true
 categories:
 - 折腾那些事
@@ -43,7 +43,7 @@ openssl rand -hex 16 #运行3次，生成三组密钥，分别对应enc,mac,dek
 {% codeblock lang:powershell %}
 java -jar gp.jar  `
   --key-enc old-key  ` 
-  --key-mac ole-key  ` 
+  --key-mac old-key  ` 
   --key-dek old-key  ` 
   --lock-enc new-key  --lock-mac new-key  --lock-dek new-key
 {% endcodeblock %}
@@ -74,7 +74,7 @@ java -jar AlgTestJClient.jar
 从[FIDO2Applet](https://github.com/BryanJacobs/FIDO2Applet)下载工程ZIP包，在从Releases下载Applet(FIDO2.cap)  
 解压工程ZIP包备用，后面要用到工程里的脚本  
 
-注意：当前（2026/3/1）GPP必须使用v20.08.12，在这之后的版本处理TLV有问题会导致后面注入证书的操作报错。  
+**注意：当前（2026/3/1）GPP必须使用v20.08.12，在这之后的版本处理TLV有问题会导致后面注入证书的操作报错。**  
 
 安装Applet  
 {% codeblock lang:powershell %}
@@ -86,7 +86,6 @@ java -jar gp.jar --install FIDO2.cap  `
 {% endcodeblock %}
 
 注入证书  
-注意：当前（2026/3/1）Python必须使用3.12，不然pyscard装不上（或者自己手动改下代码）。  
 {% codeblock lang:powershell %}
 python -m venv venv
 venv\Scripts\Activate.ps1
@@ -96,7 +95,7 @@ python FIDO2Applet-main/install_attestation_cert.py
 
 ### OpenPGP
 从[SmartPGP](https://github.com/github-af/SmartPGP)下载Applet  
-建议使用RSA 2048或3072的Applet，更推荐用NIST P-384，因为卡上跑RSA的速度还是太慢了  
+建议使用RSA 2048或3072的Applet，或者NIST P-384，因为卡上跑RSA的速度还是太慢了  
 
 使用以下脚本生成序列号：
 
@@ -196,6 +195,7 @@ ant
 
 编译后得到 `IsoApplet.cap`  
 当然，你也可以[直接使用我编译好的cap](/attachments/Play-with-JavaCard/IsoApplet.7z)  
+或使用这个分支：[JCOP 4 ECDSA support](https://github.com/suut/IsoApplet/tree/off_card_hashing_ecdsa_for_jcop_4)  
 
 安装Applet   
 {% codeblock lang:powershell %}
